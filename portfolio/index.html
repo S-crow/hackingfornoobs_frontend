@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/styles.css"
+    />
+    <script src="assets/js/main.js"></script>
+  </head>
+
+  <body>
+    <a href="../" style="color: white; margin-left: 2%; margin-bottom: 10%; font-size: 150%">&#x1F59C retour page précédente</a>
+   <!--  
+    What are you doing here ? 
+                      
+                      \/
+
+                 .88888888:.
+                88888888.88888.
+              .8888888888888888.
+              888888888888888888
+              88' _`88'_  `88888
+              88 88 88 88  88888
+              88_88_::_88_:88888
+              88:::,::,:::::8888
+              88`:::::::::'`8888
+             .88  `::::'    8:88.
+            8888            `8:888.
+          .8888'             `888888.
+         .8888:..  .::.  ...:'8888888:.
+        .8888.'     :'     `'::`88:88888
+       .8888        '         `.888:8888.
+      888:8         .           888:88888
+    .888:88        .:           888:88888:
+    8888888.       ::           88:888888
+    `.::.888.      ::          .88888888
+   .::::::.888.    ::         :::`8888'.:.
+  ::::::::::.888   '         .::::::::::::
+  ::::::::::::.8    '      .:8::::::::::::.
+ .::::::::::::::.        .:888:::::::::::::
+ :::::::::::::::88:.__..:88888:::::::::::'
+  `'.:::::::::::88888888888.88:::::::::'
+        `':::_:' -- '' -'-' `':_::::'`
+ 
+-->
+    <div id="backToTop"><i class="fas fa-arrow-up"></i></div>
+    <div id="hamburger" class="visible-xs">
+      <i class="fas fa-bars fa-2x"></i>
+    </div>
+    <div class="container">
+      <header>
+        <div class="logo"><i class="fas fa-lock fa-2x"></i></div>
+        <h1>Mon Portfolio</h1>
+        <div class="baseline">
+          <br class="visible-xs" />Développeur / Pentester / Auditeur 
+          en sécurité informatique.
+        </div>
+      </header>
+      <main>
+        <nav class="hidden-xs">
+          <ul>
+            <li><a href="#whoami">Qui suis-je ?</a></li>
+            <li><a href="#projects">Projets/Missions</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <section id="whoami">
+          <div>
+            <h2>Qui suis-je</h2>
+            <p>
+              Je suis Nicolas Besse, consultant en sécurité informatique au sein de <a href="https://france.devoteam.com/">Devoteam</a> depuis 2 ans. Après une école d'ingénieur en électronique (<a href="https://www.ensea.fr/fr">ENSEA</a>) j'ai suivi la formation du Mastère Spécialisé en Sécurité des Systèmes d'Information (<a href="https://www.esiea.fr/">ESIEA</a>) où j'ai pu découvrir tous les domaines de l'infosec (Web, Réseau, Programmation, Cryptographie, etc). Adepte des CTFs, challenges ou autres conf de Hack, ce blog présente certains points techniques auxquels j'ai pu être confronté. 
+            </p>
+          </div>
+          <div class="avatar">
+            <img
+              src="assets/img/crow.jpg"
+              alt="Nicolas Besse"
+            />
+          </div>
+        </section>
+
+
+
+        <section id="projects">
+          <h2 class="center">Mes missions et projets</h2>
+          <div class="baseline center">
+            Voici quelques missions de mon quotidien.
+          </div>
+          <div class="articles">
+            <article>
+              <img src="assets/img/pentest.png" alt="allocine" />
+              <div class="title">Test d'intrusion Web</div>
+              <p>
+                Analyse de la sécurité d'un site afin d'en détecter les vulnérabilités dans une approche offensive.
+              </p>
+              <a href="https://ogma-sec.fr/test-dintrusion-pentest-presentation-methodologies/" class="btn-link" target="_blank"
+                >Methodologie d'un pentest</a
+              >
+            </article>
+            <article>
+              <img src="assets/img/rustcode.png" alt="deliveroo" />
+              <div class="title">R&D Redteam : dev outils offensifs</div>
+              <p>
+                Développement d'outils de prises d'information ou de post-exploitation dans les réseaux Windows.
+              </p>
+              <a href="https://github.com/S-crow/Pentest.git" class="btn-link" target="_blank"
+                >Projet SneakyMercury</a
+              >
+            </article>
+            <article>
+              <img src="assets/img/conf.png" alt="leboncoin" />
+              <div class="title">Audit de configuration</div>
+              <p>
+                Check de la conformité de systèmes ou d'équipements d'une infrastructure par rapport aux référentiels en matière de sécurité (OWASP, RFC, CIS) 
+              </p>
+              <a href="https://github.com/S-crow/Pentest.git" class="btn-link" target="_blank"
+                >Script d'extraction de configuration</a
+              >
+            </article>
+            <article>
+              <img src="assets/img/dump.jpg" alt="airbnb" />
+              <div class="title">Audit de réseau interne</div>
+              <p>
+                Simulation d'attaque informatique dans un SI. Pentest d'Active Directory, mouvements latéraux dans un réseau interne et escalade de privilèges. 
+              </p>
+              <a href="https://sysdream.com/intrusion/interne/" class="btn-link" target="_blank"
+                >Méthodologie TI interne</a
+              >
+            </article>
+          </div>
+        </section>
+        <section id="skills">
+          <h2 class="center">Mes compétences techniques</h2>
+          <div class="baseline center">
+            Voici mes compétences en programmation.
+          </div>
+          <ul>
+            <li class="bg-html">
+              <i class="fab fa-html5 fa-5x"></i> <span>HTML</span>
+            </li>
+            <li class="bg-css">
+              <i class="fab fa-css3-alt fa-5x"></i> <span>CSS</span>
+            </li>
+            <li class="bg-javascript">
+              <i class="fab fa-js-square fa-5x"></i> <span>JavaScript</span>
+            </li>
+            <li class="bg-node">
+              <i class="fab fa-node-js fa-5x"></i> <span>NodeJS</span>
+            </li>
+            <li class="bg-react">
+              <i class="fab fa-react fa-5x"></i> <span>ReactJS</span>
+            </li>
+            <li class="bg-java">
+              <i class="devicon-java-plain fa-5x"></i> <span>Java</span>
+            </li>
+            <li class="bg-python">
+              <i class="fab fa-python fa-5x"></i><span>Python</span>
+            </li>
+          </ul>
+          <p>
+            Au cours de mes différentes expériences j'ai eu l'occasion de 
+            développer dans plusieurs langages de programmation. Parmi mes projets 
+            on peut par exemple citer : le développement de ce blog en React, 
+            une application mobile en React Native, la réalisation d'un labyrinthe en C, 
+            un client/serveur avec authentification par Javacard en Java, un vote électronique 
+            avec chiffrement des voix en Python, un doc avec des macro malveillantes en VBA. 
+	    Durant mon stage de fin d'études j'ai participé au développement 
+            d'un outil offensif servant pour les audits internes lors de la phase de post-exploitation 
+            dans les réseaux Windows, codé en Rust.
+            Enfin chez Devoteam, j'ai pu développer plusieurs scripts d'extraction de configuration pour serveurs Windows
+            en Powershell, et pour serveurs linux en Bash.  
+          </p>
+        </section>
+        <section id="softskills">
+           <h2 class="center">Softskills</h2>
+          <ul>
+            <li>- Chef de projet sur plusieurs missions</li></br>
+            <li>- Publication d'articles sur le CERT</li></br>
+            <li>- Audits organisationnels dans toute la France</li></br>
+            <li>- Encadrement de stagiaires et alternants</li></br>
+            <li>- Lead de réunions et d'entretiens techniques</li></br>
+	    <li>- Rédaction de propales pour avant-vente</li></br> 
+            <li>- Tp dans des écoles d'ingénieurs</li>
+          </ul>
+        </section>
+        <section id="contact">
+          <h2 class="center">Contact</h2>
+          <div class="baseline center">
+            Vous souhaitez me contacter ? C'est parti !
+          </div>
+          <form id="contact-form" action="" method="post">
+            <input type="text" name="name" id="name" placeholder="Votre nom" />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Votre email"
+            />
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              placeholder="Tapez votre message ici..."
+            ></textarea>
+            <button type="submit">Envoyer le message</button>
+          </form>       
+        </section>
+      </main>
+      <footer>Site réalisé par Nicolas Besse </br>© 2019</footer>
+    </div>
+  </body>
+</html>

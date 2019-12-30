@@ -1,0 +1,159 @@
+body {
+	background-color: #615494;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-align: center;
+	color: white;
+}
+
+.fa-code {
+	color:#615494;
+	background-color: #FFFFFF;
+	background-size: 60px;
+	font-size: 400%;
+	border-radius: 60%;
+}
+
+header > h1 {
+	font-size: 60px;
+	color: #FFFFFF;
+}
+
+.container {
+	flex-direction: column;
+	background-color:#FFFFFF; 
+	margin: 75px 100px;
+	border-radius:50px;
+	color: grey;
+	padding-bottom: 50px;
+}
+
+a {
+	text-decoration: none;
+	font-size: 18px;
+	color: #636363;
+	font-weight: bold;
+}
+
+a:hover {
+	background-color: white; 
+}
+
+h1 {
+	color:#636363;
+	font-size: 37px;
+}
+
+h2 {
+	text-align: center;
+	font-size: 23px;
+}
+
+.container.p {
+	color:#333333;
+	font-size: 18px;
+}
+
+nav {
+	display: flex;
+	background-color:#F7F7F7; 
+	align-items: center;
+	justify-content: space-evenly;
+	list-style: none;
+	border-top-left-radius:50px;
+	border-top-right-radius:50px;
+	height: 80px;
+}
+
+#tux {
+   	width:250px;
+   	height:250px;
+    border-radius:50%;
+	border: 2px solid black;
+	margin-left: 40px;
+}
+
+section img {
+	width: 340px;
+	height: 215px;
+	/*width: 30%;
+	height: 60%;*/
+}
+
+.whoami {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	text-align: justify;
+	margin: 100px 100px;
+}
+
+.projects {
+	text-align: center;
+	margin: 100px 20px;
+}
+
+.sites {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 100px 20px;
+}
+
+.skills {
+	text-align: center;
+	margin: 100px 20px;
+}
+
+i {
+	font-size: 600%;
+}
+
+.line {
+	background-color: #DDDDDD;
+	height: 1pt;
+	width: 100%;
+
+}
+
+.purpleline {
+	margin: auto;	
+	background-color: #615494;
+	height: 1.4pt;
+	width: 20%;
+}
+
+#lorem {
+	text-align: justify;
+	margin: 100px 100px;
+}
+
+.contact {
+	margin-top: 100px;
+}
+
+form {
+	margin-top: 80px;
+}
+
+form > * {
+	border-radius: 5%;
+}
+
+.fa-arrow-alt-circle-up {
+	color:#615494;
+	background-color: #FFFFFF;
+	background-size: 60px;
+	font-size: 400%;
+	border-radius: 60%;
+}
+
+
+/*
+@media screen and (max-width: 600px){
+  article {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+*/

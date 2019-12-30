@@ -1,0 +1,56 @@
+{
+  "name": "hackingfornoobs_frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.3",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
+    "react": "^16.12.0",
+    "react-animated-css": "^1.2.1",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-burger-menu": "^2.6.13",
+    "react-dom": "^16.12.0",
+    "react-hamburger-menu": "^1.1.1",
+    "react-loading": "^2.0.3",
+    "react-navigation": "^4.0.10",
+    "react-render-html": "^0.6.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.0",
+    "react-scroll-up-button": "^1.6.4",
+    "react-transition-group": "^4.3.0",
+    "reactstrap": "^8.2.0",
+    "styled-components": "^4.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy-production": "react-scripts build && scp -r ./build/* Scrow@64.225.9.60:/var/www/hacking-for-noobs.com/html",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  }
+}

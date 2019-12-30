@@ -1,0 +1,188 @@
+html,
+body {
+  display: flex;
+  margin: 0;
+  color: #4B505A;
+  background-color: #F5F5F5;
+}
+
+#App {
+  font-family: "Open Sans", sans-serif;
+  background-color: #F5F5F5; /*gray*/
+  font-size: 14px;
+  min-height: 100vh;
+  line-height: 24px;
+  vertical-align: baseline;
+  letter-spacing: normal;
+  word-spacing: 0px;
+}
+
+
+#page-wrap {
+  margin: 0 20%;
+  text-align: justify;
+  text-justify: inter-word;
+  background-color: #FFFFFF;
+  /* Prevent sidebar from showing a scrollbar on page */
+  overflow: auto;
+  margin-bottom: 20%;
+}
+
+h1 {
+  font-size: 250%;
+  font-family: "Proxima Nova Soft";
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #783201;
+}
+
+a:hover {
+font-weight: bold;
+}
+
+#openclassrooms a {
+  color: #9013FE;
+}
+
+.tabulation {
+  text-indent: 20px;
+}
+
+.indent {
+  margin-left: 35%;
+}
+
+.hackermanifesto {
+  text-align: justify;
+  text-justify: inter-word;
+  /* Prevent sidebar from showing a scrollbar on page */
+  overflow: auto;
+  background-color: #F6ECE2;
+  background-size:99%;
+}
+
+img:not(#loading) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #F5F5F5;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.parchemin {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #783201;
+  margin: 1em 0;
+  padding: 0;
+}
+
+
+/* Individual item */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  color: #d1d1d1; 
+  text-decoration: none;
+  margin-bottom: 10px;
+  outline: 0;
+  border: none;
+}
+
+/* Change color on hover */
+.menu-item:hover {
+  color: white;
+}
+
+.article{
+  margin: 0 6%;
+}
+/* The rest copied directly from react-burger-menu docs */
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 26px;
+  left: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #121212;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+  left: 70%;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #F5F5F5;/*#bdc3c7;*/
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #121212;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  width: 82%;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #121212;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+}
+
+#list-links {
+  list-style: none;
+}
+
+.site-footer {
+  position: fixed;
+  left:0;bottom:0;right:0;
+  text-align: center;
+  padding: 0.6%;
+  width: '100%';
+  color: #F5F5F5;
+  background-color: #333333;
+}
+
+#wifi {
+  color: white;
+  margin: 40px;
+  background-color:#333333;
+  padding: 20px;
+}
+
+
+#search {
+  margin-left: 800px;
+}
