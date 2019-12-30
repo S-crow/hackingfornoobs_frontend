@@ -346,6 +346,31 @@ class Redteam extends React.Component {
             All server-side private subnets<br/>
             All other VPN clients</li>
           </ol>
+
+          <br/>
+          <h5>Télécharger les profils OpenVPN</h5>
+          <ol>
+            <li>Se connecter pour télécharger les profils https://[Your VPS]:943/?src=connect</li>
+            <li>Pour chaque utilisateur se connecter et télécharger le profil</li>
+            <li>Sauvegarder rasp4.ovpn et redteam.ovpn</li>
+          </ol>
+
+          <br/>
+
+          <h5>Configuration de la Raspberry Pi 4</h5>
+          <li>Allumez la Raspberry Pi 4 et brancher un câble ethernet</li>
+          <li>Installez OpenVPN: apt-get install openvpn</li>
+          <li>Configurez le démarrage automatique de OpenVPN dans le fichier :<br/>
+          nano /etc/default/openvpn <br/>
+          [Décommentez ‘AUTOSTART=”all”’ puis sauvegardez]</li>
+          <li>Copiez le fichier .ovpn sur la Raspberry :<br/>scp rasp4.ovpn [Raspberry Pi 4 IP]:/etc/openvpn</li>
+          <li>Allez dans /etc/openvpn et renommez rasp4.ovpn en client.conf: <br/>cd /etc/openvpn <br/>mv rasp4.ovpn client.conf</li>
+          <li>Activez OpenVPN pour démarré au boot: <br/>update-rc.d openvpn enable</li>
+          <li>Puis reboot</li>
+
+          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur comme "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
+          
+          Nous avons à présent la Raspberry Pi 4 configurée de sorte que chaque fois qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN</p>
       </div>
       );
     }
