@@ -16,7 +16,7 @@ class Accueil extends React.Component {
 
           <img style={{'width':'30%'}} src="https://media.giphy.com/media/RyXVu4ZW454IM/giphy.gif" alt="Hackerman"/>
 
-          <p className="tabulation">Pour commencer il faut de la volonté, vous vous en doutiez. Mais c'est vraiment fondamental ! Ce n'est pas sans raison qu'on vous répondra <a href="https://fr.wikipedia.org/wiki/RTFM_(expression)">RTFM</a> sur les forums. Avant toute chose il faut bien comprendre les mécanismes mis en place, les technologies et les langages utilisés pour espèrer en détourner les usages ;)</p>
+          <p className="tabulation">Pour commencer il faut de la volonté, vous vous en doutiez. Mais c'est vraiment fondamental ! Il faut d'abord apprendre à apprendre... Ce n'est pas sans raison qu'on vous répondra <a href="https://fr.wikipedia.org/wiki/RTFM_(expression)">RTFM</a> sur les forums. Avant toute chose il faut bien comprendre les mécanismes mis en place, les technologies et les langages utilisés pour espèrer en détourner les usages ;)</p>
 
           <p className="tabulation">Il n'y a pas de chemin particulier mais une base de connaissances en informatique est nécessaire avant de démarrer dans l'infosec, sous peine de n'être qu'un <strong>script kiddie</strong>... <br/> Pour les plus noobs d'entre vous je vous renvoie vers ce site oh combien formateur : 
           <a href="https://openclassrooms.com/fr/" alt="lien openclassrooms"><img src={OpenClassrooms} alt="openclassrooms" height="30%" width="30%"/></a>
@@ -45,7 +45,7 @@ class Accueil extends React.Component {
           <p className="tabulation">Ça y est, vous comprenez les concepts de Client/Serveur ? Les requêtes Web n'ont plus de secret pour vous ? Le modèle OSI non plus ? Vous savez vous débrouiller sur Linux et coder un snake en python ou un labyrinthe en C ? Non, vraiment ? Ok, alors toutes mes félicitations pour la next step vous allez ENFIN rentrer dans le monde du hacking. <br/><br/>
           
           Car il est à présent temps de passer aux sites de challenges : <a href="https://www.root-me.org/">Root-Me</a> et <a href="https://www.newbiecontest.org/">Newbie Contest</a>.<br/>
-          L'idée de ce genre de site c'est de se fixer des objectifs proches, souvent le titre du chall vous renseigner sur la vulnérabilité à exploiter, maintenant à vous de creuser, d'appronfondir le sujet. Et pour cela vous avez à disposition toutes les ressources que vous souhaitez, Google est votre ami ^^.</p>
+          L'idée de ce genre de site c'est de se fixer des objectifs proches, souvent le titre du chall vous renseigne sur la vulnérabilité à exploiter, maintenant à vous de creuser, d'appronfondir le sujet. Et pour cela Google est votre ami ^^.</p>
 
           <br/>
           <hr/>
@@ -62,13 +62,13 @@ class Accueil extends React.Component {
           <hr/>
           <br/>
 
-          <p className="tabulation">Après avoir rooter plusieurs machines HackTheBox, il serait intéressant de le faire dans un environnement réel, pour ça je vous conseille le métier de Pentester (ou Ethical Hacker) pour éviter de le faire "In the wild" et de s'attirer quelques problèmes ^^' <br/> ou à l'occasion de CTFs : <a href="https://ctftime.org/">Liste des CTFs à venir</a></p>
+          <p className="tabulation">Après avoir rooter plusieurs machines HackTheBox, il serait intéressant de le faire dans un environnement réel, pour ça je vous conseille le métier de Pentester (ou Ethical Hacker) pour éviter de le faire "In the wild" et de s'attirer quelques problèmes ^^' ou à l'occasion de CTFs : <a href="https://ctftime.org/">Liste des CTFs à venir</a></p>
 
           <p className="tabulation">N'hésitez pas non plus à participer aux événements de hacking en tout genre, ces rencontres vous permettront de skill up tout en buvant des bières :) N'hésitez pas non plus à share vous-même, grâce à vous les noobs d'aujourd'hui seront peut être les pentesters de demain.</p>
 
           <p className="tabulation">Enfin l'une des étapes les plus avancées est pour moi l'étude de 2 domaines extrêmement intéressants (mais complexes) du monde de l'infosec : <strong>Exploit</strong> et <strong>Reverse</strong>. Apprendre à développer son propre exploit d'un buffer overflow ou à reverse un Malware ça n'a pas de prix Oo</p>
 
-          <p className="tabulation">En parallèle de toute cette aventure, vous pourrez également passer des certifications, la <a href="https://www.eccouncil.org/programs/certified-ethical-hacker-ceh-fr/" alt="lien CEH">CEH</a> (Certified Ethical Hacker) pour officialiser vos connaissances (QCM théorique) ou l'<a href="https://www.offensive-security.com/pwk-oscp/" alt="lien OSCP">OSCP</a> (examen pratique) pour le challenge.</p>
+          <p className="tabulation">En parallèle de toute cette aventure, vous pourrez également passer des certifications, la <a href="https://www.eccouncil.org/programs/certified-ethical-hacker-ceh-fr/" alt="lien CEH">CEH</a> (Certified Ethical Hacker) pour officialiser vos connaissances (QCM théorique) ou l'<a href="https://www.offensive-security.com/pwk-oscp/" alt="lien OSCP">OSCP</a> (examen pratique) plus pour le challenge.</p>
         </div>    
       );
     }
