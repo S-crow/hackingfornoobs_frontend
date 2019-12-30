@@ -62,7 +62,7 @@ class Redteam extends React.Component {
         <br/>
 
         <h3>Comment dissimuler la Raspberry ?</h3>
-
+        <p>L'une des méthodes la plus simple et efficace est de la cacher à l'intérieur d'une multiprise comme suit :</p>
         <img src={Hide} alt="idée pour chacher raspberry"/>
 
         <hr/>
@@ -267,7 +267,7 @@ class Redteam extends React.Component {
         <h4>Configurer un client et un serveur Openvpn</h4>
         <p className="tabulation">Bien que nous puissions faire un shell SSH inversé pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
         <br/><br/>
-        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry sortira d'abord via le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter sur le port 443 (HTTPS).
+        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry sortira d'abord via le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
         </p>
 
         <p>Il faut pour cela réaliser les 3 étapes suivantes de configuration :</p>
@@ -278,11 +278,11 @@ class Redteam extends React.Component {
         </ul>
 
         <br/>
-        
-        <h5>Configurer OpenVPN Access Server</h5>
-        <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on pourrait opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
 
-        Vultr.com et Amazon Lightsail sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
+        <h5>Configurer OpenVPN Access Server</h5>
+        <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
+
+        <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
         </p>
 
       </div>
