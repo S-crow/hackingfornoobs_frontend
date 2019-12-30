@@ -279,36 +279,34 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h5>Configurer OpenVPN Access Server</h5>
+        <h5>Mise en place OpenVPN Access Server</h5>
         <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
 
         <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
         </p>
 
         <ol>
-          <li>Go to https://aws.amazon.com/lightsail/ and create a new VPS</li>
+          <li>Allez sur https://aws.amazon.com/lightsail/ et créez un nouveau VPS</li>
 
-          Once created, go to Manage -> Networking
+          Une fois crée, allez sur Manage -> Networking
 
-          Add two Firewall TCP Ports (443 and 943)
+          Ajoutez 2 règles firewall sur les ports (443 et 943)
 
-          <li>Install an OS like Ubuntu. Then make sure to chmod 600 your SSH keys and login to your VPS server from your attacker system:</li>
-
-          ssh -i LightsailDefaultPrivateKey-us-west-2.pem ubuntu@[IP]
-          <li>After SSHing into the server, go to root:</li>
+          <li>Installez un OS, par exemple Ubuntu. Faire un chmod 600 de la SSH key et se connectez sur le VPS server à partir de la machine d'attaque : </li>
+          ssh -i LightsailDefaultPrivateKey-us-west-2.pem user@[IP]
           sudo su -
-          <li>Update the server:</li>
+          <li>Update le serveur:</li>
           apt-get update && apt-get upgrade
-          <li><a href="https://openvpn.net/vpn-software-packages/">Install OpenVPN AS</a></li>
+          <li><a href="https://openvpn.net/vpn-software-packages/">Installez OpenVPN AS</a></li>
 
-          <li>Copy the link and download it onto the VPS. Example:</li>
+          <li>Copiez le lien et téléchargez-le, par exemple:</li>
           wget https://openvpn.net/downloads/openvpn-as-latest-ubuntu18.amd_64.deb
-          <li>Install OpenVPN AS</li>
+          <li>Installez OpenVPN AS</li>
           dpkg -i openvpn-as-latest-ubuntu18.amd_64.deb
-          <li>Delete the current profile and configure OpenVPN:</li>
+          <li>Supprimez le profil actuel et configurez OpenVPN:</li>
           /usr/local/openvpn_as/bin/ovpn-init
-          <li>Type DELETE: (case sensitive)</li>
-          <li>During the setup, a wizard will appear:</li>
+          <li>Tapez DELETE: (sensible à la casse)</li>
+          <li>Finir l'installation comme suit</li>
         </ol>
         <p>Accept EULA: yes <br/>
           Will this be the primary Access Server node: yes <br/>
@@ -330,6 +328,24 @@ class Redteam extends React.Component {
           Change OpenVPN Admin password: <br/>
           passwd openvpn supersecretpassword123 [Set your own unique password here] <br/>
           [Note - This is a great time to put IPTables for port 943 to only allow connections from your networks.]</p>
+
+          <br/>
+
+          <h5>Configuration de OpenVPN AS Server</h5>
+
+          <ol>
+            <li>Allez sur https://[IP Address du serveur VPS]:943/admin/</li>
+            <li>Se connecter avec le compte "openvpn" et le mot de passe récemment crée <br/>
+            Note: Si vous utilisez AWS Lightsail, accédez aux paramètres réseau du serveur et assurez-vous que le nom d'hôte ou l'adresse IP est l'adresse IP publique et non la privée, puis enregistrez et mettez à jour.</li>
+            <li>Dans OpenVPN, vérifiez que l'authentification est définie sur locale: <br/>
+            Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
+            <li>Créez deux utilisateurs avec l'option `Autoriser la connexion automatique activée` (rasp4 and redteam). Allez sur User Management -> User Permissions<br/>
+            Pour chaque utilisateur:<br/>
+            Set AllowAuto-login</li>
+            <li>Pour que les 2 comptes permettent la connectivité via VPN, nous devons activer certaines autorisations. Assurez-vous de configurer/activer les autorisations utilisateur de l'utilisateur:<br/>
+            All server-side private subnets<br/>
+            All other VPN clients</li>
+          </ol>
       </div>
       );
     }
