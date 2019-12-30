@@ -285,6 +285,51 @@ class Redteam extends React.Component {
         <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
         </p>
 
+        <ol>
+          <li>Go to https://aws.amazon.com/lightsail/ and create a new VPS</li>
+
+          Once created, go to Manage -> Networking
+
+          Add two Firewall TCP Ports (443 and 943)
+
+          <li>Install an OS like Ubuntu. Then make sure to chmod 600 your SSH keys and login to your VPS server from your attacker system:</li>
+
+          ssh -i LightsailDefaultPrivateKey-us-west-2.pem ubuntu@[IP]
+          <li>After SSHing into the server, go to root:</li>
+          sudo su -
+          <li>Update the server:</li>
+          apt-get update && apt-get upgrade
+          <li><a href="https://openvpn.net/vpn-software-packages/">Install OpenVPN AS</a></li>
+
+          <li>Copy the link and download it onto the VPS. Example:</li>
+          wget https://openvpn.net/downloads/openvpn-as-latest-ubuntu18.amd_64.deb
+          <li>Install OpenVPN AS</li>
+          dpkg -i openvpn-as-latest-ubuntu18.amd_64.deb
+          <li>Delete the current profile and configure OpenVPN:</li>
+          /usr/local/openvpn_as/bin/ovpn-init
+          <li>Type DELETE: (case sensitive)</li>
+          <li>During the setup, a wizard will appear:</li>
+        </ol>
+        <p>Accept EULA: yes <br/>
+          Will this be the primary Access Server node: yes <br/>
+          Please specify the network interface and IP address to be <br/>
+          used by the Admin Web UI: <br/>
+          (1) all interfaces: 0.0.0.0 <br/>
+          (2) eth0: 45.77.217.54 <br/>
+          Answer: 1 <br/>
+          Please specify the port number for the Admin Web UI. <br/>
+          Answer: 943 <br/>
+          Should client traffic be routed by default through the VPN? <br/>
+          Answer: YES <br/>
+          Should client DNS traffic be routed by default through the VPN? <br/>
+          Answer: YES <br/>
+          Use local authentication via internal DB? <br/>
+          > Press ENTER for default [no]:  <br/>
+          Answer: YES <br/>
+          The rest of these answers should be default. Simply hit the 'Enter' key <br/>
+          Change OpenVPN Admin password: <br/>
+          passwd openvpn supersecretpassword123 [Set your own unique password here] <br/>
+          [Note - This is a great time to put IPTables for port 943 to only allow connections from your networks.]</p>
       </div>
       );
     }
