@@ -28,6 +28,13 @@ body {
   margin-bottom: 20%;
 }
 
+@media (max-width: 1024px) {
+  #page-wrap {
+    margin: 0 7%;
+    margin-bottom: 10%;
+  }
+}
+
 h1 {
   font-size: 250%;
   font-family: "Proxima Nova Soft";
@@ -72,7 +79,6 @@ img:not(#loading) {
   margin-bottom: 40px;
 }
 
-
 hr {
   display: block;
   height: 1px;
@@ -109,7 +115,7 @@ hr {
 }
 
 .article{
-  margin: 0 6%;
+  margin: 0 5%;
 }
 /* The rest copied directly from react-burger-menu docs */
 /* Position and sizing of burger button */
@@ -119,6 +125,15 @@ hr {
   height: 26px;
   left: 36px;
   top: 36px;
+}
+
+@media (max-width: 1024px) {
+  .bm-burger-button {
+    width: 20px;
+    height: 16px;
+    left: 7px;
+    top: 10px;
+  }
 }
 
 /* Color/shape of burger icon bars */
@@ -133,6 +148,12 @@ hr {
   left: 70%;
 }
 
+@media (max-width: 1024px) {
+  .bm-cross-button {
+    left: 50%;
+  }
+}
+
 /* Color/shape of close button cross */
 .bm-cross {
   background: #F5F5F5;/*#bdc3c7;*/
@@ -144,6 +165,12 @@ hr {
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   width: 82%;
+}
+
+@media (max-width: 1024px) {
+  .bm-menu {
+    width: 62%;
+  }
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -182,7 +209,6 @@ hr {
   background-color:#333333;
   padding: 20px;
 }
-
 
 #search {
   margin-left: 800px;
