@@ -7,7 +7,7 @@ class Accueil extends React.Component {
 
   
     render() {
-  
+
       return (
         <div className="article">
           <h1>Le Hacking pour les Noobs</h1>
@@ -49,11 +49,10 @@ class Accueil extends React.Component {
           <p className="tabulation"> Car à présent passons aux sites de challenges : <a href="https://www.root-me.org/">Root-Me</a> et <a href="https://www.newbiecontest.org/">Newbie Contest</a>.<br/><br/>
           L'idée de ce genre de site c'est de se fixer des objectifs réalistes. Souvent le titre du chall donne un renseignement sur la vulnérabilité à exploiter, après à vous de creuser, d'appronfondir le sujet. Et pour cela Google est votre ami ^^.</p>
 
-          <br/>
           <hr/>
           <br/>
 
-          <p className="tabulation">Après avoir acquis entre 1000 et 2000 points sur Root-Me, et maitriser le <strong>Top 10 OWASP</strong> (XSS, SQLI, etc)
+          <p className="tabulation">Après avoir obtenu entre 1000 et 2000 points sur Root-Me, et maitriser le <strong>Top 10 OWASP</strong> (XSS, SQLI, etc)
           vous pouvez passer aux challenges de type "Réaliste" dans la catégorie éponyme sur Root-Me ou sur le très bon site : <a href="https://www.hackthebox.eu/">HackTheBox</a>.</p>
 
           <img id="hackthebox_img" src={HTB} alt="HackTheBox"/>

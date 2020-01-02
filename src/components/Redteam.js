@@ -13,7 +13,6 @@ class Redteam extends React.Component {
    
         <hr/>
 
-
         <h2>Contexte</h2>
         <p className="tabulation">L'objectif est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
         <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
@@ -67,7 +66,7 @@ class Redteam extends React.Component {
 
         <h2>Comment dissimuler la Raspberry ?</h2>
         <p>L'une des méthodes la plus simple et efficace est de la cacher à l'intérieur d'une multiprise comme suit :</p>
-        <img src={Hide} alt="idée pour chacher raspberry"/>
+        <img id="hide_raspberry" src={Hide} alt="idée pour chacher raspberry"/>
 
         <hr/>
 

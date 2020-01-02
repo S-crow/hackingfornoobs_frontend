@@ -10,7 +10,7 @@ import Redteam from "./components/Redteam";
 import HackerManifesto from "./components/HackerManifesto";
 import Footer from './components/Footer';
 import ScrollUpButton from "react-scroll-up-button";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './components/Search';
 import {Animated} from "react-animated-css";
 import opening from './img/hacker.jpg'
@@ -43,13 +43,8 @@ class App extends React.Component {
 
             return (
                 <div>     
-                    <Animated animationIn="fadeIn" animationInDuration={2500} animationOut="fadeOut" animationOutDuration={2500} isVisible={this.state.open_close}>
-                        {/* <img id="loading" src={opening} style= {{'width':window.screen.width,'height':window.screen.height}} alt="Loading" /> */}
-                       
-                        <img id="loading" src={opening} srcSet={`${opening_min} 300w, ${opening_medium} 768w, ${opening} 1280w`} style= {{width:'100%'}} alt="Loading page" />
-            
-                     
-                        
+                    <Animated animationIn="fadeIn" animationInDuration={2500} animationOut="fadeOut" animationOutDuration={2500} isVisible={this.state.open_close}>               
+                        <img id="loading" src={opening_min} srcSet={`${opening} 300w, ${opening_medium} 768w, ${opening} 1280w`} style= {{width:'100%'}} alt="Loading page" />
                     </Animated>
                 </div>
             );

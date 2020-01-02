@@ -49,7 +49,7 @@ body {
     text-align: left;
     color: #333333;
   }
-  ol { 
+  ol, ul { 
     padding: 15px;
   }
   #sneakymercury{
@@ -296,9 +296,12 @@ hr {
   width: 60%;
 }
 #kaliraspberry{
-  width: 70%;
+  width: 90%;
 }
 #methodoredteam{
+  width: 90%;
+}
+#hide_raspberry{
   width: 80%;
 }
 @media (max-width: 1024px) {
