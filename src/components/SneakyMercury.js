@@ -13,10 +13,8 @@ class SneakyMercury extends React.Component {
     render() {
       return (
       <div className="article">
-        <div className="header">
-            <h1>Projet SneakyMercury</h1>
-            <h2>(Dev d’un outil de post-exploitation dans les réseaux Windows)</h2>
-        </div>  
+        <h1>Projet SneakyMercury</h1>
+        (Post-exploitation dans les réseaux Windows)
         <hr/>
         <div>
           <ul>
@@ -25,27 +23,27 @@ class SneakyMercury extends React.Component {
             <li><a href="#smb">Le protocole SMB</a></li>
           </ul>  
         </div>
-        <div>
-            <h3>Etat de l'art : Shadow Brokers Leak</h3>
+        <div className="sneaky_article">
+            <h2>Le Shadow Brokers Leak</h2>
 
-            <p className="tabulation">Ces dernières années ont vu l'émergence de cyberattaques de plus en plus sophistiquées. Les attaquants comme les agences gouvernementales se servent d'outils customs développés en interne, qui sont parfois sujet à des fuites publiques. <p/> 
-            <p className="tabulation"></p>L'une d'elles a particulièrement marqué les esprits, le <strong>Shadow Brokers Leak,</strong> qui contenait les exploits et outils utilisés par la NSA (National Security Agency) et en particulier ceux concernant le <strong>protocole SMB</strong>. Ces exploits dénommés EternalBlue, EternalChampion, EternalRomance et EternalSynergy ont été ensuite ré-implémentés dans des campagnes d'attaques comme le ransomware <strong>WannaCry</strong>. </p>
+            <p className="tabulation">Ces dernières années ont vu l'émergence de cyberattaques de plus en plus sophistiquées. Les attaquants comme les agences gouvernementales se servent d'outils customs développés en interne, qui sont parfois sujet à des fuites publiques.<p/> 
+            <p className="tabulation"></p>L'une d'entre elles a particulièrement marqué les esprits, le <strong>Shadow Brokers Leak,</strong> qui contenait les exploits et outils utilisés par la NSA (National Security Agency) et en particulier ceux concernant le <strong>protocole SMB</strong>. Ces exploits dénommés EternalBlue, EternalChampion, EternalRomance et EternalSynergy ont été ensuite ré-implémentés dans des campagnes d'attaques comme le ransomware <strong>WannaCry</strong>. </p>
 
-            <img src={NSA} style={{'width':'30%'}} alt="NSA"/>
+            <img id="nsa" src={NSA} alt="NSA"/>
             
-            <h4>Le contexte général</h4>
-            <p className="tabulation">Le leak des Shadow Brokers est une série de 2 fuites d’outils de la NSA survenues en Août 2016 et Avril 2017. Ces leaks contenaient plusieurs exploits et outils qui furent volés semble-t-il à <strong>l’Equation Group ,</strong> le groupe opérationnel cyber de la NSA. Cela inclut notamment le fameux exploit <strong>EternalBlue</strong> qui n'a eu de cesse depuis de faire parler de lui. </p>
-            <p>Les Shadows Brokers annoncèrent publiquement la fuite le 13 août 2016 sur plusieurs sites et forums comme teaser de la future fuite d'autres outils qu’ils avaient également en leur possession. </p>
-            <p>Finalement le 14 avril 2017 fut release le dossier <strong>Lost in Translation</strong> . En 2017, plusieurs cyberattaques ont été lancées après cet événement, notamment les fameux ransomwares WannaCry et NotPetya. </p><br/>
+            <h2>Le contexte général</h2>
+            <p className="tabulation">Le leak des Shadow Brokers est une série de 2 fuites d’outils de la NSA survenues en Août 2016 et Avril 2017. Ces leaks contenaient plusieurs exploits et outils qui furent volés semble-t-il à <strong>l’Equation Group</strong>, le groupe opérationnel cyber de la NSA. Cela inclut notamment le fameux exploit <strong>EternalBlue</strong> qui n'a eu de cesse depuis de faire parler de lui. </p>
+            <p>Les Shadows Brokers annoncèrent publiquement la fuite le 13 août 2016 sur plusieurs sites et forums comme teaser de la fuite suivante d'autres outils qu’ils avaient également en leur possession. </p>
+            <p>Finalement le 14 avril 2017 fut release le dossier <strong>Lost in Translation</strong>. En 2017, plusieurs cyberattaques ont été lancées après cet événement, notamment les fameux ransomwares <strong>WannaCry</strong> et <strong>NotPetya</strong>. </p><br/>
             
-            <h4>Les outils de la NSA : FuzzBunch, DoublePulsar et Danderspritz</h4>
+            <h2>Les outils de la NSA</h2>
             <p>La première partie de notre stage consistait en l’étude des différents outils de la NSA, nous nous sommes particulièrement concentrés sur 3 outils : </p>
             
             <p><strong>FUZZBUNCH :</strong> Framework comparable à Metasploit. Généralement utilisé pour générer des payloads customs (charge utile servant à infecter une machine cible).</p>
             <p><strong>DOUBLEPULSAR :</strong> Payload utilisé avec les exploits SMB. Il s’agit d’une backdoor7 qui offre des fonctionnalités comme l’injection de DLL8 ou l’exécution de code malveillant sur les machines infectées. Il est utilisé pour installer PeddleCheap qui est un listener9 qui se connecte en retour à Danderspritz. </p>
             <p><strong>DANDERSPRITZ :</strong> Framework graphique de post-exploitation, il couvre entre autre la reconnaissance, la découverte du réseau, la détection d’antivirus, l’extraction de données, la persistance et plein d’autres fonctionnalités. </p>
             
-            <div>Parmi les différentes fonctionnalités : 
+            <div>Parmi les différentes fonctionnalités : <br/>
                 <ul>
                     <li>Monitoring des services sur la machine victime</li>
                     <li>Récupération d’informations sur les drivers</li>
@@ -66,10 +64,11 @@ class SneakyMercury extends React.Component {
               </ol>
             [Diagramme Post-exploitation NSA]
             </div>
-            <h4>Démonstration des outils </h4>
+            <br/>
+            <h2>Démonstration des outils </h2>
             <p>L’interface de base de Fuzzbunch est assez user-friendly : </p>
-            <div><img src={Fuzzbunch} alt="Fuzzbunch démo" width="80%"></img></div>
-            <a href="https://www.digital.security/fr/blog/dans-la-boite-outils-dequation-group">article Digital Security sur l'Equation Group</a>
+            <div><img id="fuzzbunch" src={Fuzzbunch} alt="Fuzzbunch démo"></img></div>
+            -> <a href="https://www.digital.security/fr/blog/dans-la-boite-outils-dequation-group">article Digital Security sur l'Equation Group</a><br/><br/>
             <div>Après avoir renseigné certains champs, comme l’adresse IP cible ou le port d’écoute, on peut lancer des plugins qui s’organisent en différentes catégories :  
               <ul>
                 <li><strong>Reconnaissance</strong> (fingerprinting) et check des vulnérabilités exploitables sur la cible : Rpctouch, Smbtouch, et d’autres outils de reconnaissance </li>
@@ -78,17 +77,19 @@ class SneakyMercury extends React.Component {
               </ul>
               RpcTouch permet de réaliser un fingerprinting de la cible, Smbtouch en plus de récupérer la version et l’architecture du système d’exploitation remonte directement les vulnérabilités exploitables sur la machine cible.
             </div>
-            <p>Dans cet exemple, la cible est vulnérable à 3 exploits.
-            Avec l’exploit EternalBlue on obtient l'output : 
+
+            <br/> 
+
+            <p>Dans l'exemple suivant, la cible est vulnérable à 3 exploits dont EternalBlue : 
             </p>
-            <img src={Eternalblue} alt="eternalblue success" width="70%"></img>
-            <p>L’attaque a réussi, et n’aura pris qu’un peu plus de 10 secondes. EternalBlue exploite un buffer overflow au niveau de la stack SMB, l’implémentation se fait au niveau du Kernel Windows. Après on peut déposer une backdoor sur la cible. </p>
+            <img id="eternalblue_img" src={Eternalblue} alt="eternalblue success"></img>
+            <p className="tabulation">L’attaque a réussi, et n’aura pris qu’un peu plus de 10 secondes. EternalBlue exploite un buffer overflow au niveau de la stack SMB et s'exécute au niveau du Kernel Windows. Après on peut déposer une backdoor sur la cible. </p>
             <a href="https://www.rapid7.com/db/modules/exploit/windows/smb/ms17_010_eternalblue">Détails de l'exploit</a>
             
             <hr/>
 
-            <h3 id="projet">Projet SneakyMercury </h3>
-            <h4>Mise en place d'un lab</h4>
+            <h2 id="projet">Projet SneakyMercury </h2>
+            <h3>Mise en place d'un lab</h3>
             <p className="tabulation">La mise en place d’un lab était nécessaire au projet afin de pouvoir tester l'outil dans un environnement restreint et contrôlé. La plupart des entreprises de sécurité disposent de laboratoires virtuels comme celui-ci, certains sont également disponibles à l’achat. 
  
             Nous avons choisi de mettre en place l'architecture d'un réseau standard d’entreprise, à savoir un environnement Active Directory avec des serveurs (Windows Server) et des machines clientes (32bits et 64bits). Pour la machine attaquante, on se sert d’une machine virtuelle (VM) Kali Linux. </p>
@@ -103,12 +104,12 @@ class SneakyMercury extends React.Component {
 
             <p>L’ensemble de ces services sont installables lors de la mise en place d’un Active Directory :</p>
             <a href="https://www.psattack.com/articles/20160718/setting-up-an-active-directory-lab-part-1/ ">Mise en place d'un AD</a>
-
-            <h4>Un outil de post-exploitation pour les réseaux Windows</h4>
-            <p className="tabulation">L’objectif de ce projet est de développer un nouvel outil opensource afin d’automatiser la phase de mouvement latéral dans un environnement réseau Windows avec Active Directory. L'outil devra être comparable en termes de fonctionnalités à l’outil existant CrackMapExec (CME) mais il devra être développé en RUST plutôt qu’en Python comme c'est le cas pour CME.</p>
-            <a href="https://github.com/byt3bl33d3r/CrackMapExec ">github de CrackMapExec</a>
+            <br/><br/>
+            <h3>Un outil de post-exploitation pour les réseaux Windows</h3>
+            <p className="tabulation">L’objectif de ce projet est de développer un nouvel outil opensource afin d’automatiser la phase de mouvement latéral dans un environnement réseau Windows avec Active Directory. L'outil devra être comparable en termes de fonctionnalités à l’outil existant <strong>CrackMapExec</strong> (CME) mais il devra être développé en RUST plutôt qu’en Python comme c'est le cas pour CME.</p>
+            <a href="https://github.com/byt3bl33d3r/CrackMapExec ">github de CrackMapExec</a><br/><br/>
             <p>Rust est un langage relativement récent développé par la fondation Mozilla mais qui possède déjà de nombreux contributeurs sur GitHub.</p>
-            <div>Les avantages d’un développement en RUST ? 
+            <div><strong>Les avantages d’un développement en RUST ?</strong> <br/>
               <ul>
                 <li><strong>Facilité de déploiement</strong> : Pas besoin d’environnement d’exécution (portable et multiplateforme), pas de dépendance, on compile le programme vers un binaire exécutable qu’on peut déployer sur le réseau cible.</li>
                 <li><strong>Rapidité</strong> : Rust est un langage bas niveau, très optimisé par rapport au langage Python </li>  
@@ -122,7 +123,7 @@ class SneakyMercury extends React.Component {
               <li><a href="https://aml3.github.io/RustTutorial/">Rust in 7 programs</a></li>
               <li><a href=" https://llogiq.github.io/2015/07/30/traits.html ">Rust built-in traits</a></li>
             </ul>      
-            <div>Cahier des charges pour l’outil :
+            <div><strong>Cahier des charges pour l’outil :</strong>
               <ul>
                   <li>Authentification sur le réseau Windows : NTLM, Kerberos, Bruteforce de comptes </li>
                   <li>Énumération : de partages réseaux, d'utilisateurs, de groupes et d’autres informations utiles.</li>
@@ -130,8 +131,8 @@ class SneakyMercury extends React.Component {
                   <li>Exécution de code à distance : PSExec et LOLBAS (Living Off The Land Binaries And Scripts), ensemble de techniques furtives qui se servent des exécutables légitimes présents sur le système.</li>
               </ul>
             </div>
-            <h4>Développement d’une bibliothèque SMB en Rust</h4>
-            <p className="tabulation">Contrairement à CrackMapExec (CME) qui pouvait compter sur la bibliothèque SMB en Python d’Impacket, Rust étant un langage relativement récent, il n’y a pas de bibliothèque SMB déjà exitante. La principale difficulté a donc été la réimplémentation from scratch du protocole SMB en Rust. Il s’agissait de comprendre le protocole, les mécanismes de gestion de l’authentification sous Windows et de recrafter chaque paquet pour effectuer telle ou telle action.</p>
+            <h3>Développement d’une bibliothèque SMB en Rust</h3>
+            <p className="tabulation">Contrairement à <strong>CrackMapExec</strong> (CME) qui pouvait compter sur la bibliothèque SMB en Python <strong>Impacket</strong>, Rust étant un langage relativement récent, il n’y a pas de bibliothèque SMB déjà exitante. La principale difficulté a donc été la réimplémentation from scratch du protocole SMB en Rust. Il s’agissait de comprendre le protocole, les mécanismes de gestion de l’authentification sous Windows et de recrafter chaque paquet pour effectuer telle ou telle action.</p>
             <div>SMB (Server Message Block) est le protocole des partages Windows, il inclut notamment :  
               <ul>
                 <li>L’accès aux Partages réseau (shares)</li>
@@ -146,9 +147,9 @@ class SneakyMercury extends React.Component {
             
             <hr/>
 
-            <h3>Utilisation de l’outil</h3>
+            <h2>Utilisation de l’outil</h2>
             <div className="tabulation">SneakyMercury est un outil en CLI, l’interface offre un shell intéractif. Quand l’utilisateur lance l’outil il accède au menu d’aide lui indiquant les options à fournir (IP cible, nom d’utilisateur, mot de passe, nom de domaine)
-    
+            <br/>
             → Les commandes shell, script et db sont alors disponibles  
               <ul>
                 <li>shell ouvre un shell intéractif avec un menu d’aide plus spécifique</li>
@@ -157,11 +158,11 @@ class SneakyMercury extends React.Component {
               </ul>
             </div>
 
-            <img src={Help} alt="menu d'aide sneakymercury" width="70%"/>
+            <img id="help" src={Help} alt="menu d'aide sneakymercury"/>
 
             <p>L’outil traite l’authentification NTLMv2 et retourne un message de connexion ou d’erreur. L’utilisateur connecté accède alors à la liste des commandes disponibles.</p>
             
-            <img src={Demo} alt="demo sneakymercury" height="50%" width="70%"/>
+            <img id="demo" src={Demo} alt="demo sneakymercury"/>
 
             <div>Généralement la commande suivante est « Connect » qui va permettre la connexion à un partage réseau (share). 
             
@@ -173,18 +174,18 @@ class SneakyMercury extends React.Component {
             </ul>
             $=caché
             </div>
-
+            <br/>
             <p className="tabulation">IPC$ est un partage spécial permettant la communication interprocess. Il ne permet pas d’accéder directement à des fichiers ou des dossiers comme les autres partages réseau mais il fournit une interface de communication avec les autres processus en cours d’exécution sur le système (Remote Procedure Call : DCERPC).  
     
             En fait $IPC expose les named pipes11 sur lesquels on peut alors écrire ou lire pour communiquer avec les processus. Chaque data qui est écrite sur un named pipe est envoyée au processus distant et inversement chaque data écrite par un processus sera accessible à partir du named pipe associé. Une fois connecté au partage réseau l’utilisateur peut lister les fichiers ou se déplacer dans les différents dossiers à la recherche de données sensibles.</p>
 
-            <h4>Exploration des partages réseau et commandes Powershell </h4>  
-            <p>On peut également exécuter des commandes arbitraires sur la cible grâce à la commande PowerShell :</p>    
+            <h3>Exploration des partages réseau et commandes Powershell </h3>  
+            <p className="tabulation">On peut également exécuter des commandes arbitraires sur la cible grâce à la commande PowerShell :</p>    
         
-            <img src={Interactive} alt="sneakymercury interactif" width="70%"/>
+            <img id="interactif" src={Interactive} alt="sneakymercury interactif"/>
 
-            <h4>Download de fichiers ou upload de codes malveillants</h4>
-            <p className="tabulation">La fonctionnalité implémentée suivante est l’Upload/Download de fichiers. Cela peut permettre à l’utilisateur de récupérer les fichiers intéressants en local avec la commande download, ou alternativement d'uploader ses propres fichiers ou exécutables via la commande upload.</p>
+            <h3>Download de fichiers ou upload de codes malveillants</h3>
+            <p className="tabulation">La fonctionnalité implémentée suivante est l’<strong>Upload/Download</strong> de fichiers. Cela peut permettre à l’utilisateur de récupérer les fichiers intéressants en local avec la commande download, ou alternativement d'uploader ses propres fichiers ou exécutables via la commande upload.</p>
 
             <p>Pour implémenter cette fonctionnalité nous nous sommes inspirés de l’upload utilisé par CrackMapExec (CME).</p>  
             <ul><strong>Détails upload CME :</strong>
@@ -200,7 +201,7 @@ class SneakyMercury extends React.Component {
 
             <p className="tabulation">La première requête permet la création d'un fichier sur la machine distante. La seconde va initialiser certaines métadonnées du fichier comme sa taille. On envoie des requêtes d’écriture dans lesquelles on bufferise les data à transmettre, et l’on boucle jusqu’à la fin du fichier source. Une dernière requête permet la fermeture du fichier distant. L’upload est alors terminé.</p>
 
-            <h4>Enumération des utilisateurs, des domaines et des sessions</h4>    
+            <h3>Enumération des utilisateurs, des domaines et des sessions</h3>    
 
             <p className="tabulation">Si l’objectif est la reconnaissance locale ou sur le domaine, l’utilisateur peut utiliser les commandes <strong>domains</strong> ou <strong>users</strong>. Elles listent respectivement les domaines auxquels les utilisateurs peuvent se connecter, et les utilisateurs enregistrés. D’autre part si elle est utilisée sur un Contrôleur de Domaine, la commande users peut lister tous les utilisateurs du domaine :  </p> 
 
@@ -230,8 +231,8 @@ class SneakyMercury extends React.Component {
 
             <hr/>
 
-            <h3>Fonctionnalités additionnelles</h3>
-            <h4>Windows Remote Code Execution </h4>
+            <h2>Fonctionnalités additionnelles</h2>
+            <h3>Windows Remote Code Execution </h3>
 
             <div>Plusieurs méthodes sont possibles pour l’exécution de code à distance sous Windows : 
               <ul>
@@ -247,7 +248,7 @@ class SneakyMercury extends React.Component {
             </div>
 
             <p>Ces différentes méthodes sont expliquées dans ce lien :</p> 
-            <a href="https://support.microsoft.com/en-us/help/942817/how-to-change-the-remote-uaclocalaccounttokenfilterpolicy-registry-se">Méthodes d'exécution de code à distance</a>
+            <a href="https://support.microsoft.com/en-us/help/942817/how-to-change-the-remote-uaclocalaccounttokenfilterpolicy-registry-se">Méthodes d'exécution de code à distance</a><br/>
 
             <p>Pour ce projet l’exécution de code à distance se fait via le protocole <strong>SCMR</strong> (Service Control Manager Remote Protocol) en se basant sur <strong>Psexec</strong> de <strong>SysInternals</strong>.</p>
             
@@ -260,13 +261,14 @@ class SneakyMercury extends React.Component {
                 <li>Recherche de fichiers intéressants (ex : unattended.xml contenant souvent des mots de passe en clair)</li>
               </ul> 
             </div>
+
               <p>
-              Il a également l’avantage d’être peu détecté en comparaison des payloads du framework Metasploit (basé sur psexec de SysInternals). <br/>
-    
+              Il a également l’avantage d’être peu détecté en comparaison des payloads du framework Metasploit (basé sur psexec de SysInternals). <br/>   <br/>
     
               <a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/smbexec.py">github de smbexec</a>  
               </p>
               <br/>
+          
               <div>
               <strong>Détails de Smb-exec:</strong>
               <ol>
@@ -280,9 +282,8 @@ class SneakyMercury extends React.Component {
               </ol> 
               </div>
 
-              <br/>
 
-              <p>Psexec (développé par SysInternals), il s’agit d’un outil d’administration à distance de Windows, qui a longtemps été l’outil favori pour tous les mouvements latéraux dans un environnement Active Directory. Il utilise le protocole SMB pour se connecter à une machine distante et y lancer un exécutable. En principe, il crée un « named pipe » qui permet d’exécuter de manière interactive des commandes avec RemComSvc. En réalité il les exécute localement puis exporte les résultats à travers SMB. Bien qu’il soit encore utilisé de manière légitime pour effectuer des tâches d’administration il facilite grandement la tâche aux attaquants. </p>
+              <p className="tabulation">Psexec (développé par SysInternals), il s’agit d’un outil d’administration à distance de Windows, qui a longtemps été l’outil favori pour tous les mouvements latéraux dans un environnement Active Directory. Il utilise le protocole SMB pour se connecter à une machine distante et y lancer un exécutable. En principe, il crée un « named pipe » qui permet d’exécuter de manière interactive des commandes avec RemComSvc. En réalité il les exécute localement puis exporte les résultats à travers SMB. Bien qu’il soit encore utilisé de manière légitime pour effectuer des tâches d’administration il facilite grandement la tâche aux attaquants. </p>
 
               <p>Voici l’explication détaillée tirée du blog rapid7 : ”PSExec has a Windows Service image inside of its executable. It takes this service and deploys it to the Admin share on the remote machine. It then uses the DCE/RPC interface over SMB to access the Windows Service Control Manager API. It turns on the PSExec service on the remote machine. The PSExec service then creates a named pipe that can be used to send commands to the system.” </p>
 
@@ -311,41 +312,51 @@ class SneakyMercury extends React.Component {
                 <li>Création du fichier pour stderr (Create Request)</li>
               </ol>
               Après chaque commande : écriture sur stdin (Write Request) et lecture sur stdout (Read Request) 
-              <img src={Flow} style={{'width':'90%'}} alt="flowgraph" />
+              <img id="flow" src={Flow} alt="flowgraph" />
 
-              <h3 id="PTH">Pass The Hash (PTH)</h3>
+              <h2 id="PTH">Pass The Hash (PTH)</h2>
               <p className="tabulation">L’utilisateur peut également choisir de s’authentifier en utilisant un hash de mot de passe (NTLMv2), cela permet tout ce qui est attaque du type Pass-The-Hash. 
               
               Les mécanismes d'authentification sont basés sur un mot de passe que la plupart du temps les utilisateurs ne doivent saisir qu'une seule et unique fois. Ce dernier sera hashé et c’est ce hash qui sera utilisé par la suite.  Ainsi pour un attaquant cela revient au même de connaître la valeur du hash ou bien le mot de passe lui-même. Une attaque Pass-The-Hash facilite grandement les intrusions dans un réseau dans la mesure où même les mots de passe d’une grande complexité peuvent être facilement contournés. 
               </p>
-              <a href="https://www.melani.admin.ch/melani/fr/home/documentation/rapports/rapportstechniques/attaques--pass-the-hash-.html ">documentation pass the hass</a>
-              <a href="https://attack.stealthbits.com/pass-the-hash-attack-explained ">explications pass the hash</a>
 
-              <p>Par ailleurs, les attaques Pass-The-Hash sont très difficiles à détecter au niveau du réseau car il est complexe de savoir quel utilisateur devrait être loggué sur telle machine et de pratiquer une politique de sécurité assez fiable pour savoir à tout moment quels comptes ont droit d’accès à telle ressource.</p>
+              <ul>
+                <li> <a href="https://www.melani.admin.ch/melani/fr/home/documentation/rapports/rapportstechniques/attaques--pass-the-hash-.html ">documentation pass the hass</a></li>
+                <li>   <a href="https://attack.stealthbits.com/pass-the-hash-attack-explained ">explications pass the hash</a></li>
+              </ul>
+             
+              <p className="tabulation">Par ailleurs, les attaques Pass-The-Hash sont très difficiles à détecter au niveau du réseau car il est complexe de savoir quel utilisateur devrait être loggué sur telle machine et de pratiquer une politique de sécurité assez fiable pour savoir à tout moment quels comptes ont droit d’accès à telle ressource.</p>
 
-              <h3>Null Session</h3>
+              <h2>Null Session</h2>
               <p className="tabulation">Il s’agit d’une vulnérabilité classique dans les réseaux Windows qui consiste à se connecter en connexion anonyme à un partage réseau caché IPC$ (share réseau utilisé pour les communications interprocess). Cela permet ainsi de récupérer de nombreuses informations sur la configuration de la machine, les utilisateurs, les noms des partages réseau, et même de modifier des parties du registre de la machine distante.</p>
 
-              <a href="https://sensepost.com/blog/2018/a-new-look-at-null-sessions-and-user-enumeration/">lien1</a>
-              <a href="https://www.beyondsecurity.com/scan_pentest_network_vulnerabilities_null_session_availab lesmb">lien2</a>
-              <a href="http://smallvoid.com/article/winnt-null-session.html">lien3</a>
-              <a href="https://www.youtube.com/watch?v=VvX7JHzzSA8">lien4</a>
+              <ul>
+                <li><a href="https://sensepost.com/blog/2018/a-new-look-at-null-sessions-and-user-enumeration/">lien1</a></li>
+                <li><a href="https://www.beyondsecurity.com/scan_pentest_network_vulnerabilities_null_session_availab lesmb">lien2</a></li>
+                <li><a href="http://smallvoid.com/article/winnt-null-session.html">lien3</a></li>
+                <li> <a href="https://www.youtube.com/watch?v=VvX7JHzzSA8">lien4</a></li>
+              </ul>
 
-              <p>Pour utiliser la nulle session dans notre outil, il faut changer un flag lors de la négociation de session (afin de rendre la connexion anonyme) et supprimer toutes les réponses au challenge.</p>
-
+              <p className="tabulation">Pour utiliser la nulle session dans notre outil, il faut changer un flag lors de la négociation de session (afin de rendre la connexion anonyme) et supprimer toutes les réponses au challenge.</p>
+ 
               Pour désactiver la nulle session sous Windows, il suffit de modifier le registre comme suit : <br/>
               HKEY\SYSTEM\CurrentControlSet\Control\Lsa: <br/> 
               – RestrictAnonymous = 1 <br/> 
               – Restrict AnonymousSAM = 1 <br/>
               – EveryoneIncludesAnonymous = 0 <br/><br/>
 
-              <p>On peut également limiter ses accès aux partages réseau en ajoutant un champ <strong>RestrictNullSessAccess </strong>de valeur 1 dans la clé de registre suivante :<br/> <strong>HKEYLOCALMACHINE\System\CurrentControlSet\Services\LanManServer\Parameters</strong></p>
+  
+              <p>On peut également limiter ses accès aux partages réseau en ajoutant un champ <strong>RestrictNullSessAccess</strong>de valeur 1 dans la clé de registre suivante :<br/>
+              <strong style={{'font-size':'9px'}}>HKLM\System\CurrentControlSet\Services\LanManServer\Parameters</strong>  
+              </p>
+              
 
-              <h3>Bruteforce de mots de passe</h3>
+
+              <h2>Bruteforce de mots de passe</h2>
               <p className="tabulation">Pour gérer le bruteforce de mots de passe au niveau de l’authentification SMB on a implémenté l'utilisation d'une liste de noms d’utilisateurs/mots de passe plutôt qu’un mot de passe unique afin de tester l’authentification pour une liste spécifique de cible. 
               Lorsque des identifiants valides sont trouvés ils sont automatiquement ajoutés dans la base de données qui devrait à terme recenser tous les identifiants trouvés sur le réseau au cours du pentest, y compris les identifiants dans les fichiers des partages réseaux (ce qui est arrive fréquemment).</p>
 
-              <h3>EternalBlue, EternalChampion, EternalSynergy et EternalRomance</h3>
+              <h2>La suite Eternal*</h2>
               
               MS17-010 contient les exploits développés par la NSA qui ciblent Microsoft Windows, ces exploits ont notamment été ré-implémentés dans les ransomware WannaCry et NotPetya. 
 
@@ -363,14 +374,14 @@ class SneakyMercury extends React.Component {
                 <li>4. La connexion anonyme à l’IPC$ et au named pipe doivent être autorisées</li> 
               </ul>
 
-              <img src={EternalblueSuccess} style={{'width':'50%'}} alt="exploit eternalblue"/>
+              <img id="eternalbluesuccess" src={EternalblueSuccess} alt="exploit eternalblue"/>
 
-              <p>EternalBlue ne nécessite pas d’être authentifié. EternalRomance, EternalSynergy et EternalChampion permettent d’obtenir une session administrateur à partir d’un compte aux privilèges limités. 
+              <p className="tabulation">EternalBlue ne nécessite pas d’être authentifié. EternalRomance, EternalSynergy et EternalChampion permettent d’obtenir une session administrateur à partir d’un compte aux privilèges limités. 
               Dans le cadre du projet, EternalBlue a été implémenté en Rust afin de pouvoir l’intégrer dans l’outil. </p>
 
-              <h2 id="smb">Protocole Server Message Block (SMB)</h2>
+              <h2 id="smb">Server Message Block (SMB)</h2>
               <h3>Présentation</h3>
-              <p>Il existe plusieurs versions de la suite protocolaire Microsoft SMB : SMB 1, SMB 2.0, SMB 2.1, SMB 3.0, SMB 3.0.2, SMB 3.1.1<br/>  Les versions SMB 2.X et SMB 3.X sont assez proches mais radicalement différents de la version SMB1. <br/>Ce projet s’est concentré sur l’implémentation de SMB2.1, le tableau suivant présente les versions du protocole SMB associées aux différents systèmes d’exploitation : </p>
+              <p className="tabulation">Il existe plusieurs versions de la suite protocolaire Microsoft SMB : SMB 1, SMB 2.0, SMB 2.1, SMB 3.0, SMB 3.0.2, SMB 3.1.1<br/>  Les versions SMB 2.X et SMB 3.X sont assez proches mais radicalement différents de la version SMB1. <br/>Ce projet s’est concentré sur l’implémentation de SMB2.1, le tableau suivant présente les versions du protocole SMB associées aux différents systèmes d’exploitation : </p>
 
               <p>SMB peut être implémenté sur le TCP ou via NETBIOS. Ce projet se concentre sur le SMB over TCP (Direct Hosted SMB). Les paquets seront craftés de manière à indiquer que le protocole est lancé over TCP avec un header qui précisera à chaque fois l’action à réaliser et donc la nature des data qui suivent. </p>
 
@@ -378,12 +389,12 @@ class SneakyMercury extends React.Component {
 
               <p>En mode sync, un thread lance une opération I/O et entre immédiatement dans une phase d’attente jusqu’à ce que la requête I/O soit achevée. </p>
 
-              <p>Le header SMB (SYNC) se présente comme suit : </p>
+              <p>Le header SMB (SYNC) se présente comme suit:</p>
 
               [Diagramme header SMB]
-
+ 
               <ul>
-                <li>4 premiers octets : identification du protocole SMB2          SMB2:0x424d53fe </li>
+                <li>4 premiers octets : identification du protocole SMB2      SMB2:0x424d53fe </li>
                 <li>2 suivants : taille du header</li>
                 <li>2 octets : Credit Charge  0x0000 (valeur fournie par le client au serveur et limite le nombre de requêtes exceptionnelles qu’un client peut envoyer au serveur)</li>
                 <li>2 octets : Channel Sequence 0x0000</li>
@@ -400,9 +411,9 @@ class SneakyMercury extends React.Component {
               </ul>
 
               <a href="https://msdn.microsoft.com/en-us/library/cc246529.aspx">documentation source</a>
-
-
-              <p>Pour les messages, il a fallu les crafter de zéro en s’inspirant de la documentation Microsoft et du code d’Impacket, voici les différents paquets relatifs au protocole SMB que l’on a pu implémenter au cours du projet : </p>
+              <br/>
+              <br/>
+              <p className="tabulation">Pour les messages, il a fallu les crafter de zéro en s’inspirant de la documentation Microsoft et du code d’Impacket, voici les différents paquets relatifs au protocole SMB que l’on a pu implémenter au cours du projet : </p>
 
               <ul>
                 <li>Negotiate: message initial, négociation pour l’authentification</li>
@@ -431,8 +442,9 @@ class SneakyMercury extends React.Component {
               <h3>Authentification</h3>
 
               Le graphe suivant donne une vue d’ensemble du processus d’authentification SMB2 (login) : 
-
+              <br/>
               [Diagrammme authentification SMB2]
+              <br/>
 
               <p>Dans le premier paquet le client reçoit le token GSS du serveur. Il s’agit d’un spnego qui est utilisé pour choisir le type d’authentification qui interviendra entre le client et le serveur.</p>
 
@@ -448,14 +460,23 @@ class SneakyMercury extends React.Component {
 
               Dans le cas d’une session NTLM, le client va initier un nouveau spnego en envoyant un spnegoinit et un Negociate message.
 
+              <br/>
+              <br/>
+
               <a href="https://msdn.microsoft.com/en-us/library/cc246561.aspx ">https://msdn.microsoft.com/en-us/library/cc246561.aspx</a>
+              <br/>
+              <br/>
 
               <p className="tabulation">Pour ce qui est du projet l’implémentation a été largement inspirée dans un premier temps par la bibliothèque « WinAuth » en Rust afin de générer le challenge/response nécessaire à l’authentification, mais la décision a été prise par la suite de réécrire ce code afin que cela corresponde davantage à nos besoins. </p>
 
               <p>Pour le moment, l’authentification peut être faite localement, sur un contrôleur de domaine, via un mot de passe ou par Pass-The-Hash. Un bruteforce des users/passwords a également été implémenté il suffit de fournir une simple wordlist pour que les identifiants soient testés.</p>
 
-              <a href="https://github.com/steffengy/winauth-rs">bibliothèque winaut</a>
-              <a href="http://blog.gentilkiwi.com/tag/ntlm ">Doc NTLM</a>
+              <ul>
+                <li><a href="https://github.com/steffengy/winauth-rs">bibliothèque winaut</a></li>
+                <li><a href="http://blog.gentilkiwi.com/tag/ntlm ">Doc NTLM</a></li>
+              </ul>
+              
+              <br/>
 
               Lors d’une authentification NTLM il y a plusieurs possibilités, elle peut être gérée par : 
 
@@ -468,21 +489,26 @@ class SneakyMercury extends React.Component {
 
               <p className="tabulation">Le choix est laissé au client. Les serveurs les plus anciens peuvent encore accepter LM, c’est pourquoi aujourd’hui la plupart des clients envoie nécessairement les deux, des réponses LM et NTLM. <br/> La configuration spécifique (des clients et des serveurs) dépend de certaines valeurs de clés de registre. Donc il n’y a pas moyen de savoir à l’avance (à l’exception d’une reconnaissance préalable des versions OS ou fingerprinting) quels types de réponses seront acceptées par le serveur. Cela explique pourquoi LM est encore envoyé malgré son faible niveau de sécurité. En particulier le choix entre NTLMv1 et NTLMv2 ne dépend pas des flags négociés. </p>
 
-              Pour plus de détails voir les liens :
-              <a href="http://davenport.sourceforge.net/ntlm.html#type3MessageExample">http://davenport.sourceforge.net/ntlm.html#type3MessageExample</a>
+              Pour plus de détails : <br/>
+              <a style={{"font-size":"9px"}} href="http://davenport.sourceforge.net/ntlm.html#type3MessageExample">http://davenport.sourceforge.net/ntlm.html#type3MessageExample</a>
+              <br/>
+              <br/>
 
               <p className="tabulation">NTLM a été largement supplanté par le protocole d’authentification Kerberos pour tout ce qui est authentification dans un domaine. C’est un procédé d’authentification plus moderne et robuste, il nécessite un Ticket Granting Server (TGS) pour fonctionner, généralement sur le Contrôleur de Domaine. Contrairement à NTLM, l’authentification Kerberos est séparée de SMB, et implique des intéractions entre le TGS et le service auquel on essaie d’accéder. Kerberos est stateless, ce qui permet des attaques comme le Golden Ticket. C’est un procédé d’authentification basé sur le schéma en Tiers-de-confiance, il ne peut pas être utilisé dans toutes les situations. Par exemple lorsque les serveurs ne font pas parti du domaine, ou pour des comptes locaux, ou pour l’accès à des ressources sur un domaine non fiable. NTLM continuera encore pour un moment à être le mécanisme d’authentification le plus utilisé. </p>
 
               <a href="https://blog. https://blog.varonis.fr/explication-de-lauthentificationkerberos/devensys.com/kerberos-principe-de-fonctionnement/">Principe Kerberos</a>
+              <br/>
+              <br/>
 
-              <p>Pour la gestion de l’authentification, le paquet suivant est envoyé pour spécifier les versions SMB supportées par le client, ainsi que d’autres informations (signature requise par exemple) </p>
-
+              <p className="tabulation">Pour la gestion de l’authentification, le paquet suivant est envoyé pour spécifier les versions SMB supportées par le client, ainsi que d’autres informations (signature requise par exemple) </p>
+              <br/>
               [Diagramme Negociate Request]
+              <br/>
+              <br/>
 
               <p>Dans le paquet Negociate Response, une erreur est retournée si le statut n’est pas STATUT_SUCCESS. Généralement, le serveur envoie un negtokeninit dans un message spnego, et c’est au client de l’accepter ou d’en redemander un nouveau avec une session set up request.</p>
 
-              <h3>Signature/ Chiffrement </h3>
-
+              <h3>Signature/ Chiffrement</h3>
         </div>
       </div>
       );

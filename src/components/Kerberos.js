@@ -1,4 +1,5 @@
 import React from 'react';
+import Cerbere from "../img/kerberos.png"
 import KerberosImg from "../img/kerberos.jpg"
 
 class Kerberos extends React.Component {
@@ -7,15 +8,17 @@ class Kerberos extends React.Component {
         <div className="article">
           <h1>Kerberos</h1>
           <hr/>
-          <p className="tabulation">En mythologie, Kerberos (plus connu sous le nom de Cerbère) est un énorme chien à trois têtes qui garde l’entrée des Enfers. Dans notre article il s'agit d'un protocole d'authentification dans un réseau informatique qui a besoin de 3 entités pour fonctionner et renforcer la sécurité du réseau, d'où ce nom.</p>
-        
-          <h2>Qu'est-ce que Kerberos</h2>
+          <p className="tabulation">En mythologie, Kerberos (plus connu sous le nom de Cerbère) est un énorme chien à trois têtes qui garde l’entrée des Enfers. Dans notre article il s'agit du protocole d'authentification dans un réseau informatique qui a besoin de 3 entités distincte pour fonctionner, d'où la référence pour le nom.</p>
+
+          <img id="cerbere_img" src={Cerbere} alt="schéma Kerberos"/>
+
+          <h2>Qu'est-ce que Kerberos ?</h2>
           <p className="tabulation">Protocole d'authentification des utilisateurs dans un réseau, fonctionnant de pair avec un Active Directory, il permet l'accès des utilisateurs à des services de manière authentifiée.</p>
 
-          <p>Le principe de Kerberos est de centraliser le processus d'authentification, de sorte que les identifiants n'aient pas besoin de circuler sur le réseau et les serveurs d'en avoir connaissance. Toute l'authentification sera gérée par le <strong>KDC (Key Distribution Center)</strong> suivant 3 étapes :</p>
+          <p>Le principe de Kerberos est de centraliser le processus d'authentification, de sorte que les identifiants n'aient pas besoin de circuler sur le réseau et les serveurs d'en avoir connaissance. Toute l'authentification est gérée par le <strong>KDC (Key Distribution Center)</strong> suivant 3 étapes :</p>
           <ol>
-            <li><strong>Authentification</strong> du client auprès du KDC Authentication Service (AS) </li>
-            <li>Demande du client d'un <strong>Ticket de service</strong></li>
+            <li><strong>Authentification</strong> du client auprès du KDC Authentication Service (AS)</li>
+            <li>Demande du client d'un <strong>Ticket de Service</strong> (TGS)</li>
             <li><strong>Accès au service</strong> en lui fournissant le ticket associé</li>
           </ol>  
 
@@ -25,7 +28,7 @@ class Kerberos extends React.Component {
 
           <h2>Principe de fonctionnement</h2>
 
-          <img src={KerberosImg} style={{'width':'80%'}} alt="schéma Kerberos"/>
+          <img id="principe_kerberos" src={KerberosImg} alt="schéma Kerberos"/>
 
           <ol>
             <li>Le client demande un ticket d’authentification (TGT) au Key Distribution Center (KDC)</li>
@@ -34,7 +37,7 @@ class Kerberos extends React.Component {
             <li>Le client conserve le TGT et, lorsqu’il arrive à expiration, le gestionnaire de session local en demande un autre (cette procédure est transparente pour l’utilisateur)</li>
           </ol>
           
-          Si le client demande à accéder à un service ou à une autre ressource du réseau, la procédure est la suivante :
+          Si le client demande l'accès à un service ou à une autre ressource du réseau, la procédure est la suivante :
 
           <ol>
             <li>Le client envoie le TGT en cours du TGS avec le Service Principal Name (SPN) de la ressource à laquelle le client souhaite accéder</li>
@@ -50,7 +53,7 @@ class Kerberos extends React.Component {
           <hr/>
           <br/>
 
-          <h2>Quelle est la différence entre Kerberos et NTLM ?</h2>
+          <h2>Quelle différence entre Kerberos et NTLM ?</h2>
 
           [Définir NTLM]
 

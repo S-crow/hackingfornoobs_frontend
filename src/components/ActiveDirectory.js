@@ -17,9 +17,9 @@ class ActiveDirectory extends React.Component {
 
           <h2>Qu'est-ce que l'Active Directory ?</h2>
 
-          <img src={ActiveDirectoryImg} style={{'width':'80%'}} alt="logo active directory"/>
+          <img id="activedirectory_img" src={ActiveDirectoryImg} alt="logo active directory"/>
 
-          <div className="tabulation">Depuis Windows 2000 Microsoft offre une solution de gestion des ressources internes pour les entreprises : <strong>Active Directory Domain Services (AD DS)</strong> qui est un annuaire proposant des services de 3 grandes catégories :
+          <div className="tabulation">Depuis Windows 2000 Microsoft offre une solution de gestion des ressources internes pour les entreprises : <strong>Active Directory Domain Services (ADDS)</strong> qui est un annuaire proposant des services de 3 catégories :
             <ul>
               <li>Authentification (via le protole Kerberos)</li>
               <li>Annuaire (via le protocole LDAP)</li>
@@ -52,7 +52,7 @@ class ActiveDirectory extends React.Component {
           <p>
             - Configurer <strong>LAPS</strong>, c'est une solution de Microsoft permettant d'assurer une rotation des mots de passe des comptes administrateurs locaux sur les workstations et les serveurs. Cela garantit un niveau de sécurité minimal sur les postes.<br/><br/>
 
-            <img src={Laps} style={{'width':'50%'}} alt="schéma LAPS"/>
+            <img id="laps" src={Laps} alt="schéma LAPS"/>
 
             - Utiliser des mots de passes robustes pour les comptes de services. Il existe des <strong>Managed Service Accounts</strong> qui offrent une couche de sécurité supplémentaires au sein de l'AD mais en pratique encore beaucoup de sociétés continuent de se servir de comptes utilisateurs standards afin de manager leurs services.<br/><br/>
 

@@ -10,7 +10,6 @@ body {
   font-family: "Open Sans", sans-serif;
   background-color: #F5F5F5; /*gray*/
   font-size: 14px;
-  min-height: 100vh;
   line-height: 24px;
   vertical-align: baseline;
   letter-spacing: normal;
@@ -28,17 +27,45 @@ body {
   margin-bottom: 20%;
 }
 
-@media (max-width: 1024px) {
-  #page-wrap {
-    margin: 0 7%;
-    margin-bottom: 10%;
-  }
-}
-
-h1 {
-  font-size: 250%;
+.article > h1 {
+  font-size: 280%; 
   font-family: "Proxima Nova Soft";
   text-align: center;
+}
+
+/*Size for mobile*/
+@media (max-width: 1024px) {
+  #page-wrap {
+    margin: 0 4%;
+    margin-bottom: 10%;
+  }
+  .article > h1 {
+    font-size: 210%;
+    font-family: "Proxima Nova Soft";
+    text-align: center;
+  }
+  .article > h2 {
+    font-size: 140%;
+    text-align: left;
+    color: #333333;
+  }
+  ul, ol { 
+    padding: 15px;
+  }
+  #sneakymercury{
+    font-size: 220%;
+  }
+  .sneaky_article > h2{
+    font-size: 160%;
+    font-weight: bold;
+    text-align: left;
+    color: #333333;
+  }
+  .sneaky_article > h3{
+    font-size: 130%;
+    text-align: left;
+    color: #333333;
+  }
 }
 
 a {
@@ -49,6 +76,7 @@ a {
 a:hover {
 font-weight: bold;
 }
+
 
 #openclassrooms a {
   color: #9013FE;
@@ -129,7 +157,7 @@ hr {
 
 @media (max-width: 1024px) {
   .bm-burger-button {
-    width: 20px;
+    width: 16px;
     height: 16px;
     left: 7px;
     top: 10px;
@@ -198,7 +226,7 @@ hr {
   left:0;bottom:0;right:0;
   text-align: center;
   padding: 0.6%;
-  width: '100%';
+  width: 100%;
   color: #F5F5F5;
   background-color: #333333;
 }
@@ -212,4 +240,110 @@ hr {
 
 #search {
   margin-left: 800px;
+}
+
+#hackerman_img {
+  width: 40%;
+}
+
+#openclassrooms_img{
+  height: 40%;
+  width: 40%;
+}
+
+#hackthebox_img {
+  width:60%; 
+}
+
+#cerbere_img {
+  width:60%; 
+}
+
+#principe_kerberos {
+  width:80%; 
+}
+
+#activedirectory_img {
+  width:80%; 
+}
+
+#laps {
+  width:50%; 
+}
+
+#nsa{
+  width:25%; 
+}
+#fuzzbunch{
+  width:80%; 
+}
+#eternalblue_img {
+  width:60%; 
+}
+#help {
+  width:60%; 
+}
+#demo {
+  width:60%; 
+}
+#interactif {
+  width:60%; 
+}
+#flow {
+  width:90%; 
+}
+#eternalbluesuccess{
+  width: 60%;
+}
+
+@media (max-width: 1024px) {
+  #hackerman_img {
+    width: 80%;
+  }
+  #openclassrooms_img {
+    height: 80%;
+    width: 80%;
+  }
+  #anonymous_img {
+    width: 80%;
+  }
+  #hackthebox_img {
+    width: 80%; 
+  }
+  #cerbere_img {
+    width:80%; 
+  }
+  #principe_kerberos {
+    width:105%; 
+  }
+  #activedirectory_img {
+    width:100%; 
+  }
+  #laps {
+    width:90%; 
+  }
+  #nsa{
+    width:50%; 
+  }
+  #fuzzbunch{
+    width:100%; 
+  }
+  #eternalblue_img {
+    width:100%; 
+  }
+  #help{
+    width:100%; 
+  }  
+  #demo {
+    width:100%; 
+  }
+  #interactif {
+    width:100%; 
+  }
+  #flow {
+    width:105%; 
+  }
+  #eternalbluesuccess{
+    width: 100%;
+  }
 }
