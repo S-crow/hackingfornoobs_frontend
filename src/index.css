@@ -49,7 +49,7 @@ body {
     text-align: left;
     color: #333333;
   }
-  ul, ol { 
+  ol { 
     padding: 15px;
   }
   #sneakymercury{
@@ -295,7 +295,12 @@ hr {
 #eternalbluesuccess{
   width: 60%;
 }
-
+#kaliraspberry{
+  width: 70%;
+}
+#methodoredteam{
+  width: 80%;
+}
 @media (max-width: 1024px) {
   #hackerman_img {
     width: 80%;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Hide from "../img/hide_raspberry.jpg"
+import Methodo from "../img/methodo.jpg"
 import KaliRaspberry from "../img/kali_raspberry.png"
 
 
@@ -11,18 +12,21 @@ class Redteam extends React.Component {
         <h1>Redteam</h1>
    
         <hr/>
-        <h2>Introduction</h2>
-        <h3>Contexte</h3>
-        <p className="tabulation">L'objectif est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest.<br/><br/>  
 
-        Un scénario de Redteam serait de pénétrer dans une société cliente en étant déguisé, de placer l'implant sur le réseau, pour obtenir à distance un accès à leur réseau via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
+
+        <h2>Contexte</h2>
+        <p className="tabulation">L'objectif est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+        <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
+        <br/>  
+
+        Un scénario de Redteam possible serait de pénétrer dans une société cliente en se déguisant et de placer l'implant sur le réseau, afin d'obtenir à distance un accès à leur réseau via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
 
         Des outils tels que tortle LAN existent déjà, mais l'on souhaiterait avoir le contrôle total sur nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. L'implant doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
         </p>
 
-        <img src={KaliRaspberry} style={{'width':'70%'}} alt="kali raspberry"/>
+        <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
 
-        <h3>Cahier des charges de la box</h3>
+        <h2>Cahier des charges de la box</h2>
         <div>
         Plusieurs appareils peuvent convenir, les critères principaux étant sa fiabilité, sa légèreté, sa taille, sa rapidité et son coût:
             <ul>
@@ -37,7 +41,7 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h3>Shopping list pour le matériel</h3>
+        <h2>Shopping list pour le matériel</h2>
         <div>
           <ul>
             <li><a href="https://www.canakit.com/raspberry-pi-4-starter-kit.html">Raspberry Pi 4 Model B with 4GB RAM (Basic Kit) - $70</a></li>
@@ -49,19 +53,19 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h3>Système d'exploitation</h3>
+        <h2>Système d'exploitation</h2>
         <p className="tabulation">Pour le système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle possède déjà beaucoup d'outils de pentest, pas besoin d'installation et c'est facile à utiliser pour tous les pentesters.</p>
         
         <br/>
 
-        <h3>Wifi</h3>
+        <h2>Wifi</h2>
         <p className="tabulation">La Raspberry Pi 4 dispose déjà d'une carte sans fil intégrée (sans fil 2,4 GHz et 5,0 GHz IEEE 802.11ac), et gère l'<strong>injection de paquets</strong> et <strong>le mode moniteur</strong> (contrairement à la Pi 3). Un autre adaptateur sans fil permettrait d'avoir une meilleure portée lors d'attaques sans fil.
 
         Un adaptateur sans fil doté d'un chipset RT5370 serait un bon choix, il prend en charge le mode moniteur, l'injection de paquets avec des outils comme <strong>Aireplay-ng</strong> et a une plage de fréquence décente. Ainsi on peut se connecter à un adaptateur via <strong>hostapd </strong>et utiliser l'autre adaptateur pour réaliser les attaques.</p>
         
         <br/>
 
-        <h3>Comment dissimuler la Raspberry ?</h3>
+        <h2>Comment dissimuler la Raspberry ?</h2>
         <p>L'une des méthodes la plus simple et efficace est de la cacher à l'intérieur d'une multiprise comme suit :</p>
         <img src={Hide} alt="idée pour chacher raspberry"/>
 
@@ -104,7 +108,7 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h4>Configurer un point d'accès wifi avec hostpad</h4>
+        <h3>Configurer un point d'accès wifi avec hostpad</h3>
         <div id="wifi">apt-get install hostapd <br/>
         apt-get install pciutils<br/>
 
@@ -211,7 +215,7 @@ class Redteam extends React.Component {
         ##You should now see a wireless network named “iphone10” (or whatever named you use)<br/> where you can connect to it with your wpa_passphrase you set earlier. You<br/> should also have Internet too assuming your Raspberry Pi 4 has Internet. Once<br/> connected, you can also SSH into your Raspberry Pi 4.
         </div>
 
-        <h4>Configurer un tunnel reverse shell automatique</h4>
+        <h3>Configurer un tunnel reverse shell automatique</h3>
         <p>Cette section suppose que vous disposez d'un serveur de commande et de contrôle accessible sur Internet et que le serveur a activé SSH</p>   
 
         <div id="wifi">
@@ -264,7 +268,7 @@ class Redteam extends React.Component {
 
         </div>      
         
-        <h4>Configurer un client et un serveur Openvpn</h4>
+        <h3>Configurer un client et un serveur Openvpn</h3>
         <p className="tabulation">Bien que nous puissions faire un shell SSH inversé pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
         <br/><br/>
         Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry sortira d'abord via le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
@@ -279,7 +283,7 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h5>Mise en place OpenVPN Access Server</h5>
+        <h3>Mise en place OpenVPN Access Server</h3>
         <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
 
         <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
@@ -331,7 +335,7 @@ class Redteam extends React.Component {
 
           <br/>
 
-          <h5>Configuration de OpenVPN AS Server</h5>
+          <h3>Configuration de OpenVPN AS Server</h3>
 
           <ol>
             <li>Allez sur https://[IP Address du serveur VPS]:943/admin/</li>
@@ -348,7 +352,7 @@ class Redteam extends React.Component {
           </ol>
 
           <br/>
-          <h5>Télécharger les profils OpenVPN</h5>
+          <h3>Télécharger les profils OpenVPN</h3>
           <ol>
             <li>Se connecter pour télécharger les profils https://[Your VPS]:943/?src=connect</li>
             <li>Pour chaque utilisateur se connecter et télécharger le profil</li>
@@ -357,7 +361,7 @@ class Redteam extends React.Component {
 
           <br/>
 
-          <h5>Configuration de la Raspberry Pi 4</h5>
+          <h3>Configuration de la Raspberry Pi 4</h3>
           <li>Allumez la Raspberry Pi 4 et brancher un câble ethernet</li>
           <li>Installez OpenVPN: apt-get install openvpn</li>
           <li>Configurez le démarrage automatique de OpenVPN dans le fichier :<br/>
