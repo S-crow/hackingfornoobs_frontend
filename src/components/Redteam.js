@@ -20,7 +20,7 @@ class Redteam extends React.Component {
 
         Un scénario de Redteam possible serait de pénétrer dans une société cliente en se déguisant et de placer l'implant sur le réseau, afin d'obtenir à distance un accès à leur réseau via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
 
-        Des outils tels que tortle LAN existent déjà, mais l'on souhaiterait avoir le contrôle total sur nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. L'implant doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
+        Des outils tels que <strong>la LAN Turtle</strong> existent déjà mais l'on souhaiterait avoir le contrôle total de nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. L'implant doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
         </p>
 
         <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
@@ -30,13 +30,13 @@ class Redteam extends React.Component {
         Plusieurs appareils peuvent convenir, les critères principaux étant sa fiabilité, sa légèreté, sa taille, sa rapidité et son coût:
             <ul>
                 <li>l'appareil doit être <strong>petit</strong> (facile à dissimuler)</li>
-                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et/ou <strong>OpenVPN</strong> pour le Command&Control (C&C)</li>
+                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et/ou <strong>OpenVPN</strong> pour le C&C</li>
                 <li>espace de <strong>stockage</strong> (au moins 32 Go)</li>
                 <li>matériel <strong>rapide</strong></li>
                 <li><strong>faible coût</strong> (en cas de destruction ou de vol)</li>
                 <li>possibilité d'ajouter des modules pour la <strong>connexion sans fil</strong></li>
             </ul>
-        Il existe de nombreux appareils comme le Hardkernel ODROID-N2, ou encore le Beaglebone Black mais pour le prix et le matériel, on préférera utiliser la <strong>Raspberry Pi 4.</strong></div>
+        Il existe de nombreux appareils comme le Hardkernel ODROID-N2, ou encore le Beaglebone Black mais pour le prix la simplicité et les autres critères, on préférera utiliser la <strong>Raspberry Pi 4.</strong></div>
 
         <br/>
 
@@ -53,14 +53,14 @@ class Redteam extends React.Component {
         <br/>
 
         <h2>Système d'exploitation</h2>
-        <p className="tabulation">Pour le système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle possède déjà beaucoup d'outils de pentest, pas besoin d'installation et c'est facile à utiliser pour tous les pentesters.</p>
+        <p className="tabulation">Comme système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle possède déjà beaucoup d'outils de pentest, pas besoin d'installation et c'est simple à utiliser pour tous les pentesters.</p>
         
         <br/>
 
         <h2>Wifi</h2>
         <p className="tabulation">La Raspberry Pi 4 dispose déjà d'une carte sans fil intégrée (sans fil 2,4 GHz et 5,0 GHz IEEE 802.11ac), et gère l'<strong>injection de paquets</strong> et <strong>le mode moniteur</strong> (contrairement à la Pi 3). Un autre adaptateur sans fil permettrait d'avoir une meilleure portée lors d'attaques sans fil.
 
-        Un adaptateur sans fil doté d'un chipset RT5370 serait un bon choix, il prend en charge le mode moniteur, l'injection de paquets avec des outils comme <strong>Aireplay-ng</strong> et a une plage de fréquence décente. Ainsi on peut se connecter à un adaptateur via <strong>hostapd </strong>et utiliser l'autre adaptateur pour réaliser les attaques.</p>
+        Un adaptateur sans fil doté d'un chipset RT5370 serait un bon choix, en plus de prendre en charge le mode moniteur, et l'injection de paquets avec des outils comme <strong>Aireplay-ng</strong>, il a une large bande de fréquences utilisables. Ainsi on peut se connecter à un adaptateur via <strong>hostapd</strong>et utiliser l'autre adaptateur afin de réaliser les attaques.</p>
         
         <br/>
 
@@ -89,7 +89,7 @@ class Redteam extends React.Component {
           <h4>Pour Windows</h4>
           Avec un adaptateur microSD vers USB connectez la carte MicroSD à votre système Windows.<br/>
           Décompressez l'archive.<br/>
-          Utilisez Win32DiskImager pour écrire l'image Kali sur la carte MicroSD.<br/>
+          Utilisez Win32DiskImager ou Rufus pour écrire l'image disque Kali sur la carte MicroSD.<br/>
 
           <br/> 
 
@@ -101,7 +101,7 @@ class Redteam extends React.Component {
 
           <h4>Installation</h4>
           Connectez-vous à Kali Linux avec le nom d'utilisateur "root" et le mot de passe "toor".<br/>
-          Veillez à connecter un câble Ethernet sur la Raspberry Pi 4 pour l'accès internet, elle devrait automatiquement récupérer une adresse IP via DHCP.
+          Veillez à connecter un câble Ethernet sur la Raspberry Pi 4 pour l'accès internet, elle devrait alors automatiquement récupérer une adresse IP via DHCP.
           
         </div>
 
@@ -112,7 +112,7 @@ class Redteam extends React.Component {
         apt-get install pciutils<br/>
 
         nano /etc/network/interfaces<br/><br/>
-        ##The /etc/network/interfaces file should look like the following:<br/>
+        ##Le fichier /etc/network/interfaces devrait ressembler à:<br/>
 
         auto lo<br/>
         iface lo inet loopback<br/>
@@ -268,16 +268,16 @@ class Redteam extends React.Component {
         </div>      
         
         <h3>Configurer un client et un serveur Openvpn</h3>
-        <p className="tabulation">Bien que nous puissions faire un shell SSH inversé pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
+        <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
         <br/><br/>
-        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry sortira d'abord via le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
+        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
         </p>
 
-        <p>Il faut pour cela réaliser les 3 étapes suivantes de configuration :</p>
+        <p>Il faut pour cela réaliser les 3 étapes suivantes :</p>
         <ul>
-          <li>OpenVPN Access Server sur Internet</li>
-          <li>la Raspberry</li>
-          <li>La machine d'attaque</li>
+          <li>Configuration d'OpenVPN Access Server sur Internet</li>
+          <li>Configuration de la Raspberry</li>
+          <li>Configuration de la machine d'attaque</li>
         </ul>
 
         <br/>
@@ -285,7 +285,7 @@ class Redteam extends React.Component {
         <h3>Mise en place OpenVPN Access Server</h3>
         <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
 
-        <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est la détection du trafic, le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet d'être plus discret. 
+        <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret. 
         </p>
 
         <ol>
@@ -339,13 +339,13 @@ class Redteam extends React.Component {
           <ol>
             <li>Allez sur https://[IP Address du serveur VPS]:943/admin/</li>
             <li>Se connecter avec le compte "openvpn" et le mot de passe récemment crée <br/>
-            Note: Si vous utilisez AWS Lightsail, accédez aux paramètres réseau du serveur et assurez-vous que le nom d'hôte ou l'adresse IP est l'adresse IP publique et non la privée, puis enregistrez et mettez à jour.</li>
+            Note: Si vous utilisez AWS Lightsail, assurez-vous dans les paramètres que le nom d'hôte ou l'adresse IP est l'adresse IP publique et non la privée, puis enregistrez et mettez à jour.</li>
             <li>Dans OpenVPN, vérifiez que l'authentification est définie sur locale: <br/>
             Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
             <li>Créez deux utilisateurs avec l'option `Autoriser la connexion automatique activée` (rasp4 and redteam). Allez sur User Management -> User Permissions<br/>
             Pour chaque utilisateur:<br/>
             Set AllowAuto-login</li>
-            <li>Pour que les 2 comptes permettent la connectivité via VPN, nous devons activer certaines autorisations. Assurez-vous de configurer/activer les autorisations utilisateur de l'utilisateur:<br/>
+            <li>Pour que les 2 comptes permettent la connectivité via VPN, nous devons activer certaines autorisations. Assurez-vous d'activer les autorisations de l'utilisateur:<br/>
             All server-side private subnets<br/>
             All other VPN clients</li>
           </ol>
@@ -353,7 +353,7 @@ class Redteam extends React.Component {
           <br/>
           <h3>Télécharger les profils OpenVPN</h3>
           <ol>
-            <li>Se connecter pour télécharger les profils https://[Your VPS]:943/?src=connect</li>
+            <li>Se connecter et télécharger les profils https://[Your VPS]:943/?src=connect</li>
             <li>Pour chaque utilisateur se connecter et télécharger le profil</li>
             <li>Sauvegarder rasp4.ovpn et redteam.ovpn</li>
           </ol>
@@ -361,19 +361,19 @@ class Redteam extends React.Component {
           <br/>
 
           <h3>Configuration de la Raspberry Pi 4</h3>
-          <li>Allumez la Raspberry Pi 4 et brancher un câble ethernet</li>
+          <li>Allumez la Raspberry Pi 4 et branchez un câble ethernet</li>
           <li>Installez OpenVPN: apt-get install openvpn</li>
           <li>Configurez le démarrage automatique de OpenVPN dans le fichier :<br/>
           nano /etc/default/openvpn <br/>
-          [Décommentez ‘AUTOSTART=”all”’ puis sauvegardez]</li>
+          [Décommentez ‘AUTOSTART=”all”’]</li>
           <li>Copiez le fichier .ovpn sur la Raspberry :<br/>scp rasp4.ovpn [Raspberry Pi 4 IP]:/etc/openvpn</li>
           <li>Allez dans /etc/openvpn et renommez rasp4.ovpn en client.conf: <br/>cd /etc/openvpn <br/>mv rasp4.ovpn client.conf</li>
-          <li>Activez OpenVPN pour démarré au boot: <br/>update-rc.d openvpn enable</li>
+          <li>Activez OpenVPN pour démarrer au boot: <br/>update-rc.d openvpn enable</li>
           <li>Puis reboot</li>
 
-          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur comme "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
+          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
           
-          Nous avons à présent la Raspberry Pi 4 configurée de sorte que chaque fois qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN</p>
+          Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN</p>
       </div>
       );
     }
