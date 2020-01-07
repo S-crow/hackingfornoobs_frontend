@@ -14,7 +14,7 @@ class SneakyMercury extends React.Component {
       return (
       <div className="article">
         <h1>Projet SneakyMercury</h1>
-        (Post-exploitation dans les réseaux Windows)
+        <h2 style={{"font-size": "200%", "font-family": "Proxima Nova Soft", "text-align": "center"}}>(Post-exploitation dans les réseaux Windows)</h2>
         <hr/>
         <div>
           <ul>
