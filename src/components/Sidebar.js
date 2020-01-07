@@ -11,6 +11,7 @@ render() {
     <Router>
         <Menu>       
           <Link className="menu-item" to="/" onClick={() => this.props.action('accueil')}>Accueil</Link>
+          <Link className="menu-item" to="/pentest/" onClick={() => this.props.action('pentest')}>Méthodologie Pentest</Link>
           <Link className="menu-item" to="/active-directory/" onClick={() => this.props.action('activedirectory')}>Active Directory</Link>
           <Link className="menu-item" to="/smb/" onClick={() => this.props.action('smb')}>Protocole SMB</Link>
           <Link className="menu-item" to="/kerberos/" onClick={() => this.props.action('kerberos')}>Kerberos</Link>
@@ -21,6 +22,7 @@ render() {
           <a className="menu-item" href="../portfolio/">Portfolio</a>
           <Switch>
             <Route exact path="/"/>
+            <Route path="/pentest/"/>
             <Route path="/active-directory/"/>
             <Route path="/smb/"/>
             <Route path="/kerberos/"/>

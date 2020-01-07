@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import SideBar from "./components/Sidebar";
 import Accueil from "./components/Accueil";
+import Pentest from "./components/Pentest";
 import ActiveDirectory from "./components/ActiveDirectory";
 import Smb from "./components/Smb";
 import Kerberos from "./components/Kerberos";
@@ -59,6 +60,7 @@ class App extends React.Component {
                     <div id="page-wrap">
                         <div className={(this.state.page)}>
                             {this.state.page === 'accueil' && <Accueil/>}
+                            {this.state.page === 'pentest' && <Pentest/>}
                             {this.state.page === 'activedirectory' && <ActiveDirectory/>}
                             {this.state.page === 'smb' && <Smb/>}
                             {this.state.page === 'kerberos' && <Kerberos/>}

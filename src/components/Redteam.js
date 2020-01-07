@@ -12,9 +12,16 @@ class Redteam extends React.Component {
         <h1>Redteam</h1>
    
         <hr/>
+        <p className="tabulation">Une nouvelle tendance émerge du côté des attaques informatiques, les techniques d’intrusion se professionnalisent, s’industrialisent et s’étendent dans le temps. Là où des « amateurs » n’avaient qu’à exécuter un script sur un système vulnérable autrefois, des équipes expérimentées peuvent passer des mois sur une seule et même cible aujourd’hui, <strong>APT (Advanced Persitent Threat).</strong><br/><br/>
+
+        Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : L’approche <strong>RedTeam</strong>. Dans cette approche, l’objectif de l’équipe attaquante est de passer d'une position de personne extérieure à l’entreprise jusqu’à la réalisation d’une ou plusieurs actions critiques au sein du SI ciblé. Par rapport à un pentest il s'agit généralement d'une mission d'une durée beaucoup plus longue et avec plus de techniques possibles (ex: phishing, intrusion physique).    
+        </p>
+
+        <br/>
+        <br/>
 
         <h2>Contexte</h2>
-        <p className="tabulation">L'objectif est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+        <p className="tabulation">L'objectif de notre projet de Redteam est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
         <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
         <br/>  
 
@@ -100,7 +107,7 @@ class Redteam extends React.Component {
           <br/>
 
           <h4>Installation</h4>
-          Connectez-vous à Kali Linux avec le nom d'utilisateur "root" et le mot de passe "toor".<br/>
+          Mettez la Raspberry sous secteur, branchez un clavier et un écran avec un câble HDMI et connectez-vous à Kali Linux avec le nom d'utilisateur "root" et le mot de passe "toor".<br/>
           Veillez à connecter un câble Ethernet sur la Raspberry Pi 4 pour l'accès internet, elle devrait alors automatiquement récupérer une adresse IP via DHCP.
           
         </div>
@@ -373,7 +380,7 @@ class Redteam extends React.Component {
 
           <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
           
-          Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN</p>
+          Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN.</p>
       </div>
       );
     }
