@@ -50,9 +50,9 @@ class Redteam extends React.Component {
         <h2>Shopping list pour le matériel</h2>
         <div>
           <ul>
-            <li><a href="https://www.canakit.com/raspberry-pi-4-starter-kit.html">Raspberry Pi 4 Model B with 4GB RAM (Basic Kit) - $70</a></li>
+            <li><a href="https://www.canakit.com/raspberry-pi-4-starter-kit.html">Raspberry Pi 4 Model B with 4GB RAM (Basic Kit) - $100</a></li>
             <li><a href="https://www.amazon.com/dp/B07FCMBLV6">SanDisk 64GB Extreme microSDXC UHS-I Memory Card - $15</a></li>
-            <li><a href="https://vilros.com/collections/raspberry-pi-accessories/products/vilros-raspberry-pi-4-compatible-clear-transparent-case-with-built-in-fan">Raspberry Pi 4 Case with Fan - $12 (optional)</a></li>
+            <li><a href="https://vilros.com/collections/raspberry-pi-accessories/products/vilros-raspberry-pi-4-compatible-clear-transparent-case-with-built-in-fan">Raspberry Pi 4 Case with Fan - $10 (optional)</a></li>
             <li><a href="https://www.amazon.com/gp/product/B01KWQAQ00/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1">Wireless WiFi USB Dongle Stick Adapter RT5370 150Mbps - $9 (optional)</a></li>
           </ul>
         </div>
@@ -222,7 +222,7 @@ class Redteam extends React.Component {
         </div>
 
         <h3>Configurer un tunnel reverse shell automatique</h3>
-        <p>Cette section suppose que vous disposez d'un serveur de commande et de contrôle accessible sur Internet et que le serveur a activé SSH</p>   
+        <p>Cette section suppose que vous disposez d'un serveur de commande et de contrôle accessible sur Internet et que SSH est activé sur le serveur.</p>   
 
         <div id="wifi">
         apt-get install autossh <br/>
@@ -277,7 +277,7 @@ class Redteam extends React.Component {
         <h3>Configurer un client et un serveur Openvpn</h3>
         <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
         <br/><br/>
-        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre box attaquant Kali, nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
+        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre machine d'attaque nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
         </p>
 
         <p>Il faut pour cela réaliser les 3 étapes suivantes :</p>
@@ -290,7 +290,7 @@ class Redteam extends React.Component {
         <br/>
 
         <h3>Mise en place OpenVPN Access Server</h3>
-        <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.
+        <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.<br/>
 
         <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret. 
         </p>
