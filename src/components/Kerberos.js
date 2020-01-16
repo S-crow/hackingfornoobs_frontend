@@ -103,7 +103,39 @@ class Kerberos extends React.Component {
 
           <h3>AS-REPRoasting</h3>
 
-          <p className="tabulation">[attaque asreproasting]</p>
+          <p className="tabulation">Il existe une pré-authentification sur Kerberos qui consiste à ajouter à la 1ere requete la valeur de l'horodataga chiffrée avec la clé du compte utilisateur.<br/>
+          Si elle n'est pas présente càd si le flag "DONT_REQ-AUTH" est présent dans le champ UserAccountControl d'un compte utilisateur, alors  cela signifie que ce dernier peut faire une demande de TGT sans s'être pré-authentifié. <br/><br/>
+
+          L'AS-REPRoasting consiste à énumérer l'ensemble des comptes possèdant ce flag, de faire une demande de TGT à la place de ces utiisateurs pour tenter, en "offline", de casser leur mot de passe.<br/><br/>
+
+          <strong>GetNPUsers.py</strong> d'Impacket permet de récupérer les hash de ces comptes.
+          [screen]</p>
+
+          <br/>
+          <hr id="delegation"/>
+          <br/>
+
+          <h3>Delegation d'authentification (sans contrainte)</h3>
+
+          <p className="tabulation">Certains serveurs qui possèdent le flag "TRUSTED_FOR_DELEGATION" gardent en cache  dans le processus lsass les TGT des utilisateurs pour pouvoir effectuer à leur place la demande d'accès à un autre service. Ainsi en cas de compromission de l'un de ces serveurs on peut récupérer l'ensemble des TGT stockés. <br/><br/>
+
+          L'outil <strong>ldapdomaindump</strong> permet d'énumérer ces machines. 
+          [screen]
+
+          <br/><br/>
+
+          On utilise ensuite Mimikatz pour récupérer les tickets en mémoire. <br/>
+          kerberos::list /export
+          [screen]
+          </p>
+
+          <br/>
+          <hr id="passtheticket"/>
+          <br/>
+
+          <h3>Pass-The-Ticket</h3>
+
+          <p className="tabulation">Cette attaque consiste à injecter des TGT précedemment récupérés directement dans la mémoire du processus lsass d'autres machines pour augmenter ses accès.</p>
 
           <br/>
           <hr id="golden"/>
@@ -146,6 +178,19 @@ class Kerberos extends React.Component {
           <hr/>
           <br/>
 
+          <h3>Contre-mesures</h3>
+
+          <ul>
+            <li>mots de passe robustes pour les comptes de service</li>
+            <li>flag "Not_DELEGATED" sur l'attribut UserAccountControol des comptes d'utilisateurs ayant accès à des ressources sensibles.</li>
+            <li>changement du mot de passe du compte krbtgt 2 fois tous les 40 jours</li>
+            <li>détection d'un nombre trop important de demandes de ticket de service (Kerberoasting)</li>
+          </ul>
+
+          <br/>
+          <hr/>
+          <br/>
+          
           <h3>Conclusion</h3>
 
           <p className="tabulation">Kerberos est un protocole d'authentification robuste et efficace qui est encore loin d’être obsolète.</p>
