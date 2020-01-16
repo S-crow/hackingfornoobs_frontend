@@ -4,6 +4,7 @@ import SideBar from "./components/Sidebar";
 import Accueil from "./components/Accueil";
 import Pentest from "./components/Pentest";
 import ActiveDirectory from "./components/ActiveDirectory";
+import Ntlm from "./components/Ntlm";
 import Smb from "./components/Smb";
 import Kerberos from "./components/Kerberos";
 import SneakyMercury from "./components/SneakyMercury";
@@ -62,6 +63,7 @@ class App extends React.Component {
                             {this.state.page === 'accueil' && <Accueil/>}
                             {this.state.page === 'pentest' && <Pentest/>}
                             {this.state.page === 'activedirectory' && <ActiveDirectory/>}
+                            {this.state.page === 'ntlm' && <Ntlm/>}
                             {this.state.page === 'smb' && <Smb/>}
                             {this.state.page === 'kerberos' && <Kerberos/>}
                             {this.state.page === 'sneakymercury' && <SneakyMercury/>}

@@ -13,6 +13,7 @@ render() {
           <Link className="menu-item" to="/" onClick={() => this.props.action('accueil')}>Accueil</Link>
           <Link className="menu-item" to="/pentest/" onClick={() => this.props.action('pentest')}>Méthodologie Pentest</Link>
           <Link className="menu-item" to="/active-directory/" onClick={() => this.props.action('activedirectory')}>Active Directory</Link>
+          <Link className="menu-item" to="/ntlm/" onClick={() => this.props.action('ntlm')}>Protocole NTLM</Link>
           <Link className="menu-item" to="/smb/" onClick={() => this.props.action('smb')}>Protocole SMB</Link>
           <Link className="menu-item" to="/kerberos/" onClick={() => this.props.action('kerberos')}>Kerberos</Link>
           <Link className="menu-item" to="/sneakymercury/" onClick={() => this.props.action('sneakymercury')}>SneakyMercury</Link>
@@ -24,6 +25,7 @@ render() {
             <Route exact path="/"/>
             <Route path="/pentest/"/>
             <Route path="/active-directory/"/>
+            <Route path="/ntlm/"/>
             <Route path="/smb/"/>
             <Route path="/kerberos/"/>
             <Route path="/sneakymercury/"/>
