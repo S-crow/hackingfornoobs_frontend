@@ -381,6 +381,71 @@ class Redteam extends React.Component {
           <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
           
           Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN.</p>
+
+          <br/>
+
+          <h3>Configuration GSM pour la box</h3>
+
+          <p>Lien pour dongle : <a href="http://shop.mchobby.be/product.php?id_product=677">dongle GSM (23,60€)</a>    (module 3G HSDPA, support SMS et connexion internet)</p>
+
+
+          <p className="tabulation">Ce module permet d'établir des connexions Internet via le réseau 3G... et d'obtenir une connexion Internet là où vous ne disposez pas d'ADSL, de ligne téléphonique classique, ou de WiFi.</p>
+
+          <p>Editer le fichier <strong>config.txt</strong> dans le dossier /boot/ <br/>
+          Ajouter la ligne suivante: <strong>max_usb_current=1</strong><br/>
+          Après reboot, vous pouvez brancher la clef USB à la Raspberry <br/><br/>
+
+          La commande <strong>lsusb</strong> devrait la faire apparaître dans la liste. Sinon vérifiez le matériel et la connectique.
+          <br/><br/>
+
+          $ sudo apt-get update <br/>
+          $ sudo apt-get install ppp wvdial<br/>
+          </p>
+
+          <h4>Configuration de wvdial</h4>
+
+          <p>Le fichier de configuration de wvdial se trouve dans le dossier <strong>/etc/wvdial.conf</strong>
+          <br/><br/>
+
+          sudo nano /etc/wvdial.conf<br/><br/>
+
+          Le fichier de configuration est un fichier texte comme celui-ci dessous :
+
+          <div id="wifi">
+          [Dialer Defaults]<br/>
+          Init1 = ATZ<br/>
+          Init2 = ATQ0 V1 E1 S0=0 &C1 &D2<br/>
+          Init3 = AT+CGDCONT=1,"IP","web.be"<br/>
+          Stupid Mode = 1<br/>
+          Modem Type = Analog Modem<br/>
+          ISDN = 0<br/>
+          New PPPD = yes<br/>
+          Phone = *99#<br/>
+          Modem = /dev/ttyUSB0<br/>
+          Username = web<br/>
+          Password = web<br/>
+          Baud = 9600
+          </div>
+
+          Les paramètres web.be, web, web sont des paramètres propres aux opérateurs 3G (web.be, web, web sont les paramètres pour l'opérateur MobileVikings).<br/><br/>
+
+          <strong>Pour Mobistar (Orange Belgique)</strong><br/>
+          A la place de web.be rentrez mworld.be, (business: entrez web.pro.be)<br/>
+          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = ''<br/>
+          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = ''<br/><br/>
+
+          <strong>Pour Proximus</strong><br/>
+          A la place de web.be rentrez internet.proximus.be<br/>
+          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = ''<br/>
+          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = ''<br/><br/>
+
+          <strong>Pour Base</strong><br/>
+          A la place de web.be rentrez gprs.base.be<br/>
+          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = 'base'<br/>
+          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = 'base'
+          </p>
+
+          <p>Une fois wvdial configuré, il suffit de taper la commande <strong>sudo wvdial </strong> afin de lancer la connexion 3G.Plusieurs informations vont défiler à l'écran dont l'adresse IP publique et les DNS fournis par le FAI. CTRL+C pour couper la connexion, cela affichera le temps pendant laquelle la connexion a été maintenue.</p>
       </div>
       );
     }
