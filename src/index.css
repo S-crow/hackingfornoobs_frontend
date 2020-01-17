@@ -237,6 +237,9 @@ hr {
   margin: 40px;
   background-color:#333333;
   padding: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 #search {
@@ -299,12 +302,19 @@ hr {
 #kaliraspberry{
   width: 90%;
 }
+#hacktheplanet{
+  width: 70%;
+}
 #methodoredteam{
   width: 90%;
 }
 #hide_raspberry{
   width: 80%;
 }
+#raspap{
+  width: 35%;
+}
+
 @media (max-width: 1024px) {
   #hackerman_img {
     width: 80%;
@@ -353,6 +363,9 @@ hr {
     width:105%; 
   }
   #eternalbluesuccess{
+    width: 100%;
+  }
+  #raspap{
     width: 100%;
   }
 }

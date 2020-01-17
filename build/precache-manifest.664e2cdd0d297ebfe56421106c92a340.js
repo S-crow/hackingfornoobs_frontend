@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "27ff8177dbb312f02eccf71ff98281c9",
+    "revision": "ac788c11a2c1c42be76bcd8dc5e7335d",
     "url": "/index.html"
   },
   {
-    "revision": "8b491527f4cfcf980747",
+    "revision": "a06754fa477ad58eed06",
     "url": "/static/css/2.17e5ed98.chunk.css"
   },
   {
-    "revision": "31e04e362b7c0671e5bf",
-    "url": "/static/css/main.1984e2e1.chunk.css"
+    "revision": "0c49ec89331c7372fb9d",
+    "url": "/static/css/main.1683cd02.chunk.css"
   },
   {
-    "revision": "8b491527f4cfcf980747",
-    "url": "/static/js/2.4ce92486.chunk.js"
+    "revision": "a06754fa477ad58eed06",
+    "url": "/static/js/2.b2e239f6.chunk.js"
   },
   {
     "revision": "c6f2a8cff5bda75ce9d9d2e5dad3a2a7",
-    "url": "/static/js/2.4ce92486.chunk.js.LICENSE"
+    "url": "/static/js/2.b2e239f6.chunk.js.LICENSE"
   },
   {
-    "revision": "31e04e362b7c0671e5bf",
-    "url": "/static/js/main.079e39fd.chunk.js"
+    "revision": "0c49ec89331c7372fb9d",
+    "url": "/static/js/main.91c9175f.chunk.js"
   },
   {
     "revision": "61a3149b89929896dec2",
@@ -68,6 +68,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/hackthebox.547c1edd.png"
   },
   {
+    "revision": "ffa534fd8ed5517eb38aca08d3b25957",
+    "url": "/static/media/hacktheplanet.ffa534fd.gif"
+  },
+  {
     "revision": "b2dd8e61155c21f1125cef5e52d649f4",
     "url": "/static/media/help_sneakymercury.b2dd8e61.PNG"
   },
@@ -106,9 +110,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "2acae8545c98adecb77096d39d57a638",
     "url": "/static/media/raspap_01.2acae854.png"
-  },
-  {
-    "revision": "57da70b54733cee9d99d9a3835ca5d99",
-    "url": "/static/media/raspap_02.57da70b5.png"
   }
 ]);
