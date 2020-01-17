@@ -232,7 +232,7 @@ hr {
   background-color: #333333;
 }
 
-#wifi {
+#terminal {
   color: white;
   margin: 40px;
   background-color:#333333;
@@ -314,7 +314,22 @@ hr {
 #raspap{
   width: 35%;
 }
-
+#instance{
+  width: 90%;
+  border: 0.5px solid;
+}
+#firewall {
+  width: 90%;
+}
+#publique {
+  width: 90%;
+}
+#autologin {
+  width: 50%;
+}
+#redteamuser {
+  width: 90%;
+}
 @media (max-width: 1024px) {
   #hackerman_img {
     width: 80%;
