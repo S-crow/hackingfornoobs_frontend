@@ -403,7 +403,7 @@ class Redteam extends React.Component {
 
           <img id="autologin" src={AutologinProfile} alt="autologin profile"/>
 
-          <h3>Configuration de la Raspberry Pi 4</h3>
+          <h3>Configuration de la Raspberry Pi</h3>
           <li>Allumez la Raspberry et branchez un câble ethernet</li>
           <li>Configurez le démarrage automatique d'OpenVPN : <strong>vim /etc/default/openvpn</strong> <br/> et décommentez <strong>[‘AUTOSTART=”all”’]</strong></li>
           <li>Copiez <strong>client.ovpn</strong> sur la Raspberry dans <strong>/etc/openvpn/</strong></li>
