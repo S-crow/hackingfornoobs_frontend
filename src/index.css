@@ -268,7 +268,7 @@ hr {
 }
 
 #activedirectory_img {
-  width:80%; 
+  width:60%; 
 }
 
 #laps {
@@ -329,6 +329,15 @@ hr {
 }
 #redteamuser {
   width: 90%;
+}
+#schema_ntlm {
+  width: 80%;
+}
+#golden_ticket {
+  width: 60%;
+}
+#silver_ticket {
+  width: 60%;
 }
 @media (max-width: 1024px) {
   #hackerman_img {
