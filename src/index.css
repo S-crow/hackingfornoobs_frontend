@@ -339,6 +339,12 @@ hr {
 #silver_ticket {
   width: 60%;
 }
+#radius01 {
+  width: 80%;
+}
+#radius02 {
+  width: 80%;
+}
 @media (max-width: 1024px) {
   #hackerman_img {
     width: 80%;

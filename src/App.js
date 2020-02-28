@@ -12,7 +12,6 @@ import Redteam from "./components/Redteam";
 import HackerManifesto from "./components/HackerManifesto";
 import Footer from './components/Footer';
 import ScrollUpButton from "react-scroll-up-button";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './components/Search';
 import {Animated} from "react-animated-css";
 import opening from './img/hacker.jpg'

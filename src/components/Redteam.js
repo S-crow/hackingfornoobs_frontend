@@ -9,6 +9,8 @@ import FirewallRules from "../img/regles_firewall.PNG"
 import AutologinProfile from "../img/autologin_profil.png"
 import RedteamUser from "../img/user_redteam.PNG"
 import PublicIP from "../img/ip_publique.PNG"
+import Radius01 from "../img/radius01.PNG"
+import Radius02 from "../img/radius02.PNG"
 
 class Redteam extends React.Component {
     render() {
@@ -264,7 +266,6 @@ class Redteam extends React.Component {
         ##You should now see a wireless network named “iphone10” (or whatever named you use)<br/> where you can connect to it with your wpa_passphrase you set earlier. You<br/> should also have Internet too assuming your Raspberry Pi 4 has Internet. Once<br/> connected, you can also SSH into your Raspberry Pi 4.
         </div> */}
 
-
         <br/>
         <hr/>
         <br/>
@@ -488,6 +489,33 @@ class Redteam extends React.Component {
           </p>
 
           <p className="tabulation">Une fois wvdial configuré, <strong>sudo wvdial</strong> afin de lancer la connexion 3G. Plusieurs informations vont défiler à l'écran dont l'adresse IP publique et les DNS fournis par le FAI. CTRL+C pour couper la connexion, cela affichera alors la durée pendant laquelle la connexion a été maintenue.</p>
+
+          <br/>
+          <hr/>
+          <br/>
+
+          <h3>Contournement authentifiaction radius</h3>
+
+          <p className="tabulation">Dans les entreprises le WiFi est souvent configuré en <strong>WPA2-PEAP MSCHAPv2</strong>, grâce à sa facilité d’installation dans une infrastructure Windows. La connexion au réseau WiFi se fait alors par une authentification à un <strong>serveur Radius</strong> qui permet aux utilisateurs de l’entreprise de se connecter avec leur compte de domaine.</p>
+
+          <p className="tabulation">Mais cette configuration est vulnérable à une attaque <strong>MITM</strong> (Man In The Middle) qui permet de récupérer les hashs des mots de passe des utilisateurs. <br/><br/>
+          
+          Cela consiste à créer un faux serveur Radius qui intercepte les demandes d’authentification à la place du vrai point d’accès, à condition que le serveur de l’attaquant offre un signal plus fort que le vrai point d’accès.</p>
+
+          <u>La méthodologie à suivre :</u>
+
+          <ul>
+            <li>Mettre en place un faux serveur Radius à l’aide de <strong>hostapd-wpe</strong> configuré avec le même SSID que la cible (ici « Wing Secure ») puis attendre la tentative de connexion d’un utilisateur.</li>
+
+            <img id="radius01" src={Radius01} alt="radius01"/>
+
+            <li>Bruteforcer le mot de passe avec <strong>John</strong>, <strong>hashcat</strong> ou avec une attaque par dictionnaire avec <strong>asleap</strong>.</li>
+
+            <img id="radius02" src={Radius02} alt="radius02"/>
+          </ul>
+
+          <p>On retrouve bien le mot de passe "<strong>testtest123</strong>" en quelques secondes avec une wordlist.</p>
+
       </div>
       );
     }
