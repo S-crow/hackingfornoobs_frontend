@@ -12,11 +12,11 @@ class Accueil extends React.Component {
         <div className="article">
           <h1>Le Hacking pour les Noobs</h1>
           <hr/>
-          <p className="tabulation"><strong>La culture du Hacking</strong> n'a ni méthode type ni parcours spécifique, n'importe quelle voie est a priori possible pour commencer. Mais justement comment ne pas se perdre dans cette jungle de réponses que présente la fameuse question : <strong>Comment devenir un Hacker ?</strong></p> 
+          <p className="tabulation">Pas de parcours spécifique tout est possible pour commencer. Mais justement comment ne pas se perdre dans cette jungle de réponses sur la fameuse question : <strong>Comment devenir un Hacker ?</strong></p> 
 
           <img id="hackerman_img" src="https://media.giphy.com/media/RyXVu4ZW454IM/giphy.gif" alt="Hackerman"/>
 
-          <p className="tabulation">Pour commencer il faut de la volonté, beaucoup de volonté ! Il faut d'abord apprendre à apprendre... Ce n'est pas sans raison qu'on répondra <a href="https://fr.wikipedia.org/wiki/RTFM_(expression)">RTFM</a> sur les forums. <br/> Avant toute chose il faut bien comprendre les mécanismes mis en place, les technologies et les langages utilisés pour espèrer en détourner les usages ;)</p>
+          <p className="tabulation">Pour commencer il faut de la volonté, beaucoup de volonté ! Il faut d'abord apprendre à apprendre... Ce n'est pas sans raison qu'on répond <a href="https://fr.wikipedia.org/wiki/RTFM_(expression)">RTFM</a> (<strong>Read The Fuckin' Manual</strong> = démerde toi avec la doc ^^) sur les forums. <br/> Avant toute chose il faut bien comprendre les mécanismes, les technologies et les langages utilisés pour espèrer en détourner leurs usages &#128520;</p>
 
           <p className="tabulation">Il n'existe pas de chemin particulier mais une base de connaissances en informatique est nécessaire avant de démarrer dans la sécu, sous peine de n'être qu'un vulgaire <strong>script kiddie</strong>... <br/><br/> Pour les plus noobs d'entre vous je vous renvoie vers ce site oh combien formateur : 
           <a href="https://openclassrooms.com/fr/" alt="lien openclassrooms"><img id="openclassrooms_img" src={OpenClassrooms} alt="openclassrooms" /></a>
@@ -48,30 +48,49 @@ class Accueil extends React.Component {
           
           <p>Car à présent passons aux sites de challenges : <a href="https://www.root-me.org/">Root-Me</a> et <a href="https://www.newbiecontest.org/">Newbie Contest</a></p>
 
-          <p className="tabulation">L'idée de ce genre de site c'est de se fixer des objectifs réalistes. Souvent le titre du chall donne un renseignement sur la vulnérabilité à exploiter, après suffit creuser, d'appronfondir le sujet. Et pour cela Google est ton ami ^^</p>
+          <p className="tabulation">L'idée de ce genre de site c'est de se fixer des objectifs réalistes avec le titre du chall comme indice sur la vulnérabilité à exploiter, après suffit creuser, d'appronfondir le sujet. Google est ton ami &#128521;</p>
 
+          <p>Voici une liste des challenges par lesquels commencer dans les catégories <strong>Web-Server</strong> et <strong>Web-Client</strong>:</p> 
+            <ul>
+              <li>HTML Code source</li>
+              <li>Javascript – Authentification</li>
+              <li>Javascript – Source</li>
+              <li>HTML Boutons désactivés</li>
+              <li>Mot de passe faible</li>
+              <li>HTTP - Directory indexing</li>
+              <li>Directory Traversal</li>
+              <li>HTTP-POST</li>
+              <li>FTP - Authentification</li>
+              <li>Telnet - Authentification</li>
+              <li>XSS Stocké 1</li>
+              <li>SQLI</li>
+            </ul>
+        
+
+          <br/>
           <hr/>
           <br/>
 
-          <p className="tabulation">Une fois entre 1000 et 2000 points sur Root-Me et vu le <strong>Top 10 OWASP</strong> (XSS, SQLI, ...)
+          <p className="tabulation">Une fois entre 1000 et 2000 points sur Root-Me et découvert le <strong>Top 10 OWASP</strong> (XSS, SQLI, ...)
           tu peux passer aux challenges de type "Réaliste" dans la catégorie éponyme sur Root-Me ou sur le très bon site : <a href="https://www.hackthebox.eu/">HackTheBox</a>.</p>
 
           <img id="hackthebox_img" src={HTB} alt="HackTheBox"/>
 
           <p className="tabulation">Ici, on retrouve un environnement complet par le biais de VMs à attaquer. </p> 
-          <p className="tabulation">Sur HTB la méthodologie est toujours la même, à savoir obtenir d'abord un shell non privilégie (avec les droits d'un utilisateur) au moyen d'une vulnérabilité sur le serveur, puis effectuer une escalade de privilèges. <br/>Ce qui signifie réussir à obtenir les privilèges maximales sur le serveur, autrement dit devenir root sur Linux ou admin sur Windows. Congratulations tu peux "flag" la machine sur HackTheBox.</p>
+          <p className="tabulation">Sur HTB la méthodologie est toujours la même, obtenir d'abord un shell non privilégie (avec les droits d'un utilisateur) au moyen d'une vulnérabilité, puis effectuer une escalade de privilèges pour devenir <strong>root</strong> (ou admin sur Windows). Congratulations tu peux "flag" la machine.</p>
 
           <br/>
           <hr/>
           <br/>
 
-          <p className="tabulation">Après avoir rooter plusieurs machines HackTheBox, il serait intéressant de le faire dans un environnement réel, pour ça je recommande le métier de Pentester (ou Ethical Hacker) pour éviter de le faire "In the wild" et de s'attirer quelques problèmes ^^' ou à l'occasion de CTFs : <a href="https://ctftime.org/">Liste des CTFs à venir</a></p>
+          <p className="tabulation">Après avoir rooter plusieurs machines HackTheBox, pour le faire dans un environnement réel il existe le métier de <strong>Pentester</strong> (ou Ethical Hacker) cela évite de le faire "In the wild" et de s'attirer quelques ennuis &#128517; ou bien à l'occasion de CTFs : <a href="https://ctftime.org/">Liste des CTFs à venir</a></p>
 
-          <p className="tabulation">N'hésite pas non plus à participer aux événements de hacking en tout genre, ces rencontres te permettront de skill up tout en buvant des bières :) N'hésite pas non plus à share ce que tu apprends, et les noobs d'aujourd'hui seront peut être les pentesters de demain.</p>
+          <p className="tabulation">N'hésite pas non plus à participer aux confs ou events de hacking en tout genre, ces rencontres te permettront de skill up tout en buvant des bières 	&#127866;&#128518; N'hésite pas non plus à share ce que tu apprends pour que les noobs d'aujourd'hui soient peut être les pentesters de demain.</p>
 
-          <p className="tabulation">Enfin la suite, d'un niveau bien plus avancé, est pour moi l'étude de domaines extrêmement intéressants du monde de l'infosec : <strong>Exploit</strong>, <strong>Reverse</strong> ou encore <strong>Hardware Hacking</strong>. Apprendre à dev son propre exploit de buffer overflow ou à reverse un Malware oO</p>
+          <p className="tabulation">Enfin l'ultime étape de ta formation, d'un niveau bien plus avancé, est pour moi l'étude de domaines extrêmement intéressants du monde de l'infosec : <strong>Exploit</strong>, <strong>Reverse</strong> ou encore le<strong>Hardware Hacking</strong>. Apprendre à dev son propre exploit de buffer overflow, à hacker une radio ou à reverse un Malware oO</p>
 
-          <p className="tabulation">En parallèle de toute cette aventure, il y a des certifications comme la <a href="https://www.eccouncil.org/programs/certified-ethical-hacker-ceh-fr/" alt="lien CEH">CEH</a> (Certified Ethical Hacker) pour officialiser tes connaissances (QCM théorique) ou l'<a href="https://www.offensive-security.com/pwk-oscp/" alt="lien OSCP">OSCP</a> (examen pratique) plus pour le challenge.</p>
+          <p className="tabulation">En parallèle de toute cette aventure, il y a des certifications comme la <a href="https://www.eccouncil.org/programs/certified-ethical-hacker-ceh-fr/" alt="lien CEH">CEH</a> (Certified Ethical Hacker) pour officialiser tes connaissances (QCM théorique) ou l'<a href="https://www.offensive-security.com/pwk-oscp/" alt="lien OSCP">OSCP</a> (examen pratique) beaucoup plus challengeant.</p>
+          <br/>
         </div>    
       );
     }

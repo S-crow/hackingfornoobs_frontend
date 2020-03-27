@@ -1,6 +1,5 @@
 html,
 body {
-  display: flex;
   margin: 0;
   color: #4B505A;
   background-color: #F5F5F5;
@@ -8,20 +7,20 @@ body {
 
 #App {
   font-family: "Open Sans", sans-serif;
-  background-color: #F5F5F5; /*gray*/
   font-size: 14px;
   line-height: 24px;
-  vertical-align: baseline;
   letter-spacing: normal;
   word-spacing: 0px;
 }
 
+/* supprimer encadre bleu menu */
+.MuiList-root.bm-item.MuiList-dense:focus {outline:0;} 
 
 #page-wrap {
-  margin: 0 20%;
+  margin: 0% 20%;
   text-align: justify;
   text-justify: inter-word;
-  background-color: #FFFFFF;
+  background-color:#FFFFFF;
   /* Prevent sidebar from showing a scrollbar on page */
   overflow: auto;
   margin-bottom: 20%;
@@ -78,7 +77,6 @@ a:hover {
 font-weight: bold;
 }
 
-
 #openclassrooms a {
   color: #9013FE;
 }
@@ -89,15 +87,6 @@ font-weight: bold;
 
 .indent {
   margin-left: 35%;
-}
-
-.hackermanifesto {
-  text-align: justify;
-  text-justify: inter-word;
-  /* Prevent sidebar from showing a scrollbar on page */
-  overflow: auto;
-  background-color: #F6ECE2;
-  background-size:99%;
 }
 
 img:not(#loading) {
@@ -126,34 +115,13 @@ hr {
   padding: 0;
 }
 
-
-/* Individual item */
-.menu-item {
-  display: flex;
-  flex-direction: column;
-  color: #d1d1d1; 
-  text-decoration: none;
-  margin-bottom: 10px;
-  outline: 0;
-  border: none;
-}
-
-/* Change color on hover */
-.menu-item:hover {
-  color: white;
-}
-
 .article{
   margin: 0 5%;
 }
-/* The rest copied directly from react-burger-menu docs */
+
 /* Position and sizing of burger button */
 .bm-burger-button {
-  position: fixed;
-  width: 30px;
-  height: 26px;
-  left: 36px;
-  top: 36px;
+  position: fixed; width: 30px; height: 26px; left: 36px; top: 36px;
 }
 
 @media (max-width: 1024px) {
@@ -185,7 +153,7 @@ hr {
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #F5F5F5;/*#bdc3c7;*/
+  background:#bdc3c7;
 }
 
 /* General sidebar styles */
@@ -205,6 +173,7 @@ hr {
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
   fill: #121212;
+  
 }
 
 /* Wrapper for item list */
@@ -216,10 +185,6 @@ hr {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
   border: none;
-}
-
-#list-links {
-  list-style: none;
 }
 
 .site-footer {
@@ -248,6 +213,18 @@ hr {
 
 #hackerman_img {
   width: 40%;
+}
+
+#pentester_img {
+  width: 50%;
+}
+
+#whitebox_img {
+  width: 70%;
+}
+
+#diagram_img {
+  width: 95%;
 }
 
 #openclassrooms_img{
@@ -345,6 +322,7 @@ hr {
 #radius02 {
   width: 80%;
 }
+
 @media (max-width: 1024px) {
   #hackerman_img {
     width: 80%;

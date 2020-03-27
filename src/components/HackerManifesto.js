@@ -52,6 +52,8 @@ class CultureGeek extends React.Component {
           Vous pouvez arrêter cet individu, mais vous ne pouvez pas tous nous arrêter...
           Après tout, nous sommes tous les mêmes.»</p>
 
+          <p style={{"font-style": "italic"}}> écrit le 8 janvier 1986, par le hacker Loyd Blankenship aka « The Mentor » après son arrestation</p>
+
           <hr className="parchemin"/>
         </div>
       );

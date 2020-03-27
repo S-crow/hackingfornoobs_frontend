@@ -1,43 +1,111 @@
-import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import React from "react";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import Collapse from "@material-ui/core/Collapse";
 
+function SidebarItem(props, { depthStep = 10, depth = 1, expanded, item, ...rest }) {
+  const [collapsed, setCollapsed] = React.useState(true);
+  const { label, items, Icon, onClick: onClickProp } = props.item;
 
-class Sidebar extends React.Component {
+  function toggleCollapse() {
+    setCollapsed(prevValue => !prevValue);
+  }
 
-render() {
+  function onClick(e) {
+
+    if (Array.isArray(items)) {
+      toggleCollapse();
+    }
+    else {
+      console.log(props.action(props.item.name));
+    }
+    if (onClickProp) {
+
+      onClickProp(e, item);
+    }
+  }
+
+  let expandIcon;
+
+  if (Array.isArray(items) && items.length) {
+    expandIcon = !collapsed ? (
+      <ExpandLessIcon
+        className={
+          "sidebar-item-expand-arrow" + " sidebar-item-expand-arrow-expanded"
+        }
+      />
+    ) : (
+      <ExpandMoreIcon className="sidebar-item-expand-arrow" />
+    );
+  }
 
   return (
-    <Router>
-        <Menu>       
-          <Link className="menu-item" to="/" onClick={() => this.props.action('accueil')}>Accueil</Link>
-          <Link className="menu-item" to="/pentest/" onClick={() => this.props.action('pentest')}>Pentest</Link>
-          <Link className="menu-item" to="/active-directory/" onClick={() => this.props.action('activedirectory')}>Active Directory</Link>
-          <Link className="menu-item" to="/ntlm/" onClick={() => this.props.action('ntlm')}>Protocole NTLM</Link>
-          <Link className="menu-item" to="/smb/" onClick={() => this.props.action('smb')}>Protocole SMB</Link>
-          <Link className="menu-item" to="/kerberos/" onClick={() => this.props.action('kerberos')}>Kerberos</Link>
-          <Link className="menu-item" to="/sneakymercury/" onClick={() => this.props.action('sneakymercury')}>SneakyMercury</Link>
-          <Link className="menu-item" to="/redteam/" onClick={() => this.props.action('redteam')}>Redteam</Link>
-          <Link className="menu-item" to="/hacker-manifesto/" onClick={() => this.props.action('hackermanifesto')}>Hacker Manifesto</Link>         
-
-          <a className="menu-item" href="../portfolio/">Portfolio</a>
-          <Switch>
-            <Route exact path="/"/>
-            <Route path="/pentest/"/>
-            <Route path="/active-directory/"/>
-            <Route path="/ntlm/"/>
-            <Route path="/smb/"/>
-            <Route path="/kerberos/"/>
-            <Route path="/sneakymercury/"/>
-            <Route path="/redteam/"/>
-            <Route path="/hacker-manifesto/"/>
-            <Route path="/portfolio/"/>
-
-          </Switch>
-        </Menu>
-    </Router>
+    <>
+      <ListItem
+        className="sidebar-item"
+        onClick={onClick}
+        button
+        dense
+        {...rest}
+      >
+        <div className="sidebar-item-text">{label}</div>
+        {expandIcon}
+      </ListItem>
+      <Collapse in={!collapsed} timeout="auto" unmountOnExit>
+        {Array.isArray(items) ? (
+          <List disablePadding dense>
+            {items.map((subItem, index) => (
+              <React.Fragment key={`${subItem.name}${index}`}>
+                {subItem === "divider" ? (
+                  <Divider style={{ margin: "6px 0" }} />
+                ) : (
+                  <SidebarItem
+                    depth={depth + 1}
+                    depthStep={depthStep}
+                    item={subItem}
+                    action={props.action}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </List>
+        ) : null}
+      </Collapse>
+    </>
   );
-  }
+}
+
+function Sidebar(props, depthStep, depth, expanded ) {
+  
+  return (
+    <div className="sidebar">
+      <Menu>
+      <List disablePadding dense>
+        {props.items.map((sidebarItem, index) => (
+          <React.Fragment key={`${sidebarItem.name}${index}`}>
+            {sidebarItem === "divider" ? (
+              <Divider style={{ margin: "6px 0" }} />
+            ) : (    
+                <SidebarItem
+                depthStep={depthStep}
+                depth={depth}
+                expanded={expanded}
+                item={sidebarItem}
+                action={props.action}
+                />
+            )}
+          
+          </React.Fragment>
+        ))}  
+        <a className="menu-item" href="../portfolio/">Portfolio</a>
+      </List>   
+      </Menu>
+    </div>
+  );
 }
 
 export default Sidebar;

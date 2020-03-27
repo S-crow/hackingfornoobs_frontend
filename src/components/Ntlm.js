@@ -6,9 +6,9 @@ class Ntlm extends React.Component {
       return (
         <div className="article">
           <h1>Le protocole NTLM</h1>
-          <hr/>
+          <hr/> 
 
-          <h4>Les formats de Hash</h4>
+          <h2>Les formats de Hash</h2>
           <ul>
               <li><strong>LM</strong> : hash des anciennes versions de Windows, obsolète (sécurité très faible).</li>
               <li><strong>NTLM</strong> : hash des versions récentes de Windows, (robuste).</li>
@@ -19,7 +19,7 @@ class Ntlm extends React.Component {
 
           <br/>
           
-          <h4>Les protocoles d'authentification (Challenge/Response)</h4>
+          <h2>Les protocoles d'authentification (Challenge/Response)</h2>
 
           <ul>
               <li>Protocole <strong>LM</strong> : associé au hash LM et au chiffrement DES, obsolète (sécurité très faible)</li>
